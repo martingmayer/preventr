@@ -150,16 +150,24 @@ First and most importantly: I have tested the package’s functionality
 extensively. That is not the reason for the \< 1.0.0 release.
 
 Rather, I developed the API with an eye toward maximizing simplicity and
-intuitiveness. Thus, while I do not anticipate any changes to the API, I
-remain open to the idea there may be improvements to the API that may
-surface after more people use this package. This is the only reason I
-did not release as 1.0.0. Nevertheless, users should rest assured if any
-changes come to the API, I will avoid breaking changes unless they are
-absolutely necessary or there is an extremely compelling argument for
-making such changes; likewise, any such changes will be communicated
-clearly and in advance. Again, I consider all of this very unlikely, but
-in the off chance something like that does arise, I also want others to
-rest assured I will make every effort to ensure there are no surprises,
+intuitiveness. Thus, while I do not anticipate any major/breaking
+changes to the API, I remain open to the idea there may be improvements
+to the API that may surface after more people use this package. This is
+the only reason I did not release as 1.0.0. In fact, this happened with
+the update from 0.9.0 to 0.10.0, where I added the ability to call
+`calc_egfr()` and `calc_bmi()` (or synonyms) for the corresponding
+arguments in `estimate_risk()` (or its synonym `est_risk()`); this
+non-breaking change is really a feature addition that increases
+usability in certain use cases while still supporting the same
+functionality for those arguments as the 0.9.0 release.
+
+Users should rest assured if any changes come to the API, I will avoid
+breaking changes unless they are necessary or there is a compelling
+argument for making such changes; likewise, I will aim to communicate
+any such changes clearly and in advance if possible. Again, I consider
+all of this very unlikely, but in the off chance something like that
+does arise, I also want others to rest assured I will make efforts to
+ensure surprises and/or headaches are minimized or avoided if possible,
 essentially following the best practices outlined at the excellent
 reference [R Packages](https://r-pkgs.org/lifecycle.html).
 
