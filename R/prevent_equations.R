@@ -1017,6 +1017,8 @@ est_risk <- estimate_risk
 #'  
 #' @param ... Not used. Reserved for future use.
 #' 
+#' @return Returns `NULL` invisibly after opening app in your default browser.
+#' 
 #' @examples
 #' app()
 #'  

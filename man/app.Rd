@@ -9,6 +9,9 @@ app(...)
 \arguments{
 \item{...}{Not used. Reserved for future use.}
 }
+\value{
+Returns \code{NULL} invisibly after opening app in your default browser.
+}
 \description{
 This function opens a browser window (using the user's default browser) and
 navigates to the Shiny app located at:
