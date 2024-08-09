@@ -92,6 +92,14 @@ just one function (and synonym) being exposed to the user:
 ``` r
 
 # Very basic example; see function documentation for many more examples
+# 
+# If the package is loaded (e.g., `library(preventr)`) or the function is made 
+# available  via some other means (e.g., importing as part of development 
+# of another package), use of `preventr::` before the function name is not
+# strictly necessary; however, this approach to calling functions can often be
+# helpful for clarity of code, for avoiding potential namespace conflicts, etc. 
+# However, a full discussion of pros and cons and when one approach might be
+# favored over another is beyond the scope of this package or this comment.
 preventr::estimate_risk(
   age = 50,
   sex = "female",
@@ -118,6 +126,23 @@ preventr::estimate_risk(
 #>       <dbl> <dbl>         <dbl> <dbl>  <dbl> <chr>      <int> <chr>         
 #> 1      0.53 0.354          0.39 0.198  0.221 base          30 <NA>
 ```
+
+## There’s an app for that
+
+In addition to the R package, I created a Shiny app that is driven by
+the {preventr} package and also includes things like risk visualization
+and several options for customization of the output. The app is
+available at:
+
+<https://martingmayer.shinyapps.io/prevent-equations>
+
+Easier-to-remember URLs:
+
+- <https://tiny.cc/prevent-equations>
+- <https://tiny.cc/preventequations>
+
+In addition, calling `preventr::app()` will open the user’s default
+browser and navigate to the Shiny app.
 
 ## Why not 1.0.0?
 

@@ -24019,7 +24019,14 @@
         uacr = 40, zip = "49507", time = "30yr")
     Message
       Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+    Condition
+      Warning:
+      Estimating 30-year risk in people > 59 years of age is questionable
+    Message
       Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+    Condition
+      Warning:
+      Estimating 30-year risk in people > 59 years of age is questionable
     Output
       $total_cvd
       # A tibble: 1 x 2
@@ -24061,10 +24068,10 @@
       
       $input_problems
       $input_problems$female
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       $input_problems$male
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       
 
@@ -24084,10 +24091,10 @@
       [1] "`hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL)"
       
       $uacr_okay_hba1c_not_zip_null$female_30yr
-      [1] "`hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL)"
       
       $uacr_okay_hba1c_not_zip_null$male_30yr
-      [1] "`hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL)"
       
       
       $uacr_okay_hba1c_null_zip_not
@@ -24098,10 +24105,10 @@
       [1] "`zip` \"99999\" not found among valid zip codes (so set to NULL)"
       
       $uacr_okay_hba1c_null_zip_not$female_30yr
-      [1] "`zip` \"99999\" not found among valid zip codes (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `zip` \"99999\" not found among valid zip codes (so set to NULL)"
       
       $uacr_okay_hba1c_null_zip_not$male_30yr
-      [1] "`zip` \"99999\" not found among valid zip codes (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `zip` \"99999\" not found among valid zip codes (so set to NULL)"
       
       
       $uacr_okay_others_not
@@ -24112,10 +24119,10 @@
       [1] "`hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL); `zip` \"99999\" not found among valid zip codes (so set to NULL)"
       
       $uacr_okay_others_not$female_30yr
-      [1] "`hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL); `zip` \"99999\" not found among valid zip codes (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL); `zip` \"99999\" not found among valid zip codes (so set to NULL)"
       
       $uacr_okay_others_not$male_30yr
-      [1] "`hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL); `zip` \"99999\" not found among valid zip codes (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL); `zip` \"99999\" not found among valid zip codes (so set to NULL)"
       
       
       $uacr_model_by_itself
@@ -24126,10 +24133,10 @@
       [1] NA
       
       $uacr_model_by_itself$female_30yr
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       $uacr_model_by_itself$male_30yr
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       
 
@@ -24149,10 +24156,10 @@
       [1] "`uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL)"
       
       $hba1c_okay_uacr_not_zip_null$female_30yr
-      [1] "`uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL)"
       
       $hba1c_okay_uacr_not_zip_null$male_30yr
-      [1] "`uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL)"
       
       
       $hba1c_okay_uacr_null_zip_not
@@ -24163,10 +24170,10 @@
       [1] "`zip` \"99999\" not found among valid zip codes (so set to NULL)"
       
       $hba1c_okay_uacr_null_zip_not$female_30yr
-      [1] "`zip` \"99999\" not found among valid zip codes (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `zip` \"99999\" not found among valid zip codes (so set to NULL)"
       
       $hba1c_okay_uacr_null_zip_not$male_30yr
-      [1] "`zip` \"99999\" not found among valid zip codes (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `zip` \"99999\" not found among valid zip codes (so set to NULL)"
       
       
       $hba1c_okay_others_not
@@ -24177,10 +24184,10 @@
       [1] "`uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL); `zip` \"99999\" not found among valid zip codes (so set to NULL)"
       
       $hba1c_okay_others_not$female_30yr
-      [1] "`uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL); `zip` \"99999\" not found among valid zip codes (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL); `zip` \"99999\" not found among valid zip codes (so set to NULL)"
       
       $hba1c_okay_others_not$male_30yr
-      [1] "`uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL); `zip` \"99999\" not found among valid zip codes (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL); `zip` \"99999\" not found among valid zip codes (so set to NULL)"
       
       
       $hba1c_model_by_itself
@@ -24191,10 +24198,10 @@
       [1] NA
       
       $hba1c_model_by_itself$female_30yr
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       $hba1c_model_by_itself$male_30yr
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       
 
@@ -24214,10 +24221,10 @@
       [1] "`uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL)"
       
       $zip_okay_uacr_not_hba1c_null$female_30yr
-      [1] "`uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL)"
       
       $zip_okay_uacr_not_hba1c_null$male_30yr
-      [1] "`uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL)"
       
       
       $zip_okay_uacr_null_hba1c_not
@@ -24228,10 +24235,10 @@
       [1] "`hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL)"
       
       $zip_okay_uacr_null_hba1c_not$female_30yr
-      [1] "`hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL)"
       
       $zip_okay_uacr_null_hba1c_not$male_30yr
-      [1] "`hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL)"
       
       
       $zip_okay_others_not
@@ -24242,10 +24249,10 @@
       [1] "`hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL); `uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL)"
       
       $zip_okay_others_not$female_30yr
-      [1] "`hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL); `uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL); `uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL)"
       
       $zip_okay_others_not$male_30yr
-      [1] "`hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL); `uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL)"
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable; `hba1c` entered as 75, but must be between 4.5 and 15 (so set to NULL); `uacr` entered as 4e+06, but must be between 0.1 and 25000 (so set to NULL)"
       
       
       $zip_by_itself
@@ -24256,10 +24263,10 @@
       [1] NA
       
       $zip_by_itself$female_30yr
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       $zip_by_itself$male_30yr
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       
 
@@ -24532,7 +24539,14 @@
       check_equations_partial(age = 67, statin = FALSE, hba1c = 9)
     Message
       Estimates are from: Base model adding HbA1c.
+    Condition
+      Warning:
+      Estimating 30-year risk in people > 59 years of age is questionable
+    Message
       Estimates are from: Base model adding HbA1c.
+    Condition
+      Warning:
+      Estimating 30-year risk in people > 59 years of age is questionable
     Output
       $total_cvd
       # A tibble: 1 x 4
@@ -24580,10 +24594,10 @@
       [1] NA
       
       $input_problems$female_30yr
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       $input_problems$male_30yr
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       
 
@@ -24593,7 +24607,14 @@
       check_equations_partial(age = 67, statin = TRUE, uacr = 1000)
     Message
       Estimates are from: Base model adding UACR.
+    Condition
+      Warning:
+      Estimating 30-year risk in people > 59 years of age is questionable
+    Message
       Estimates are from: Base model adding UACR.
+    Condition
+      Warning:
+      Estimating 30-year risk in people > 59 years of age is questionable
     Output
       $total_cvd
       # A tibble: 1 x 4
@@ -24641,10 +24662,10 @@
       [1] NA
       
       $input_problems$female_30yr
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       $input_problems$male_30yr
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       
 
@@ -24654,7 +24675,14 @@
       check_equations_partial(age = 71, statin = TRUE, hba1c = 9, uacr = 1000)
     Message
       Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+    Condition
+      Warning:
+      Estimating 30-year risk in people > 59 years of age is questionable
+    Message
       Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+    Condition
+      Warning:
+      Estimating 30-year risk in people > 59 years of age is questionable
     Output
       $total_cvd
       # A tibble: 1 x 4
@@ -24702,10 +24730,10 @@
       [1] NA
       
       $input_problems$female_30yr
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       $input_problems$male_30yr
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       
 
@@ -24715,7 +24743,14 @@
       check_equations_partial(age = 71, statin = TRUE, hba1c = 9, uacr = 1000, zip = "49507")
     Message
       Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+    Condition
+      Warning:
+      Estimating 30-year risk in people > 59 years of age is questionable
+    Message
       Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+    Condition
+      Warning:
+      Estimating 30-year risk in people > 59 years of age is questionable
     Output
       $total_cvd
       # A tibble: 1 x 4
@@ -24763,10 +24798,10 @@
       [1] NA
       
       $input_problems$female_30yr
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       $input_problems$male_30yr
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       
 
@@ -24777,7 +24812,14 @@
         zip = NA)
     Message
       Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+    Condition
+      Warning:
+      Estimating 30-year risk in people > 59 years of age is questionable
+    Message
       Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+    Condition
+      Warning:
+      Estimating 30-year risk in people > 59 years of age is questionable
     Output
       $total_cvd
       # A tibble: 1 x 4
@@ -24825,10 +24867,10 @@
       [1] NA
       
       $input_problems$female_30yr
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       $input_problems$male_30yr
-      [1] NA
+      [1] "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
       
       
 

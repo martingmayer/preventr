@@ -1,13 +1,16 @@
 url: https://martingmayer.com/preventr
 template:
   bootstrap: 5
+  theme-light: github-light
+  theme-dark: github-dark
+  light-switch: true
 home:
   sidebar:
     structure: [links, license, citation, authors, toc]
 navbar:
   structure:
-    left:  [intro, reference]
-    right: [search, github]
+    left:  [intro, reference, news]
+    right: [search, github, lightswitch]
 footer:
   structure:
     left:  [developed_by]

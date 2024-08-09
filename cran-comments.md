@@ -2,16 +2,22 @@
 
 0 errors | 0 warnings | 0 notes
 
-This is a revision to a new release. I received the helpful comments from reviewer Benjamin Altmann on 2024-02-20. I appreciate Altmann's time and assistance in progressing this package to CRAN acceptance. Atlmann's comments amounted to 4 minor items with direction to: 
+This is a minor update to the preventr package (0.9.0 --> 0.10.0) that adds 
+some functionality to the package as specified in the NEWS.md file. There are 
+no breaking changes. 
 
-* remove "in R" from the title in the DESCRIPTION file (done), 
-* add the year of the publication to the description field of the DESCRIPTION file (done), 
-* check and correct the description field of the DESCRIPTION file for extra spaces (done), 
-and 
-* remove dontrun from the examples (done, including adjusting some of the examples to instead be part of the description of the return of the function in question, as those examples might better belong there anyway versus being examples per se).
+Briefly, I have created a Shiny app to accompany the package, and this can now 
+be summoned via `app()`. I have also added the ability to call the
+convenience functions `calc_egfr()` and `calc_bmi()` within the 
+`estimate_risk()` function (and its synonym `est_risk()`) rather than passing 
+the corresponding values directly. The package now also warns estimating 30-year risk for people > 59 years is questionable. I have added corresponding 
+documentation for everything and added tests as well.
 
-This revision also includes the more informative error messages and behavior I referenced when I requested my package be returned to me after my initial resubmission with the above corrections. As mentioned previously, I also decided against including the plotting function in my package given some related ideas I have for that. If I do eventually decide to release it, I will be mindful of the time and energy of you all in reviewing new submissions. 
+I have run multiple checks in addition to checking locally. Some of these checks suggest there may be misspelled words in the package. These are false positives.
+Likewise, some checks suggest there may be an invalid URL due to a 403 error
+when attempting to automatically validate some URLs (due to server rejection
+of that request). Again, these are false positives. I have validated all URLs
+myself.
 
-For good measure, I have re-run multiple checks in addition to checking locally. Some of these checks suggest there may be misspelled words in the package. These are false positives. 
-
-Thank you again for your time and review. As mentioned with my original submission, once I receive confirmation of acceptance from CRAN, I will push to my GitHub repository with this version number.
+Thank you again for your time and review. Once I receive confirmation of 
+acceptance from CRAN, I will promote this version from dev to main in my GitHub repository with this version number.

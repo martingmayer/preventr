@@ -57,7 +57,7 @@ est_risk(
 \code{"male"} (\code{"f"} and \code{"m"} are accepted abbreviations)}
 
 \item{sbp}{Numeric (required predictor variable): Systolic blood pressure
-(SBP) in mmHg, from 90-180; see the details section for more information
+(SBP) in mmHg, from 90-180; see the "Details" section for more information
 about the upper bound of the range}
 
 \item{bp_tx}{Logical or numeric equivalent (required predictor variable):
@@ -84,14 +84,17 @@ Whether the person is currently smoking (which PREVENT defines as cigarette
 use within the last 30 days), either \code{TRUE} or \code{FALSE} (1 or 0 are accepted
 as alternative input)}
 
-\item{egfr}{Numeric (required predictor variable): Estimated glomerular
-filtration rate (eGFR) in mL/min/1.73m\if{html}{\out{<sup>}}2\if{html}{\out{</sup>}}, from 15-140}
+\item{egfr}{Numeric or call (required predictor variable): Estimated glomerular
+filtration rate (eGFR) in mL/min/1.73m\if{html}{\out{<sup>}}2\if{html}{\out{</sup>}}, entered either as a
+numeric from 15-140 or as a call to \code{calc_egfr()} or synonyms, as described
+in the "Details" section}
 
-\item{bmi}{Numeric (required predictor variable): Body mass index (BMI) in
-kg/m\if{html}{\out{<sup>}}2\if{html}{\out{</sup>}}, from 18.5-39.9}
+\item{bmi}{Numeric or call (required predictor variable): Body mass index (BMI) in
+kg/m\if{html}{\out{<sup>}}2\if{html}{\out{</sup>}}, entered either as a numeric from 18.5-39.9 or as a call to
+\code{calc_bmi()} or synonyms, as described in the "Details" section}
 
 \item{hba1c}{Numeric (optional predictor variable): Glycated hemoglobin
-(HbA1c) in \%, from 4.5-15; see the details section for more information
+(HbA1c) in \%, from 4.5-15; see the "Details" section for more information
 about the lower bound of the range}
 
 \item{uacr}{Numeric (optional predictor variable): Urine
@@ -99,22 +102,23 @@ albumin-to-creatinine ratio (UACR) in mg/g, from 0.1-25000}
 
 \item{zip}{Character (optional predictor variable): ZIP code of the person's
 residence, used to estimate the Social Deprivation Index (SDI); see the
-details section for more information}
+"Details" section for more information}
 
 \item{model}{Character (required, but has default): The PREVENT model to use,
 one of \code{NULL} (the default), \code{"base"} (the base model), \code{"hba1c"} (the base
 model adding HbA1c), \code{"uacr"} (the base model adding UACR), \code{"sdi"} (the
 base model adding SDI), or \code{"full"} (the base model adding HbA1c, UACR, and
 SDI). If \code{NULL}, the model will be determined by algorithm specified in the
-details section, and this is the intended argument for most users. The
+"Details" section, and this is the intended argument for most users. The
 ability to specify mainly exists for specific use cases (e.g., research
 purposes).}
 
-\item{time}{Character or numeric (required, but has default): The time
-horizon for the risk estimate, one of \code{"both"} (character; the default);
+\item{time}{Character or numeric (required, but has default): Whether to
+estimate risk over 10 or 30 years, one of \code{"both"} (character; the default);
 \code{10} (numeric), \code{"10"} (character), or \code{"10yr"} (character); or \code{30}
-(numeric), \code{"30"} (character), or \code{"30yr"} (character); if \code{"both"},
-estimates for both 10- and 30-year risk will be returned}
+(numeric), \code{"30"} (character), or \code{"30yr"} (character); if estimating over
+30 years and age > 59, a warning will accompany the results regarding the
+reliability of the estimation (see the "Value" section for more information)}
 
 \item{chol_unit}{Character (required, but has default): The unit of
 measurement for \code{total_c} and \code{hdl_c}, either \code{"mg/dL"} (the default) or
@@ -128,7 +132,7 @@ this function), and moreover, anything other than \code{TRUE} will be treated as
 \code{FALSE}. If \code{FALSE}, the function will discard invalid optional predictor
 variables but still allow the model to run. If \code{TRUE}, optional predictor
 variables entered (if any) must be valid for the function to return
-risk estimates. See the section "Value" for more information.}
+risk estimates. See the "Value" section for more information.}
 
 \item{quiet}{Logical (required, but has default): Whether to suppress
 messages and warnings in the console, either \code{TRUE} or \code{FALSE} (the
@@ -140,9 +144,9 @@ function), and moreover, anything other than \code{TRUE} will be treated as
 \value{
 \code{estimate_risk()} will always return a data frame as a tibble, and
 all references herein to a data frame being returned are for a data frame
-as a tibble (see \code{\link[tibble:tibble]{tibble::tibble()}} for more detail). However, the manner
-in which the data frame is returned will come in one of two ways, depending
-on the \code{time} argument
+as a tibble (see the \href{https://tibble.tidyverse.org/}{tibble} package for more detail).
+However, the manner in which the data frame is returned will come in one of two ways,
+depending on the \code{time} argument:
 \itemize{
 \item When \code{time = "both"}: A list of length 2, with each item in the list
 being a data frame containing the 10-year and 30-year estimates, in that
@@ -213,7 +217,7 @@ delineating the problematic variables
 The function will issue a warning about the problematic variables, unless
 \code{quiet = FALSE}. The problematic optional variables will then be
 functionally discarded and the PREVENT equations still run, in accordance
-with the specifications detailed in the details section regarding model
+with the specifications detailed in the "Details" section regarding model
 selection. A data frame will be returned with the following
 characteristics:
 \itemize{
@@ -229,15 +233,26 @@ problematic and thus not populate in the \code{input_problems} column)
 
 }
 
+\subsection{When estimating 30-year risk and age > 59}{
+
+The function advises 30-year risk prediction for people > 59 years is
+questionable via two warnings:
+\itemize{
+\item in the console (that can be suppressed by setting \code{quiet = TRUE})
+\item in the column \code{input_problems} of the return tibble (\code{quiet} has no
+impact here)
+}
+}
+
 \subsection{The special case of the \code{zip} argument}{
 
 The above rule for optional predictor variables applies to the \code{zip}
 argument as well, but with the additional reminder that there are valid zip
 codes that do not have an SDI score. This is importantly different from an
-invalid input for zip. See the details section for more information about
+invalid input for zip. See the "Details" section for more information about
 how this is handled, but users should \emph{not} expect anything to populate in
 the \code{input_problems} column if the zip is valid, regardless of whether that
-zip has an SDI score. As will be clear from the details section, users will
+zip has an SDI score. As will be clear from the "Details" section, users will
 be able to determine when a zip code does not have an SDI score based on
 the model that was used.
 }
@@ -263,7 +278,8 @@ data frame, e.g.:
 }
 \description{
 \code{estimate_risk()} and \code{est_risk()} are the same function, with the latter
-being a literal copy of the former just for those who favor syntactical brevity.
+being a literal copy of the former just for those who favor syntactical brevity
+(i.e., a function synonym).
 
 Estimation includes both 10- and 30-year risk of 5 events:
 \itemize{
@@ -308,6 +324,64 @@ equations technically permit down to 3\%. I have restricted to 4.5\%, as
 HbA1c of 3\% is neither realistic nor safe for a person. For example,
 using \href{https://professional.diabetes.org/glucose_calc}{the HbA1c to estimated average glucose (eAG) converter from the American Diabetes Association} (https://professional.diabetes.org/glucose_calc),
 a HbA1c of 3\% corresponds to an eAG of 39 mg/dL (2.2 mmol/L).
+}
+
+\subsection{Entering eGFR and BMI as a call rather than a numeric value}{
+
+The \code{eGFR} and \code{bmi} arguments can be entered as numeric values or as calls to
+\code{calc_egfr()} and \code{calc_bmi()}, respectively. They both have synonyms as well:
+\itemize{
+\item Synonyms for \code{calc_egfr()} are \code{calculate_egfr()}, \code{calc_ckd_epi()}, and
+\code{calculate_ckd_epi()}, with the latter two synonyms reflecting the
+calculation is from the CKD-EPI equations (the reparameterized version
+without race, which is also what the PREVENT equations use).
+\item The synonym for \code{calc_bmi()} is \code{calculate_bmi()}.
+}
+
+These convenience functions add value where a person might have the necessary
+components to calculate the respective parameter but do not have handy the
+parameter itself.
+
+Although these convenience functions were, of course, tested for accuracy,
+they were written and tested within the context of supporting the PREVENT
+equations as implemented within this package. As such, they are not exported,
+and users will be warned to proceed with caution if they try to use these
+functions outside of \code{estimate_risk()} or its synonym \code{est_risk()}.
+
+The syntax for these convenience functions is as follows:
+\itemize{
+\item \code{calc_egfr(cr, units = "mg/dL", age, sex, quiet = FALSE)}
+\itemize{
+\item \code{cr} is the creatinine in whatever units are specified by \code{units}
+\item \code{units} is the unit of measurement for \code{cr}, either \code{"mg/dL"} or \code{"umol/L"},
+with \code{"mg"} and \code{"umol"} being accepted abbreviations
+\item \code{age} is the age of the person, but there is no need to enter this, as
+the function will extract this from the \code{age} argument of \code{estimate_risk()};
+in fact, any argument entered here will be ignored in favor of the \code{age}
+argument of \code{estimate_risk()}
+\item \code{sex} is the sex of the person, but there is no need to enter this, as
+the function will extract this from the \code{sex} argument of \code{estimate_risk()};
+in fact, any argument entered here will be ignored in favor of the \code{sex}
+argument of \code{estimate_risk()}
+\item \code{quiet} is a logical indicating whether to suppress the warning about
+use outside of \code{estimate_risk()}
+\item An example call would be \code{calc_egfr(1.2)} (because \code{units} defaults
+to \code{"mg/dL"}) or \code{calc_egfr(88, "umol")}
+}
+\item \code{calc_bmi(weight, height, units = "nonmetric", quiet = FALSE)}
+\itemize{
+\item \code{weight} is the weight in pounds if \code{units = "nonmetric"} or kilograms
+if \code{units = "metric"}
+\item \code{height} is the height in inches if \code{units = "nonmetric"} or centimeters
+if \code{units = "metric"}
+\item \code{units} is the unit of measurement for \code{weight} and \code{height}, either
+\code{"nonmetric"} or \code{"metric"}
+\item \code{quiet} is a logical indicating whether to suppress the warning about
+use outside of \code{estimate_risk()}
+\item An example call would be \code{calc_bmi(150, 70)} (because \code{units} defaults
+to \code{"nonmetric"}) or \code{calc_bmi(68, 178, "metric")}
+}
+}
 }
 
 \subsection{What is the Social Deprivation Index (SDI)?}{
@@ -361,9 +435,9 @@ the user enters a valid zip code, but no SDI data are available:
 #
 # Optional predictor variables are all omitted (and thus take their default)
 # `model` is also omitted (and thus takes its default, with the function selecting
-# the model based on the algorithm specified in the details section)
+# the model based on the algorithm specified in the "Details" section)
 # `time` is also omitted (and thus takes its default, with the function returning
-# estimates for both 10- and 30-year risk as specified in the value section)
+# estimates for both 10- and 30-year risk as specified in the "Value" section)
 #
 # Expect the base model to run given absence of optional predictor variables.
 res <- estimate_risk(
@@ -546,7 +620,6 @@ res
 cat(gsub("; ", "\n", res$input_problems))
 \dontshow{if (getRversion() >= "4.1.0") (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 res$input_problems |> gsub(pattern = "; ", replacement = "\n", x = _) |> cat()
-# ... and could, of course, also do with the {magrittr} pipe `\%>\%`, if that 
-# package were installed
+# ... and could, of course, also do with the {magrittr} pipe `\%>\%` if desired
 \dontshow{\}) # examplesIf}
 }

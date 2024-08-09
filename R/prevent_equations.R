@@ -1,23 +1,3 @@
-# {valid ranges for each numeric var} ----
-# Alpha order
-valid <- list(
-  age = c(lower = 30, upper = 79),
-  # Table 1, footnote re: excluding people based on BMI
-  bmi = c(lower = 18.5, upper = 39.9),
-  egfr = c(lower = 15, upper = 140),
-  hba1c = c(lower = 4.5, upper = 15),
-  hdl_c = list(
-    `mg/dL` = c(lower = 20, upper = 100),
-    `mmol/L` = c(lower = 0.52, upper = 2.59)
-  ),
-  sbp = c(lower = 90, upper = 180),
-  total_c = list(
-    `mg/dL` = c(lower = 130, upper = 320),
-    `mmol/L` = c(lower = 3.36, upper = 8.28)
-  ),
-  uacr = c(lower = 0.1, upper = 25000)
-)
-
 # {Main fxs} ----
 prep_terms <- function(dat, 
                        model = c("base", "uacr", "hba1c", "sdi", "full"),
@@ -191,7 +171,8 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #' 
 #' @description
 #'  `estimate_risk()` and `est_risk()` are the same function, with the latter
-#'  being a literal copy of the former just for those who favor syntactical brevity.
+#'  being a literal copy of the former just for those who favor syntactical brevity
+#'  (i.e., a function synonym).
 #'  
 #'  Estimation includes both 10- and 30-year risk of 5 events:
 #'  - Total cardiovascular disease (CVD)
@@ -212,7 +193,7 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #' @param sex Character (required predictor variable): Either `"female"` or
 #'   `"male"` (`"f"` and `"m"` are accepted abbreviations)
 #' @param sbp Numeric (required predictor variable): Systolic blood pressure
-#'   (SBP) in mmHg, from 90-180; see the details section for more information
+#'   (SBP) in mmHg, from 90-180; see the "Details" section for more information
 #'   about the upper bound of the range
 #' @param bp_tx Logical or numeric equivalent (required predictor variable):
 #'   Whether the person is on blood pressure treatment, either `TRUE` or `FALSE`
@@ -234,31 +215,35 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'   Whether the person is currently smoking (which PREVENT defines as cigarette
 #'   use within the last 30 days), either `TRUE` or `FALSE` (1 or 0 are accepted
 #'   as alternative input)
-#' @param egfr Numeric (required predictor variable): Estimated glomerular
-#'   filtration rate (eGFR) in mL/min/1.73m<sup>2</sup>, from 15-140
-#' @param bmi Numeric (required predictor variable): Body mass index (BMI) in
-#'   kg/m<sup>2</sup>, from 18.5-39.9
+#' @param egfr Numeric or call (required predictor variable): Estimated glomerular
+#'   filtration rate (eGFR) in mL/min/1.73m<sup>2</sup>, entered either as a
+#'   numeric from 15-140 or as a call to `calc_egfr()` or synonyms, as described 
+#'   in the "Details" section
+#' @param bmi Numeric or call (required predictor variable): Body mass index (BMI) in
+#'   kg/m<sup>2</sup>, entered either as a numeric from 18.5-39.9 or as a call to 
+#'   `calc_bmi()` or synonyms, as described in the "Details" section
 #' @param hba1c Numeric (optional predictor variable): Glycated hemoglobin
-#'   (HbA1c) in %, from 4.5-15; see the details section for more information
+#'   (HbA1c) in %, from 4.5-15; see the "Details" section for more information
 #'   about the lower bound of the range
 #' @param uacr Numeric (optional predictor variable): Urine
 #'   albumin-to-creatinine ratio (UACR) in mg/g, from 0.1-25000
 #' @param zip Character (optional predictor variable): ZIP code of the person's
 #'   residence, used to estimate the Social Deprivation Index (SDI); see the
-#'   details section for more information
+#'   "Details" section for more information
 #' @param model Character (required, but has default): The PREVENT model to use,
 #'   one of `NULL` (the default), `"base"` (the base model), `"hba1c"` (the base
 #'   model adding HbA1c), `"uacr"` (the base model adding UACR), `"sdi"` (the
 #'   base model adding SDI), or `"full"` (the base model adding HbA1c, UACR, and
 #'   SDI). If `NULL`, the model will be determined by algorithm specified in the
-#'   details section, and this is the intended argument for most users. The
+#'   "Details" section, and this is the intended argument for most users. The
 #'   ability to specify mainly exists for specific use cases (e.g., research
 #'   purposes).
-#' @param time Character or numeric (required, but has default): The time
-#'   horizon for the risk estimate, one of `"both"` (character; the default);
+#' @param time Character or numeric (required, but has default): Whether to
+#'   estimate risk over 10 or 30 years, one of `"both"` (character; the default);
 #'   `10` (numeric), `"10"` (character), or `"10yr"` (character); or `30`
-#'   (numeric), `"30"` (character), or `"30yr"` (character); if `"both"`,
-#'   estimates for both 10- and 30-year risk will be returned
+#'   (numeric), `"30"` (character), or `"30yr"` (character); if estimating over 
+#'   30 years and age > 59, a warning will accompany the results regarding the
+#'   reliability of the estimation (see the "Value" section for more information)
 #' @param chol_unit Character (required, but has default): The unit of
 #'   measurement for `total_c` and `hdl_c`, either `"mg/dL"` (the default) or
 #'   `"mmol/L"` (`"mg"` and `"mmol"` are accepted abbreviations)
@@ -270,7 +255,7 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'   `FALSE`. If `FALSE`, the function will discard invalid optional predictor
 #'   variables but still allow the model to run. If `TRUE`, optional predictor
 #'   variables entered (if any) must be valid for the function to return 
-#'   risk estimates. See the section "Value" for more information.
+#'   risk estimates. See the "Value" section for more information.
 #' @param quiet Logical (required, but has default): Whether to suppress
 #'   messages and warnings in the console, either `TRUE` or `FALSE` (the
 #'   default); this argument is strict, so 1 or 0 are *not* accepted (in
@@ -298,6 +283,55 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'  using [the HbA1c to estimated average glucose (eAG) 
 #'  converter from the American Diabetes Association](https://professional.diabetes.org/glucose_calc) (https://professional.diabetes.org/glucose_calc),
 #'  a HbA1c of 3% corresponds to an eAG of 39 mg/dL (2.2 mmol/L).
+#'  
+#'  ## Entering eGFR and BMI as a call rather than a numeric value
+#'  
+#'  The `eGFR` and `bmi` arguments can be entered as numeric values or as calls to
+#'  `calc_egfr()` and `calc_bmi()`, respectively. They both have synonyms as well:
+#'  - Synonyms for `calc_egfr()` are `calculate_egfr()`, `calc_ckd_epi()`, and 
+#'  `calculate_ckd_epi()`, with the latter two synonyms reflecting the 
+#'  calculation is from the CKD-EPI equations (the reparameterized version 
+#'  without race, which is also what the PREVENT equations use).
+#'  - The synonym for `calc_bmi()` is `calculate_bmi()`.
+#'  
+#'  These convenience functions add value where a person might have the necessary
+#'  components to calculate the respective parameter but do not have handy the 
+#'  parameter itself.
+#'  
+#'  Although these convenience functions were, of course, tested for accuracy, 
+#'  they were written and tested within the context of supporting the PREVENT 
+#'  equations as implemented within this package. As such, they are not exported, 
+#'  and users will be warned to proceed with caution if they try to use these 
+#'  functions outside of `estimate_risk()` or its synonym `est_risk()`.
+#'  
+#'  The syntax for these convenience functions is as follows:
+#'  - `calc_egfr(cr, units = "mg/dL", age, sex, quiet = FALSE)`
+#'      - `cr` is the creatinine in whatever units are specified by `units`
+#'      - `units` is the unit of measurement for `cr`, either `"mg/dL"` or `"umol/L"`,
+#'      with `"mg"` and `"umol"` being accepted abbreviations
+#'      - `age` is the age of the person, but there is no need to enter this, as
+#'      the function will extract this from the `age` argument of `estimate_risk()`;
+#'      in fact, any argument entered here will be ignored in favor of the `age`
+#'      argument of `estimate_risk()`
+#'      - `sex` is the sex of the person, but there is no need to enter this, as
+#'      the function will extract this from the `sex` argument of `estimate_risk()`;
+#'      in fact, any argument entered here will be ignored in favor of the `sex`
+#'      argument of `estimate_risk()`
+#'      - `quiet` is a logical indicating whether to suppress the warning about 
+#'      use outside of `estimate_risk()`
+#'      - An example call would be `calc_egfr(1.2)` (because `units` defaults
+#'      to `"mg/dL"`) or `calc_egfr(88, "umol")`
+#'  - `calc_bmi(weight, height, units = "nonmetric", quiet = FALSE)`
+#'    - `weight` is the weight in pounds if `units = "nonmetric"` or kilograms 
+#'    if `units = "metric"`
+#'    - `height` is the height in inches if `units = "nonmetric"` or centimeters 
+#'    if `units = "metric"`
+#'    - `units` is the unit of measurement for `weight` and `height`, either
+#'    `"nonmetric"` or `"metric"`
+#'    - `quiet` is a logical indicating whether to suppress the warning about
+#'    use outside of `estimate_risk()`
+#'    - An example call would be `calc_bmi(150, 70)` (because `units` defaults 
+#'    to `"nonmetric"`) or `calc_bmi(68, 178, "metric")`
 #'  
 #'  ## What is the Social Deprivation Index (SDI)?
 #'  
@@ -339,9 +373,9 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #' 
 #' @return `estimate_risk()` will always return a data frame as a tibble, and
 #'   all references herein to a data frame being returned are for a data frame
-#'   as a tibble (see [tibble::tibble()] for more detail). However, the manner
-#'   in which the data frame is returned will come in one of two ways, depending
-#'   on the `time` argument
+#'   as a tibble (see the [tibble](https://tibble.tidyverse.org/) package for more detail). 
+#'   However, the manner in which the data frame is returned will come in one of two ways, 
+#'   depending on the `time` argument:
 #'   - When `time = "both"`: A list of length 2, with each item in the list
 #'   being a data frame containing the 10-year and 30-year estimates, in that
 #'   order
@@ -405,7 +439,7 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'   The function will issue a warning about the problematic variables, unless
 #'   `quiet = FALSE`. The problematic optional variables will then be
 #'   functionally discarded and the PREVENT equations still run, in accordance
-#'   with the specifications detailed in the details section regarding model
+#'   with the specifications detailed in the "Details" section regarding model
 #'   selection. A data frame will be returned with the following
 #'   characteristics:
 #'
@@ -416,16 +450,25 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'   are allowed to be empty, any input that is functionally empty or missing
 #'   (such as `NULL`, `numeric(0)`, `NA`, etc.) will not be considered
 #'   problematic and thus not populate in the `input_problems` column)
-#'
+#'   
+#'   ## When estimating 30-year risk and age > 59
+#'   
+#'   The function advises 30-year risk prediction for people > 59 years is 
+#'   questionable via two warnings:
+#'   
+#'   - in the console (that can be suppressed by setting `quiet = TRUE`)
+#'   - in the column `input_problems` of the return tibble (`quiet` has no 
+#'   impact here)
+#'   
 #'   ## The special case of the `zip` argument
 #'
 #'   The above rule for optional predictor variables applies to the `zip`
 #'   argument as well, but with the additional reminder that there are valid zip
 #'   codes that do not have an SDI score. This is importantly different from an
-#'   invalid input for zip. See the details section for more information about
+#'   invalid input for zip. See the "Details" section for more information about
 #'   how this is handled, but users should *not* expect anything to populate in
 #'   the `input_problems` column if the zip is valid, regardless of whether that
-#'   zip has an SDI score. As will be clear from the details section, users will
+#'   zip has an SDI score. As will be clear from the "Details" section, users will
 #'   be able to determine when a zip code does not have an SDI score based on
 #'   the model that was used.
 #'   
@@ -453,9 +496,9 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #' #
 #' # Optional predictor variables are all omitted (and thus take their default)
 #' # `model` is also omitted (and thus takes its default, with the function selecting
-#' # the model based on the algorithm specified in the details section)
+#' # the model based on the algorithm specified in the "Details" section)
 #' # `time` is also omitted (and thus takes its default, with the function returning
-#' # estimates for both 10- and 30-year risk as specified in the value section)
+#' # estimates for both 10- and 30-year risk as specified in the "Value" section)
 #' #
 #' # Expect the base model to run given absence of optional predictor variables.
 #' res <- estimate_risk(
@@ -638,8 +681,7 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #' cat(gsub("; ", "\n", res$input_problems))
 #' @examplesIf getRversion() >= "4.1.0"
 #' res$input_problems |> gsub(pattern = "; ", replacement = "\n", x = _) |> cat()
-#' # ... and could, of course, also do with the {magrittr} pipe `%>%`, if that 
-#' # package were installed
+#' # ... and could, of course, also do with the {magrittr} pipe `%>%` if desired
 #' 
 #' @rdname estimate_risk
 #' @export
@@ -663,13 +705,65 @@ estimate_risk <- function(age,
                           optional_strict = FALSE,
                           quiet = FALSE) {
   
-  # Writing as !isTRUE(quiet) instead of isFALSE(quiet) so that anything
-  # other than TRUE gets treated as FALSE
-  message_maybe <- function(x) if(!isTRUE(quiet)) message(x)
-  # Same general idea for `optional_strict`, but note no need to negate 
-  # as with `message_maybe()`, as just want to know whether it is TRUE here
-  # (vs. using it in an if())
+  # Just want to know whether it is TRUE, but anything other than TRUE is FALSE
   optional_strict <- isTRUE(optional_strict)
+  
+  # Calculate eGFR if requested ----
+  cl <- match.call()
+  internal_egfr_call <- TRUE
+  internal_bmi_call <- TRUE
+  
+  if(is.call(cl[["egfr"]])) {
+    
+    supported_egfr_call <- 
+      identical(cl[["egfr"]][[1]], quote(calculate_egfr)) || 
+      identical(cl[["egfr"]][[1]], quote(calc_egfr)) || 
+      identical(cl[["egfr"]][[1]], quote(calculate_ckd_epi)) || 
+      identical(cl[["egfr"]][[1]], quote(calc_ckd_epi))
+    
+    if(supported_egfr_call) {
+      cl[["egfr"]][["age"]] <- age
+      cl[["egfr"]][["sex"]] <- sex
+      egfr <- eval(cl[["egfr"]])
+    }
+    
+    if(!supported_egfr_call) {
+      message_maybe("Only the following calls are honored for `egfr` argument:", quiet)
+      message_maybe(
+        paste0(
+          c(
+            "`calculate_egfr()`", 
+            "`calc_egfr()`", 
+            "`calculate_ckd_epi()`", 
+            "`calc_ckd_epi()`"
+          ),
+          collapse = "\n"
+        ),
+        quiet
+      )
+      egfr <- quotify(cl[["egfr"]])
+    }
+  }
+  
+  if(is.call(cl[["bmi"]])) {
+    
+    supported_bmi_call <- 
+      identical(cl[["bmi"]][[1]], quote(calculate_bmi)) || 
+      identical(cl[["bmi"]][[1]], quote(calc_bmi))
+    
+    if(supported_bmi_call) {
+      bmi <- eval(cl[["bmi"]])
+    }
+    
+    if(!supported_bmi_call) {
+      message_maybe("Only the following calls are honored for `bmi` argument:", quiet)
+      message_maybe(
+        paste0(c("`calculate_bmi()`", "`calc_bmi()`"), collapse = "\n"),
+        quiet
+      )
+      bmi <- quotify(cl[["bmi"]])
+    }
+  }
   
   # Check required predictor variables ----
   vars_required_check <- list(
@@ -725,13 +819,22 @@ estimate_risk <- function(age,
   }
   
   message_about_required <- function(x) {
-    message_maybe("Please check the following required variables: ")
-    message_maybe(paste0(x, collapse = "\n"))
+    message_maybe("Please check the following required variables: ", quiet)
+    message_maybe(paste0(x, collapse = "\n"), quiet)
+  }
+  
+  message_questionable_estimation <- 
+    "Estimating 30-year risk in people > 59 years of age is questionable"
+  
+  warn_about_questionable_estimation <- function(age, time) {
+    if(any(grepl("both|30", as.character(time))) && age > 59) {
+      warn_maybe(message_questionable_estimation, quiet)
+    }
   }
   
   message_about_optional <- function(x) {
-    message_maybe("Please check the following optional variables: ")
-    message_maybe(paste0(x, collapse = "\n"))
+    message_maybe("Please check the following optional variables: ", quiet)
+    message_maybe(paste0(x, collapse = "\n"), quiet)
   }
   
   # If there are problems w/ required vars ---- 
@@ -743,7 +846,9 @@ estimate_risk <- function(age,
     # If `optional_strict` is TRUE, also tell user about problems 
     # w/ optional vars
     if(optional_strict) {
+      
       message_about_optional(vars_optional_problem)
+
       return_tibble <- input_probs_return_tibble(
         paste0(c(vars_required_problem, vars_optional_problem), collapse = "; ")
       )
@@ -752,6 +857,9 @@ estimate_risk <- function(age,
         paste0(vars_required_problem, collapse = "; ")
       )
     }
+    
+    # Now, also warn about questionable estimation if relevant
+    warn_about_questionable_estimation(age, time)
     
     # Return two empty tibbles if `time` is "both"; otherwise, return one
     if(isTRUE(time == "both")) {
@@ -778,6 +886,7 @@ estimate_risk <- function(age,
     if(optional_strict) {
       
       message_about_optional(vars_optional_problem)
+      warn_about_questionable_estimation(age, time)
       
       return_tibble <- input_probs_return_tibble(
         paste0(vars_optional_problem, collapse = "; ")
@@ -792,10 +901,12 @@ estimate_risk <- function(age,
       }
     }
     
-    # `optional_input_problems_for_reporting` is also used later on in script, 
-    # for values for `input_problems` in data frame that's returned
+    # Warn about questionable estimation (if relevant) and message about
+    # problematic optional vars
     message_about_optional(paste0(vars_optional_problem, " (so set to NULL)"))
     
+    # `optional_input_problems_for_reporting` is also used later on in script, 
+    # for values for `input_problems` in data frame that's returned
     optional_input_problems_for_reporting <- 
       paste0(vars_optional_problem, " (so set to NULL)", collapse = "; ")
     
@@ -825,7 +936,9 @@ estimate_risk <- function(age,
   # Determine model to run ----
   if(is_na_or_empty(model)) model <- select_model(hba1c, uacr, zip)
   stylized_model <- stylize_model_to_run(model)
-  message_maybe(paste0("Estimates are from: ", stylized_model, "."))
+  
+  message_maybe(paste0("Estimates are from: ", stylized_model, "."), quiet)
+  warn_about_questionable_estimation(age, time)
   
   # Do risk estimation and return result ----
   pred_vals <- 
@@ -852,9 +965,23 @@ estimate_risk <- function(age,
   
   for(given_time in time) {
     res[[given_time]] <- run_models(model, sex, given_time, pred_vals)
+    
     if(length(vars_optional_problem) != 0) {
       res[[given_time]][["input_problems"]] <- 
         optional_input_problems_for_reporting
+    }
+    
+    if(given_time == "30yr" && age > 59) {
+      res[[given_time]][["input_problems"]] <- 
+        if(length(vars_optional_problem) != 0) {
+          paste(
+            paste0("Warning: ", message_questionable_estimation),
+            res[[given_time]][["input_problems"]],
+            sep = "; "
+          )
+        } else {
+          paste0("Warning: ", message_questionable_estimation)
+        }
     }
   }
   
@@ -870,3 +997,33 @@ estimate_risk <- function(age,
 #' @rdname estimate_risk
 #' @export
 est_risk <- estimate_risk
+
+#' @rdname app
+#' 
+#' @title
+#'  Navigate to browser-based Shiny implementation of PREVENT equations
+#'  
+#' @description
+#'  This function opens a browser window (using the user's default browser) and
+#'  navigates to the Shiny app located at:     
+#'  
+#'  [https://martingmayer.shinyapps.io/prevent-equations](https://martingmayer.shinyapps.io/prevent-equations)     
+#'    
+#'  Easier-to-remember URLs: 
+#'  - [https://tiny.cc/prevent-equations](https://tiny.cc/prevent-equations) 
+#'  - [https://tiny.cc/preventequations](https://tiny.cc/preventequations)
+#'  
+#'  The app includes risk visualization and several options for customizing the output.
+#'  
+#' @param ... Not used. Reserved for future use.
+#' 
+#' @examples
+#' app()
+#'  
+#' @export
+app <- function(...) {
+  if(interactive()) {
+    utils::browseURL("https://martingmayer.shinyapps.io/prevent-equations")
+  }
+  invisible(NULL)
+}

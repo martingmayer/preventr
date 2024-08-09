@@ -44,9 +44,17 @@ is_between <- function(val, lower, upper, inclusive = TRUE) {
   val >= lower && val <= upper
 }
 
+# Writing as !isTRUE(quiet) instead of isFALSE(quiet) so that anything
+# other than TRUE gets treated as FALSE
+message_maybe <- function(x, quiet) if(!isTRUE(quiet)) message(x)
+
 na_or_empty_to_na <- function(val) {
   if(is_na_or_empty(val)) NA else val
 }
+
+# Writing as !isTRUE(quiet) instead of isFALSE(quiet) so that anything
+# other than TRUE gets treated as FALSE
+warn_maybe <- function(x, quiet) if(!isTRUE(quiet)) warning(x, call. = FALSE, immediate. = TRUE)
 
 # Rounding halves up in R is perhaps best known from the StackOverflow 
 # conversation about this that started in 2012 here:
@@ -82,9 +90,137 @@ quotify <- function(x) {
   }
 }
 
+# {Calculation of BMI and eGFR} ----
+
+internal_fx_used_generally_msg <- paste0(
+  c(
+    "This function is intended for internal package use.", 
+    "Fitness for more general use has not been tested.",
+    "Proceed with caution."
+  ), 
+  collapse = "\n"
+)
+
+calculate_bmi <- function(weight, height, units = "nonmetric", quiet = FALSE) {
+  
+  if(
+    (exists("internal_bmi_call", envir = parent.frame()) && 
+     !isTRUE(parent.frame()$internal_bmi_call)) || 
+    !exists("internal_bmi_call", envir = parent.frame())
+  ) {
+    warn_maybe(internal_fx_used_generally_msg, quiet)
+  } 
+  
+  # Note use of single & to allow for vectorized check,
+  # b/c `isTRUE()` will still return FALSE if length > 1
+  if(!isTRUE(is.numeric(weight) & weight > 0)) {
+    message("`weight` must be a single number > 0")
+    return(NA)
+  } 
+  
+  if(!isTRUE(is.numeric(height) & height > 0)) {
+    message("`height` must be a single number > 0")
+    return(NA)
+  }
+  
+  if(!isTRUE(units %in% c("metric", "nonmetric"))) {
+    message("`units` must be a single word, either \"metric\" or \"nonmetric\"")
+    return(NA)
+  }
+  
+  if(units == "metric") {
+    res <- weight / ((height / 100) ^ 2)
+  } else {
+    res <- (weight / (height ^ 2)) * 703
+  }
+  
+  round_half_up(res, 1)
+}
+
+calc_bmi <- calculate_bmi
+
+calculate_ckd_epi <- function(cr, units = "mg/dL", age, sex, quiet = FALSE) {
+  
+  if(
+    (exists("internal_egfr_call", envir = parent.frame()) && 
+     !isTRUE(parent.frame()$internal_egfr_call)) || 
+    !exists("internal_egfr_call", envir = parent.frame())
+  ) {
+    warn_maybe(internal_fx_used_generally_msg, quiet)
+  } 
+  
+  if(!isTRUE(is.numeric(cr) & cr > 0)) {
+    message("`cr` must be a single number > 0") 
+    return(NA)
+  }
+  
+  if(!isTRUE(is.numeric(age) & age >= 18 & age <= 100)) {
+    message("`age` must be a single number where 18 <= number <= 100") 
+    return(NA)
+  }
+  
+  if(!isTRUE(sex %in% c("female", "f", "male", "m"))) {
+    message("sex must be \"female\", \"f\", \"male\", or \"m\"") 
+    return(NA)
+  } else if(sex %in% c("female", "male")) {
+    sex <- ifelse(sex == "female", "f", "m")
+  }
+  
+  if(!isTRUE(units %in% c("mg/dL", "mg", "umol/L", "umol"))) {
+    message("`units` must be one of \"mg/dL\", \"mg\", \"umol/L\", \"umol\"")
+    return(NA)
+  }
+  
+  if(!grepl("mg", units)) cr <- cr / 88.4
+  
+  k <- ifelse(sex == "f", 0.7, 0.9)
+  u <- 142
+  a1 <- ifelse(sex == "f", -0.241, -0.302)
+  a2 <- -1.2
+  c <- 0.9938
+  d <- ifelse(sex == "f", 1.012, 1)
+  
+  round_half_up(u * min(cr/k, 1)^a1 * max(cr/k, 1)^a2 * c^age * d, 0)
+}
+
+calculate_egfr <- calc_egfr <- calc_ckd_epi <- calculate_ckd_epi
+
 # {Checker fxs} ----
 {
   # > Numeric vars ----
+  
+  # Valid ranges for each numeric var, alpha order
+  valid <- list(
+    age = c(lower = 30, upper = 79),
+    # Table 1, footnote re: excluding people based on BMI
+    bmi = c(lower = 18.5, upper = 39.9),
+    # For creatinine, really just want to check it is a number > 0, as
+    # imposition of further restriction would be somewhat arbitrary given
+    # valid input is ultimately determined by eGFR, not creatinine
+    cr = c(lower = 0.1, upper = Inf),
+    egfr = c(lower = 15, upper = 140),
+    ft = c(lower = 0.1, upper = Inf),
+    hba1c = c(lower = 4.5, upper = 15),
+    hdl_c = list(
+      `mg/dL` = c(lower = 20, upper = 100),
+      `mmol/L` = c(lower = 0.52, upper = 2.59)
+    ),
+    # See rationale for creatinine re: why range is 0 to infinity here
+    ht = c(lower = 0.1, upper = Inf),
+    inches = c(lower = 0, upper = Inf),
+    kg = c(lower = 0.1, upper = Inf),
+    lb = c(lower = 0.1, upper = Inf),
+    m = c(lower = 0.1, upper = Inf),
+    sbp = c(lower = 90, upper = 180),
+    total_c = list(
+      `mg/dL` = c(lower = 130, upper = 320),
+      `mmol/L` = c(lower = 3.36, upper = 8.28)
+    ),
+    uacr = c(lower = 0.1, upper = 25000),
+    # See rationale for creatinine re: why range is 0 to infinity here
+    wt = c(lower = 0.1, upper = Inf)
+  )
+  
   check_range <- function(var_name_as_chr, var_val, quiet = TRUE, units = NULL) {
     
     if(is.null(units) || is.na(units)) {
@@ -120,6 +256,15 @@ quotify <- function(x) {
     )
   }
   
+  # Rest of numeric vars, alpha order
+  is_valid_age <- function(age, quiet = TRUE) {
+    check_range("age", age, quiet)
+  }
+  
+  is_valid_bmi <- function(bmi, quiet = TRUE) {
+    check_range("bmi", bmi, quiet)
+  }
+  
   is_valid_chol <- function(chol, 
                             units = c("mg/dL", "mmol/L"),
                             type = c("total_c", "hdl_c"),
@@ -152,17 +297,16 @@ quotify <- function(x) {
     check_range(type, chol, quiet, units)
   }
   
-  # Rest of numeric vars, alpha order
-  is_valid_age <- function(age, quiet = TRUE) {
-    check_range("age", age, quiet)
-  }
-  
-  is_valid_bmi <- function(bmi, quiet = TRUE) {
-    check_range("bmi", bmi, quiet)
+  is_valid_cr <- function(cr, quiet = TRUE) {
+    check_range("cr", cr, quiet)
   }
   
   is_valid_egfr <- function(egfr, quiet = TRUE) {
     check_range("egfr", egfr, quiet)
+  }
+  
+  is_valid_ft <- function(ft, quiet = TRUE) {
+    check_range("ft", ft, quiet)
   }
   
   # For HbA1c, add arg `allow_empty`, as it isn't required, but default
@@ -174,6 +318,26 @@ quotify <- function(x) {
   
   is_valid_hdl_c <- function(chol, units, expanded_units = FALSE, quiet = TRUE) {
     is_valid_chol(chol, units, "hdl_c", expanded_units, quiet)
+  }
+  
+  is_valid_ht <- function(ht, quiet = TRUE) {
+    check_range("ht", ht, quiet)
+  }
+  
+  is_valid_inches <- function(inches, quiet = TRUE) {
+    check_range("inches", inches, quiet)
+  }
+  
+  is_valid_kg <- function(kg, quiet = TRUE) {
+    check_range("kg", kg, quiet)
+  }
+  
+  is_valid_lb <- function(lb, quiet = TRUE) {
+    check_range("lb", lb, quiet)
+  }
+  
+  is_valid_m <- function(m, quiet = TRUE) {
+    check_range("m", m, quiet)
   }
   
   is_valid_sbp <- function(sbp, quiet = TRUE) {
@@ -188,6 +352,10 @@ quotify <- function(x) {
   is_valid_uacr <- function(uacr, allow_empty = FALSE, quiet = TRUE) {
     if(allow_empty && is_okay_type(uacr) && is_na_or_empty(uacr)) return(TRUE)
     check_range("uacr", uacr, quiet)
+  }
+  
+  is_valid_wt <- function(wt, quiet = TRUE) {
+    check_range("wt", wt, quiet)
   }
   
   # > Character vars ----
@@ -219,6 +387,18 @@ quotify <- function(x) {
   
   is_valid_chol_unit_expanded <- function(units, quiet = TRUE) {
     check_chr("chol_unit", units, c("mg/dL", "mg", "mmol/L", "mmol"), quiet)
+  }
+  
+  is_valid_cr_unit <- function(units, quiet = TRUE) {
+    check_chr("cr_unit", units, c("mg/dL", "umol/L"), quiet)
+  }
+  
+  is_valid_cr_unit_expanded <- function(units, quiet = TRUE) {
+    check_chr("cr_unit", units, c("mg/dL", "mg", "umol/L", "umol"), quiet)
+  }
+  
+  is_valid_ht_wt_unit <- function(units, quiet = TRUE) {
+    check_chr("ht_wt_unit", units, c("metric", "nonmetric"), quiet)
   }
   
   is_valid_sex <- function(sex, quiet = TRUE) {

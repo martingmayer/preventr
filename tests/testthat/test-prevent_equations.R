@@ -1915,3 +1915,73 @@ test_that("Additional checks of results, for good measure", {
   expect_snapshot(res_v2)
   expect_true(identical_res)
 })
+
+test_that("warning for 30-year risk with age > 59 works", {
+  expect_warning(
+    estimate_risk(
+      age = 63,
+      sex = "f",
+      sbp = 120,
+      bp_tx = FALSE,
+      total_c = 200,
+      hdl_c = 50,
+      statin = FALSE,
+      dm = FALSE,
+      smoking = FALSE,
+      egfr = 68,
+      bmi = 22
+    ),
+    "Estimating 30-year risk in people > 59 years of age is questionable"
+  )
+  
+  # Note setting `quiet = TRUE` to suppress the warning in these tests
+  # to permit testing the output without {testthat} reporting a warning
+  # during the tests
+  expect_equal(
+    estimate_risk(
+      age = 63,
+      sex = "f",
+      sbp = 120,
+      bp_tx = FALSE,
+      total_c = 200,
+      hdl_c = 50,
+      statin = FALSE,
+      dm = FALSE,
+      smoking = FALSE,
+      egfr = 68,
+      bmi = 22,
+      time = 30,
+      quiet = TRUE
+    )$input_problems,
+    "Warning: Estimating 30-year risk in people > 59 years of age is questionable"
+  )
+  
+  # Note setting `quiet = TRUE` (see above)
+  expect_equal(
+    estimate_risk(
+      age = 63,
+      sex = "f",
+      sbp = 120,
+      bp_tx = FALSE,
+      total_c = 200,
+      hdl_c = 50,
+      statin = FALSE,
+      dm = FALSE,
+      smoking = FALSE,
+      egfr = 68,
+      bmi = 22,
+      hba1c = 200,
+      time = 30,
+      quiet = TRUE
+    )$input_problems,
+    paste0(
+      "Warning: Estimating 30-year risk in people > 59 years of age is questionable; ",
+      "`hba1c` entered as 200, but must be between 4.5 and 15 (so set to NULL)"
+    )
+  )
+})
+
+test_that("app() function works", {
+  # This is really just a dummy test
+  expect_null(app())
+})
