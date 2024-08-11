@@ -84,8 +84,8 @@ devtools::install_github("martingmayer/preventr")
 ## Using {preventr}
 
 Despite the work it does, I designed {preventr} with the goal of having
-a simple, intuitive API. The “workhorses” are “behind the scenes”, with
-just one function (and synonym) being exposed to the user:
+a simple, intuitive API. The “workhorses” are “behind the scenes”,
+culminating in one function (and synonym) being exposed to the user:
 
 - `estimate_risk()` (or `est_risk()`)
 
@@ -141,8 +141,8 @@ Easier-to-remember URLs:
 - <https://tiny.cc/prevent-equations>
 - <https://tiny.cc/preventequations>
 
-In addition, calling `preventr::app()` will open the user’s default
-browser and navigate to the Shiny app.
+Calling `preventr::app()` will also open the user’s default browser and
+navigate to the Shiny app.
 
 ## Why not 1.0.0?
 
