@@ -227,4 +227,70 @@ test_that("Output of nested_lapply() is as expected", {
   expect_snapshot(nested_lapply("total_c", chol_unit = "mg"))
 })
 
+test_that("test_diff_col_name() works as expected", {
+  expect_identical(
+    quote(
+      {
+        dat <- 
+          make_dat(5) %>% 
+          dplyr::mutate(age = dplyr::case_when(age > 59 ~ 59, .default = age))
+        
+        names(dat)[which(names(dat) == "age")] <- "edad"
+        
+        expect_identical(
+          do_lapply_for_use_dat_add_to_dat(
+            dat, 
+            add_to_dat = TRUE, 
+            age = quote(edad), 
+            quiet = TRUE
+          ), 
+          est_risk(
+            use_dat = dat, 
+            age = edad,
+            add_to_dat = TRUE, 
+            quiet = TRUE,
+            progress = FALSE
+          )
+        )
+        
+      }
+    ),
+    test_diff_col_name(quote(age), quote(edad), "valid_sub", eval = FALSE)
+  )
+  
+  expect_identical(
+    quote(
+      {
+        dat <- 
+          make_dat(5, add_time_and_model = FALSE) %>% 
+          dplyr::mutate(age = dplyr::case_when(age > 59 ~ 59, .default = age))
+        
+        expected_msg <- paste0(
+          "`",
+          "age",
+          "` ",
+          "entered as the invalid column name ",
+          "`",
+          "edad",
+          "`"
+        )
+        
+        expect_message(
+          res <- est_risk(
+            use_dat = dat,
+            age = edad,
+            add_to_dat = TRUE,
+            quiet = FALSE,
+            progress = FALSE,
+            optional_strict = TRUE
+          ),
+          expected_msg
+        )
+        
+        expect_equal(count_nas_from_res(res), 50)
+      }
+    ),
+    test_diff_col_name(quote(age), quote(edad), "invalid_sub", eval = FALSE)
+  )
+})
 

@@ -3,8 +3,10 @@
 \name{estimate_risk}
 \alias{estimate_risk}
 \alias{est_risk}
-\title{Estimate risk of cardiovascular events using the American Heart Association (AHA) Predicting Risk of
-cardiovascular disease EVENTs (PREVENT) equations.}
+\title{Estimate risk of cardiovascular events using the American Heart Association
+(AHA) Predicting Risk of cardiovascular disease EVENTs (PREVENT) equations,
+with optional comparison to their \emph{de facto} predecessor, the Pooled Cohort
+Equations (PCEs) from the AHA and American College of Cardiology (ACC)}
 \usage{
 estimate_risk(
   age,
@@ -25,7 +27,11 @@ estimate_risk(
   time = "both",
   chol_unit = "mg/dL",
   optional_strict = FALSE,
-  quiet = FALSE
+  quiet = is.data.frame(use_dat),
+  collapse = is.data.frame(use_dat),
+  use_dat = NULL,
+  add_to_dat = is.data.frame(use_dat),
+  progress = is.data.frame(use_dat)
 )
 
 est_risk(
@@ -47,112 +53,272 @@ est_risk(
   time = "both",
   chol_unit = "mg/dL",
   optional_strict = FALSE,
-  quiet = FALSE
+  quiet = is.data.frame(use_dat),
+  collapse = is.data.frame(use_dat),
+  use_dat = NULL,
+  add_to_dat = is.data.frame(use_dat),
+  progress = is.data.frame(use_dat)
 )
 }
 \arguments{
-\item{age}{Numeric (required predictor variable): Age in years, from 30-79}
+\item{age}{Numeric (required predictor variable): Age in years, from 30-79.
+Note the PCEs have a lower age limit of 40, so for ages 30-39, the function
+will only provide estimates for the PREVENT equations, irrespective of
+whether a user also requests estimation via the PCEs via the \code{model}
+argument (more precisely, the function will still carry out the estimation
+from the PCEs, but will return \code{NA}).}
 
 \item{sex}{Character (required predictor variable): Either \code{"female"} or
-\code{"male"} (\code{"f"} and \code{"m"} are accepted abbreviations)}
+\code{"male"} (\code{"f"} and \code{"m"} are accepted abbreviations).}
 
 \item{sbp}{Numeric (required predictor variable): Systolic blood pressure
 (SBP) in mmHg, from 90-180; see the "Details" section for more information
-about the upper bound of the range}
+about the upper bound of the range.}
 
 \item{bp_tx}{Logical or numeric equivalent (required predictor variable):
 Whether the person is on blood pressure treatment, either \code{TRUE} or \code{FALSE}
-(1 or 0 are accepted as alternative input)}
+(1 or 0 are accepted as alternative input).}
 
 \item{total_c}{Numeric (required predictor variable): Total cholesterol in
-mg/dL or mmol/L (see \code{chol_unit} argument), from 130-320 (for \code{chol_unit = "mg/dL"}) or 3.36-8.28 (for \code{chol_unit = "mmol/L"})}
+mg/dL or mmol/L (see \code{chol_unit} argument), from 130-320 (for \code{chol_unit = "mg/dL"}) or 3.36-8.28 (for \code{chol_unit = "mmol/L"}).}
 
 \item{hdl_c}{Numeric (required predictor variable): High-density lipoprotein
 cholesterol (HDL-C) in mg/dL or mmol/L (see \code{chol_unit} argument), from
-20-100 (for \code{chol_unit = "mg/dL"}) or 0.52-2.59 (for \code{chol_unit = "mmol/L"})}
+20-100 (for \code{chol_unit = "mg/dL"}) or 0.52-2.59 (for \code{chol_unit = "mmol/L"}).}
 
 \item{statin}{Logical or numeric equivalent (required predictor variable):
 Whether the person is taking a statin, either \code{TRUE} or \code{FALSE} (1 or 0 are
-accepted as alternative input)}
+accepted as alternative input).}
 
 \item{dm}{Logical or numeric equivalent (required predictor variable):
 Whether the person has diabetes mellitus (DM), either \code{TRUE} or \code{FALSE} (1
-or 0 are accepted as alternative input)}
+or 0 are accepted as alternative input).}
 
 \item{smoking}{Logical or numeric equivalent (required predictor variable):
 Whether the person is currently smoking (which PREVENT defines as cigarette
 use within the last 30 days), either \code{TRUE} or \code{FALSE} (1 or 0 are accepted
-as alternative input)}
+as alternative input).}
 
 \item{egfr}{Numeric or call (required predictor variable): Estimated glomerular
 filtration rate (eGFR) in mL/min/1.73m\if{html}{\out{<sup>}}2\if{html}{\out{</sup>}}, entered either as a
 numeric from 15-140 or as a call to \code{calc_egfr()} or synonyms, as described
-in the "Details" section}
+in the "Details" section.}
 
 \item{bmi}{Numeric or call (required predictor variable): Body mass index (BMI) in
 kg/m\if{html}{\out{<sup>}}2\if{html}{\out{</sup>}}, entered either as a numeric from 18.5-39.9 or as a call to
-\code{calc_bmi()} or synonyms, as described in the "Details" section}
+\code{calc_bmi()} or synonyms, as described in the "Details" section.}
 
 \item{hba1c}{Numeric (optional predictor variable): Glycated hemoglobin
 (HbA1c) in \%, from 4.5-15; see the "Details" section for more information
-about the lower bound of the range}
+about the lower bound of the range.}
 
 \item{uacr}{Numeric (optional predictor variable): Urine
-albumin-to-creatinine ratio (UACR) in mg/g, from 0.1-25000}
+albumin-to-creatinine ratio (UACR) in mg/g, from 0.1-25000.}
 
 \item{zip}{Character (optional predictor variable): ZIP code of the person's
 residence, used to estimate the Social Deprivation Index (SDI); see the
-"Details" section for more information}
+"Details" section for more information.}
 
-\item{model}{Character (required, but has default): The PREVENT model to use,
-one of \code{NULL} (the default), \code{"base"} (the base model), \code{"hba1c"} (the base
-model adding HbA1c), \code{"uacr"} (the base model adding UACR), \code{"sdi"} (the
-base model adding SDI), or \code{"full"} (the base model adding HbA1c, UACR, and
-SDI). If \code{NULL}, the model will be determined by algorithm specified in the
-"Details" section, and this is the intended argument for most users. The
-ability to specify mainly exists for specific use cases (e.g., research
-purposes).}
+\item{model}{Character or list (optional behavior variable):
+\itemize{
+\item If character, the PREVENT model to use, one of \code{NULL} (the default),
+\code{"base"} (the base model), \code{"hba1c"} (the base model adding HbA1c),
+\code{"uacr"} (the base model adding UACR), \code{"sdi"} (the base model adding SDI),
+or \code{"full"} (the base model adding HbA1c, UACR, and SDI). If \code{NULL}, the
+model will be determined by algorithm specified in the "Details" section,
+and this is the intended argument for most users. The ability to specify
+mainly exists for specific use cases (e.g., research purposes).
+\item If passing a list, the list must have the following elements unless
+otherwise specified (any other elements in the list will be ignored):
+\itemize{
+\item \code{main_model} (character): The PREVENT model to use, following the same
+requirements specified for when \code{model} is character. This element is
+required only if the user desires to specify which PREVENT model to use. It
+can otherwise be omitted, in which case the function will set \code{main_model}
+to \code{NULL} (which has the same impact as when \code{model} is \code{NULL}).
+\item \code{other_models} (character): The PCEs to use, one of
+\code{"pce_orig"} (for the original PCEs released by the \href{https://pubmed.ncbi.nlm.nih.gov/24222018}{ACC/AHA in 2013}), \code{"pce_rev"} (for
+the revised PCEs released by \href{https://pubmed.ncbi.nlm.nih.gov/29868850}{Yadlowsky and colleagues in 2018}, but not officially endorsed by
+ACC/AHA), or \code{"pce_both"} (for both).
+\item \code{race_eth} (character): The race and ethnicity of the person, which is
+required by the PCEs. One of \code{"Black"} (for non-Hispanic Black), \code{"White"}
+(for non-Hispanic White), or \code{"Other"} (\code{"B"}, \code{"W"}, or \code{"O"} are accepted
+as alternative input, as are lowercase versions of the full word or its
+first-letter abbreviation). See the "Details" section for further
+discussion.
+}
+}}
 
-\item{time}{Character or numeric (required, but has default): Whether to
-estimate risk over 10 or 30 years, one of \code{"both"} (character; the default);
-\code{10} (numeric), \code{"10"} (character), or \code{"10yr"} (character); or \code{30}
-(numeric), \code{"30"} (character), or \code{"30yr"} (character); if estimating over
-30 years and age > 59, a warning will accompany the results regarding the
-reliability of the estimation (see the "Value" section for more information)}
+\item{time}{Character or numeric (optional behavior variable): Whether to
+estimate risk over 10 or 30 years, one of \code{"both"} (character; the
+default); \code{10} (numeric), \code{"10"} (character), or \code{"10yr"} (character); or
+\code{30} (numeric), \code{"30"} (character), or \code{"30yr"} (character). Two additional
+things to note:
+\itemize{
+\item If a user requests estimation over a 30-year time horizon, but the user
+also requests estimation via the PCEs, a 10-year time horizon will
+automatically be added, as the PCEs only estimate 10-year risk (see the
+"Value" section for more information).
+\item If estimating over 30 years when age > 59, a warning will accompany the
+results regarding the reliability of the estimation (see the "Value"
+section for more information).
+}}
 
-\item{chol_unit}{Character (required, but has default): The unit of
+\item{chol_unit}{Character (optional behavior variable): The unit of
 measurement for \code{total_c} and \code{hdl_c}, either \code{"mg/dL"} (the default) or
-\code{"mmol/L"} (\code{"mg"} and \code{"mmol"} are accepted abbreviations)}
+\code{"mmol/L"} (\code{"mg"} and \code{"mmol"} are accepted abbreviations).}
 
-\item{optional_strict}{Logical (required, but has default): Whether to
+\item{optional_strict}{Logical (optional behavior variable): Whether to
 enforce strictness on optional predictor variables, either \code{TRUE} or
 \code{FALSE} (the default). The argument itself is strict, so 1 or 0 are \emph{not}
-accepted (in contrast with some of the other logical inputs considered by
-this function), and moreover, anything other than \code{TRUE} will be treated as
-\code{FALSE}. If \code{FALSE}, the function will discard invalid optional predictor
-variables but still allow the model to run. If \code{TRUE}, optional predictor
-variables entered (if any) must be valid for the function to return
-risk estimates. See the "Value" section for more information.}
+accepted (in contrast with predictor variables expecting logical input),
+and moreover, anything other than \code{TRUE} will be treated as \code{FALSE}. If
+\code{FALSE}, the function will discard invalid optional predictor variables but
+still allow the model to run. If \code{TRUE}, optional predictor variables
+entered (if any) must be valid for the function to return risk estimates.
+See the "Value" section for more information.}
 
-\item{quiet}{Logical (required, but has default): Whether to suppress
-messages and warnings in the console, either \code{TRUE} or \code{FALSE} (the
-default); this argument is strict, so 1 or 0 are \emph{not} accepted (in
-contrast with some of the other logical inputs considered by this
-function), and moreover, anything other than \code{TRUE} will be treated as
-\code{FALSE}}
+\item{quiet}{Logical (optional behavior variable): Whether to suppress
+messages and warnings in the console, either \code{TRUE} or \code{FALSE}; this
+argument is strict, so 1 or 0 are \emph{not} accepted (in contrast with
+predictor variables expecting logical input), and moreover, anything other
+than \code{TRUE} will be treated as \code{FALSE}. The default is \code{FALSE} when
+\code{use_dat} is \emph{not} a data frame and \code{TRUE} when \code{use_dat} \emph{is} a data
+frame. Having \code{quiet = FALSE} when \code{use_dat} is a data frame could result
+in a fairly noisy console, and the information contained in console-printed
+messages and warnings regarding model selection and input problems will
+already be in the return data frame via columns \code{model} and
+\code{input_problems}. However, if \code{use_dat} receives something other than a
+data frame or a data frame with zero rows, it will always warn the user,
+independent of the \code{quiet} argument.}
+
+\item{collapse}{Logical (optional behavior variable): Whether to collapse the
+output into a single data frame if applicable, either \code{TRUE} or \code{FALSE};
+this argument is strict, so 1 or 0 are \emph{not} accepted (in contrast with
+predictor variables expecting logical input), and moreover, anything other
+than \code{TRUE} will be treated as \code{FALSE}. The default is \code{FALSE} when
+\code{use_dat} is \emph{not} a data frame (this ensures backward compatibility) and
+\code{TRUE} when \code{use_dat} \emph{is} a data frame. More precisely, however, although
+I have specified the default as \code{is.data.frame(use_dat)} for clarity in
+behavior, this argument is actually just ignored when a user passes a data
+frame to \code{use_dat}. See the description of the \code{use_dat} argument and the
+"Value" section for more information.}
+
+\item{use_dat}{data frame via base R's data.frame or data frame extension via
+tibble or data.table (optional behavior variable): Whether to use a data
+frame provided by the user, either \code{NULL} (the default) or a data frame.
+More precisely, anything other than passing a data frame to \code{use_dat} has
+no impact. Passing a data frame to \code{use_dat} modifies the behavior of the
+function in the following manner:
+\itemize{
+\item The function expects each row in the data frame to represent a
+candidate for risk estimation.
+\item Predictor variables must be present in the data frame passed to \code{use_dat}.
+Optional predictor variables remain optional, though (for example, there is
+no requirement for HbA1c data to be in the data frame \emph{per se}, but if the
+user wishes to use HbA1c data as part of predicting risk with the PREVENT
+equations, those data must be represented in a column in the data frame).
+Any given argument for a predictor variable may be omitted, in which case
+the function expects the data frame to have a column with the name of the
+omitted argument. For example, if \code{age} is omitted from the function call,
+the function expects a column named \code{age} in the data frame passed to
+\code{use_dat}; it (of course) furthermore expects column \code{age} to contain
+data adhering to specifications set forth for the \code{age} argument (for
+example, an age of 20 is still considered unacceptable). Alternatively, the
+user may pass a column name for any predictor variable. Continuing with the
+previous example, if the column containing age data were instead named
+\code{years_old}, the user could pass either \code{age = years_old} or \code{age =   "years_old"} to the function call, and values for \code{age} would be extracted
+from the \code{years_old} column.
+\item Optional behavior variables may \emph{either} be in the data frame passed to
+\code{use_dat} in a column with the same name as the argument \emph{or} passed to the
+function call as usual. If an optional behavior variable is omitted from
+the call when a user passes a data frame to \code{use_dat}, the function will
+first look for a column with the name of the optional behavior variable in
+the data frame; if it does not find such a column, it will use the default
+behavior for the optional behavior variable. If the user includes an
+argument for an optional behavior variable in the call, the function will
+always use this, irrespective of any column in the data frame that might
+share the same name. Additionally, the following arguments are not passable
+via the data frame: \code{collapse} (ignored when \code{use_dat} is a data frame),
+\code{use_dat} (this would be self-referential), \code{add_to_dat} (again,
+essentially self-referential), and \code{progress} (this applies to the entire
+call when \code{use_dat} is a data frame). As an example, suppose a user wishes
+to specify the model(s) to use. The user may either include a column in the
+data frame named \code{model} and omit the \code{model} argument from the call or
+pass the desired behavior to the \code{model} argument. If a column named
+\code{model} exists in the data frame passed to \code{use_dat} \emph{and} the user passes
+something to the \code{model} argument, the function will use the argument.
+Including an optional behavior variable in the data frame activates
+row-by-row behavior alteration of the function. If the user wants to alter
+the default behavior of the function, but wishes to do so in the same
+manner across all rows, it may be easier to forego having optional behavior
+variables in the data frame and instead pass the optional behavior
+variables via function arguments (though this is not strictly required; one
+can achieve the same behavior by having the same value repeated across all
+rows of the column for the optional behavior variable).
+\item The \code{collapse} argument is ignored (results will always be returned as
+a data frame when \code{use_dat} is a data frame).
+}
+
+See \code{vignette("using-data-frame")} for further discussion and examples.}
+
+\item{add_to_dat}{Logical (optional behavior variable): Whether to add the
+output to the data frame passed to \code{use_dat}, either \code{TRUE} (the default) or
+\code{FALSE}. This argument is only considered when \code{use_dat} is a data frame.
+This argument is strict, so 1 or 0 are \emph{not} accepted (in contrast with
+predictor variables expecting logical input), and moreover, anything other
+than \code{TRUE} will be treated as \code{FALSE}. See the "Value" section for more
+information.
+
+See \code{vignette("using-data-frame")} for further discussion and examples.}
+
+\item{progress}{Logical (optional behavior variable): Whether to display a
+progress bar during computation, either \code{TRUE} or \code{FALSE}. This argument is
+only considered when \code{use_dat} is a data frame, when it defaults to \code{TRUE}.
+This argument is strict, so 1 or 0 are \emph{not} accepted (in contrast with
+predictor variables expecting logical input), and moreover, anything other
+than \code{TRUE} will be treated as \code{FALSE}. This argument is independent of the
+\code{quiet} argument. It requires the \code{utils} package, which is part of the R
+distribution (i.e., outside of atypical scenarios, you should not need to
+install the \code{utils} package yourself).}
 }
 \value{
-\code{estimate_risk()} will always return a data frame as a tibble, and
-all references herein to a data frame being returned are for a data frame
-as a tibble (see the \href{https://tibble.tidyverse.org/}{tibble} package for more detail).
-However, the manner in which the data frame is returned will come in one of two ways,
-depending on the \code{time} argument:
+\subsection{Basic information about the return}{
+
+\code{estimate_risk()} will always return either (1) a list of length 2, with
+each list element having a single data frame or (2) a single data frame.
+All references herein to a data frame being returned are for a data frame
+as a tibble (see the \href{https://cran.r-project.org/package=tibble}{tibble}
+package for more detail) unless \code{use_dat} receives a data frame, in which
+case the return data frame will be of the same type passed to \code{use_dat} to
+ensure type-stability.
+
+Whether the return is a list of data frames or a single data frame is
+determined by:
 \itemize{
-\item When \code{time = "both"}: A list of length 2, with each item in the list
-being a data frame containing the 10-year and 30-year estimates, in that
-order
-\item Otherwise: A single data frame containing the risk estimate for the
-specified time horizon
+\item whether the risk estimation is occurring over a single time horizon
+\item the value of the \code{collapse} argument
+\item whether the user has passed a data frame to the \code{use_dat} argument.
+}
+
+When all of the following conditions are met, the function will return a
+list of length 2, with each item in the list being a single data frame
+containing the 10-year and 30-year estimates, in that order:
+\itemize{
+\item the user did \emph{not} pass a data frame to \code{use_dat}
+\item \code{collapse = FALSE}
+\item either (1) \code{time = "both"} or (2) \code{time = "30yr"} \emph{and} the user requests
+estimation with the PCEs via the \code{model} argument (thus adding a 10-year
+time horizon, as the PCEs only estimate risk at 10 years).
+}
+
+In all other scenarios, the function will return a single data frame. Note
+this includes scenarios where \code{collapse} will have no impact, namely when:
+\itemize{
+\item the user passes a data frame to \code{use_dat} (passing a data frame to
+\code{use_dat} will always result in a data frame being returned to the user)
+\item the estimation occurs over one time horizon, namely if (1) \code{time =   "30yr"} and the user does not request estimation with the PCEs or (2)
+\code{time = "10yr"}.
 }
 
 The data frame will have the following columns:
@@ -162,12 +328,52 @@ The data frame will have the following columns:
 \item \code{heart_failure}: The estimated risk of a HF event (column type: double)
 \item \code{chd}: The estimated risk of a CHD event (column type: double)
 \item \code{stroke}: The estimated risk of a stroke event (column type: double)
-\item \code{model}: The PREVENT model used (column type: character)
+\item \code{model}: The PREVENT or PCE model used (column type: character)
 \item \code{over_years}: The time horizon for the risk estimate (column type: integer)
 \item \code{input_problems}: Semicolon-separated vector of length one delineating
-input problems, if any exist; otherwise, \code{NA_character_} (column type:
-character)
+any input problems (column type: character)
 }
+
+In addition, when \code{use_dat} is a data frame, the return data frame will
+also have the following composition:
+\itemize{
+\item A column named \code{preventr_id} (column type: integer) that acts as a unique
+identifier for each row in the data frame passed to \code{use_dat}. This column
+will always be the first column in the returned data frame. The values of
+\code{preventr_id} are simply the row numbers of the data frame passed to
+\code{use_dat}. So, for example, if a row has \code{preventr_id} equal to 5, this
+means it is based on the input present in row 5 of the data frame passed to
+\code{use_dat}.
+\item If \code{add_to_dat = TRUE}, the returned data frame will include the columns
+in \code{use_dat}. So, the composition of the return data frame will be:
+\code{preventr_id} column + columns from \code{use_dat} + risk estimation columns. In
+addition, for a given row in the \code{use_dat} data frame with \code{preventr_id} \emph{x}
+(hereafter, "row \emph{x}"), if \emph{n} represents the number of models requested
+for row \emph{x}, then row \emph{x} will be replicated \emph{n} times in the output to
+accommodate reporting the different model outputs for that row. Note also
+\emph{n} is determined by what the function receives for both the \code{model} and
+\code{time} arguments (because, for example, if \code{model = "base"} and
+\code{time = "both"}, this is a request for 2 models). For those familiar with
+joins, the expansion described here is simply the result of a left join of
+the data frame passed to \code{use_dat} with the data frame returned by
+\code{estimate_risk()} (using \code{preventr_id} as the key). For those not familiar
+with joins, if the above does not seem clear, the vignette about using
+data frames (\code{vignette("using-data-frame")}) should help.
+\item If \code{add_to_dat = FALSE}, the returned data frame will \emph{not} include the
+columns in \code{use_dat}, so the composition of the return data frame will be:
+\code{preventr_id} column + risk estimation columns. The replication behavior
+described for when  \code{add_to_dat = TRUE} will still occur. For this reason,
+the \code{preventr_id} column is perhaps especially important when
+\code{add_to_dat = FALSE}, as it provides a mechanism to associate the results
+with the original data frame.
+\item If the user passes a data frame with a column named \code{model} (see the
+argument specifications for \code{use_dat} for further detail), the function
+will rename this column to \code{model_input} in the return data frame to
+prevent name conflicts, because the return data frame will also have the
+column \code{model} based on the risk estimation output.
+}
+}
+
 \subsection{When valid input parameters exist for all required predictor variables}{
 
 The risk estimate columns are all of type double, and they are presented as
@@ -178,14 +384,16 @@ perhaps somewhat unexpected for people who are not familiar with different
 standards/conventions for rounding; see \code{\link[=round]{round()}} for further detail).
 
 The \code{model} column will be of type character, taking one of the following
-values: \code{"base"}, \code{"hba1c"}, \code{"uacr"}, \code{"sdi"}, or \code{"full"}.
+values: \code{"base"}, \code{"hba1c"}, \code{"uacr"}, \code{"sdi"}, or \code{"full"}. If opting in
+for comparison to the PCEs, \code{model} for those estimates will be one of
+\code{"pce_orig"} or \code{"pce_rev"}.
 
 The \code{over_years} column will be of type integer, either 10 or 30.
 
 If \code{optional_strict = TRUE}, the above will only hold if the optional
-predictor variables that are entered (if any) are valid; if any
-optional variables are entered but are invalid, the function will behave in
-the same manner as when invalid input parameters exist for one or more
+predictor variables that are entered (if any) are valid; if any optional
+predictor variables are entered but are invalid, the function will behave
+in the same manner as when invalid input parameters exist for one or more
 required variables.
 }
 
@@ -257,48 +465,98 @@ be able to determine when a zip code does not have an SDI score based on
 the model that was used.
 }
 
+\subsection{What about the PCEs?}{
+
+Within the broader context of the function itself, the PCEs are treated as
+optional. Thus, as long as there is valid input for the PREVENT equations,
+the function will run, returning risk estimates from the PREVENT equations.
+Note, however, that valid input for the PREVENT equations requires valid
+input for the \code{model} argument. Thus, if the \code{model} argument is invalid or
+malformed (i.e., not adherent to the specifications delineated for that
+argument), the function will behave as described for the circumstance when
+invalid input exists for one or more required predictor variables.
+
+If a list containing elements \code{other_models} and \code{race_eth} is passed to
+argument \code{model}, then within the sub-context of running additional models
+for comparison, the elements \code{other_models} and \code{race_eth} are  required.
+Thus, if either \code{other_models} or \code{race_eth} is invalid, the returned
+row(s) within the data frame will function comparably to what is described
+for the circumstance when invalid input exists for one or more required
+predictor variables for the PREVENT equations. For example, suppose someone
+enters valid input for the PREVENT equations and passes the following
+argument to \code{model}: \code{list(other_models = "pce_both", race_eth = NA)}. The
+function would then run, returning risk estimates for the PREVENT
+equations, but the user would be notified of the invalid input for argument
+\code{race_eth} within the argument \code{model} in the console (unless \code{quiet = TRUE}); furthermore, the return data frame for the 10-year time horizon
+would contain two rows dedicated to the PCEs (given \code{other_models = "pce_both"}, a valid argument), but each row would behave in the manner
+described for the PREVENT equations when one or more required predictor
+variable is invalid. That is, each row dedicated to the PCEs would consist
+of \code{NA}s (of the appropriate type) for each column, aside from the column
+\code{model}, which would say \code{"none"}, and the column \code{input_problems}, which
+would specify there was erroneous input for the argument \code{race_eth}.
+Likewise, if \code{other_models} were instead \code{"pce_orig"}, \code{"pce_rev"}, or an
+invalid input, there would only be one row dedicated to the PCEs, because
+in the first two cases, the user entered a valid argument specifying
+interest in only one of the two options for the PCEs, and in the third
+case, the user entered invalid input for the options for the PCEs (thus
+becoming functionally similar to a situation if someone gave invalid input
+for the \code{model} argument).
+
+Lastly, note the risk estimation columns \code{total_cvd}, \code{heart_failure},
+\code{chd}, and \code{stroke} will always be \code{NA_real_}, because the PCEs only
+estimate the risk of ASCVD.
+}
+
 \subsection{Combining output into a single data frame}{
 
-The output when \code{time = "both"} is a list of data frames, one for each
-time horizon, but if desired, it is easy to combine these into a single
-data frame, e.g.:
+Depending on the arguments to the function, the output may be a list of
+data frames, one for each time horizon, (see the subsection "Basic
+information about the return" within the "Value" section). The argument
+\code{collapse} supports collapsing these into a single data frame, but it is
+also easy to do outside of this package, e.g.:
 
 \preformatted{ 
-  res_base_r <- do.call(rbind, res)        # Combine in base R
   res_dplyr <- dplyr::bind_rows(res)       # Combine in dplyr
   res_dt <- data.table::rbindlist(res)     # Combine in data.table
+  res_base_r <- do.call(rbind, res)        # Combine in base R
   
   # These all yield the same tabular output, but the attributes vary
-  # (e.g., base R adds row names)
+  # (e.g., the classes will obviously differ)
   
-  all.equal(res_base_r, res_dplyr, check.attributes = FALSE)   # TRUE 
   all.equal(res_dplyr, res_dt, check.attributes = FALSE)       # TRUE
+  all.equal(res_base_r, res_dplyr, check.attributes = FALSE)   # TRUE
   }
+}
+
+\subsection{Type-stability of return when passing a data frame to \code{use_dat}}{
+
+Importantly, the function maintains type-stability of the data frame it
+receives via the \code{use_dat} argument, meaning passing a data.frame will
+yield a data.frame, passing a tibble will yield a tibble, and passing a
+data.table will yield a data.table. See \code{vignette("using-data-frame")} for
+more information.
 }
 }
 \description{
 \code{estimate_risk()} and \code{est_risk()} are the same function, with the latter
-being a literal copy of the former just for those who favor syntactical brevity
-(i.e., a function synonym).
+being a function synonym for those who favor syntactical brevity.
 
-Estimation includes both 10- and 30-year risk of 5 events:
+Estimation via the PREVENT equations includes both 10- and 30-year risk of 5
+events:
 \itemize{
-\item Total cardiovascular disease (CVD)
-\itemize{
-\item This outcome includes atherosclerotic CVD (ASCVD) and heart failure as
-defined below
-}
-\item ASCVD
-\itemize{
-\item This outcome includes coronary heart disease (CHD) and stroke as defined below
-}
+\item Total cardiovascular disease (CVD), which includes atherosclerotic CVD
+(ASCVD) and heart failure as defined below
+\item ASCVD, which includes coronary heart disease (CHD) and stroke as defined
+below
 \item Heart failure (often abbreviated HF, but not herein)
-\item CHD
-\itemize{
-\item This outcome includes nonfatal myocardial infarction (MI) and fatal CHD
-}
+\item CHD, which includes nonfatal myocardial infarction (MI) and fatal CHD
 \item Stroke
 }
+
+Estimation via the PCEs includes 10-year risk of ASCVD. The title of the
+function focuses on the "official" version of the PCEs from the AHA/ACC, but
+this function permits estimation via the revised PCEs released by Yadlowsky
+and colleagues in 2018. Further details are in the "Arguments" section.
 
 See also the README for this package, which goes into additional detail about
 the PREVENT equations (\href{https://martingmayer.com/preventr}{site},
@@ -310,7 +568,7 @@ the PREVENT equations (\href{https://martingmayer.com/preventr}{site},
 Some may notice the upper limit is set to 180 mmHg here, whereas the PREVENT
 equations technically permit up to 200 mmHg. The Pooled Cohort Equations (PCEs)
 do this as well. I have restricted to 180 mmHg, as SBP beyond 180 mmHg constitutes
-hypertensive urgency (per \href{https://pubmed.ncbi.nlm.nih.gov/29133354/}{AHA's own definitions}),
+hypertensive urgency (per \href{https://pubmed.ncbi.nlm.nih.gov/29133354}{AHA's own definitions}),
 and irrespective of the debate surrounding labels like hypertensive urgency
 and emergency, it would seem clinically unreasonable to engage with the
 PREVENT equations when someone has more pressing matters to address
@@ -320,10 +578,10 @@ PREVENT equations when someone has more pressing matters to address
 \subsection{Why is the lower limit of the HbA1c 4.5\%?}{
 
 Some may notice the lower limit is set to 4.5\% here, whereas the PREVENT
-equations technically permit down to 3\%. I have restricted to 4.5\%, as
-HbA1c of 3\% is neither realistic nor safe for a person. For example,
-using \href{https://professional.diabetes.org/glucose_calc}{the HbA1c to estimated average glucose (eAG) converter from the American Diabetes Association} (https://professional.diabetes.org/glucose_calc),
-a HbA1c of 3\% corresponds to an eAG of 39 mg/dL (2.2 mmol/L).
+equations technically permit down to 3\%. I have restricted to 4.5\%, as HbA1c
+of 3\% is neither realistic nor safe for a person. For example, using \href{https://professional.diabetes.org/glucose_calc}{the HbA1c to estimated average glucose (eAG) converter from the American Diabetes Association}
+(https://professional.diabetes.org/glucose_calc), a HbA1c of 3\% corresponds
+to an eAG of 39 mg/dL (2.2 mmol/L).
 }
 
 \subsection{Entering eGFR and BMI as a call rather than a numeric value}{
@@ -342,44 +600,38 @@ These convenience functions add value where a person might have the necessary
 components to calculate the respective parameter but do not have handy the
 parameter itself.
 
-Although these convenience functions were, of course, tested for accuracy,
-they were written and tested within the context of supporting the PREVENT
-equations as implemented within this package. As such, they are not exported,
-and users will be warned to proceed with caution if they try to use these
-functions outside of \code{estimate_risk()} or its synonym \code{est_risk()}.
-
 The syntax for these convenience functions is as follows:
 \itemize{
 \item \code{calc_egfr(cr, units = "mg/dL", age, sex, quiet = FALSE)}
 \itemize{
-\item \code{cr} is the creatinine in whatever units are specified by \code{units}
+\item \code{cr} is the creatinine in whatever units are specified by \code{units}.
 \item \code{units} is the unit of measurement for \code{cr}, either \code{"mg/dL"} or \code{"umol/L"},
-with \code{"mg"} and \code{"umol"} being accepted abbreviations
+with \code{"mg"} and \code{"umol"} being accepted abbreviations.
 \item \code{age} is the age of the person, but there is no need to enter this, as
 the function will extract this from the \code{age} argument of \code{estimate_risk()};
 in fact, any argument entered here will be ignored in favor of the \code{age}
-argument of \code{estimate_risk()}
+argument of \code{estimate_risk()}.
 \item \code{sex} is the sex of the person, but there is no need to enter this, as
 the function will extract this from the \code{sex} argument of \code{estimate_risk()};
 in fact, any argument entered here will be ignored in favor of the \code{sex}
-argument of \code{estimate_risk()}
+argument of \code{estimate_risk()}.
 \item \code{quiet} is a logical indicating whether to suppress the warning about
-use outside of \code{estimate_risk()}
+use outside of \code{estimate_risk()}.
 \item An example call would be \code{calc_egfr(1.2)} (because \code{units} defaults
-to \code{"mg/dL"}) or \code{calc_egfr(88, "umol")}
+to \code{"mg/dL"}) or \code{calc_egfr(88, "umol")}.
 }
 \item \code{calc_bmi(weight, height, units = "nonmetric", quiet = FALSE)}
 \itemize{
 \item \code{weight} is the weight in pounds if \code{units = "nonmetric"} or kilograms
-if \code{units = "metric"}
+if \code{units = "metric"}.
 \item \code{height} is the height in inches if \code{units = "nonmetric"} or centimeters
-if \code{units = "metric"}
+if \code{units = "metric"}.
 \item \code{units} is the unit of measurement for \code{weight} and \code{height}, either
-\code{"nonmetric"} or \code{"metric"}
+\code{"nonmetric"} or \code{"metric"}.
 \item \code{quiet} is a logical indicating whether to suppress the warning about
-use outside of \code{estimate_risk()}
+use outside of \code{estimate_risk()}.
 \item An example call would be \code{calc_bmi(150, 70)} (because \code{units} defaults
-to \code{"nonmetric"}) or \code{calc_bmi(68, 178, "metric")}
+to \code{"nonmetric"}) or \code{calc_bmi(68, 178, "metric")}.
 }
 }
 }
@@ -416,16 +668,61 @@ such within the full model)
 
 Some zip codes do not have SDI data available, and the PREVENT equations
 include a term for SDI being missing. As such, if a user enters a valid zip
-code but no SDI data are available, the user will be notified, and the tool
-will then implement the missing term as part of predicting risk whenever
-the full model is used, but SDI will otherwise be removed from prediction.
-Specifically, the following models will predict risk in the situation where
-the user enters a valid zip code, but no SDI data are available:
+code but no SDI data are available, the user will be notified (unless \code{quiet = TRUE}), and the tool will then implement the missing term as part of
+predicting risk whenever the full model is used, but SDI will otherwise be
+removed from prediction. Specifically, the following models will predict
+risk in the situation where the user enters a valid zip code, but no SDI
+data are available:
 \itemize{
-\item If the user does not enter a valid HbA1c or UACR: The base model
-\item If the user enters valid HbA1c and UACR: The full model (treating SDI as missing)
-\item If the user enters a valid HbA1c: The base model adding HbA1c
-\item If the user enters a valid UACR: The base model adding UACR
+\item If the user does not enter a valid HbA1c or UACR: The base model.
+\item If the user enters valid HbA1c and UACR: The full model (treating SDI as missing).
+\item If the user enters a valid HbA1c: The base model adding HbA1c.
+\item If the user enters a valid UACR: The base model adding UACR.
+}
+}
+
+\subsection{Race and/or ethnicity in predictive models}{
+
+The use of race and/or ethnicity in predictive (also called prognostic)
+models is, in a word, problematic. It is problematic for a few reasons,
+and fortunately, this has received much-needed attention in recent years.
+The PCEs require this input as specified in the "Arguments" section of the
+documentation. If you would like to read a bit more about this issue, see
+\href{https://www.martingmayer.com/preventr/articles/race-ethnicity-in-predictive-models.html}{here}.
+}
+
+\subsection{Why is the risk estimation higher with the PCEs?}{
+
+The PCEs are known to overestimate risk. Indeed, this was a key motivation
+for \href{https://pubmed.ncbi.nlm.nih.gov/29868850}{Yadlowsky and colleagues} to
+develop the revised PCEs, and was also a key motivation for development of
+the \href{https://pubmed.ncbi.nlm.nih.gov/37947085}{PREVENT equations}.
+}
+
+\subsection{Why don't you export the PCEs or the convenience functions for BMI and eGFR?}{
+
+These are not exported for two main reasons:
+\itemize{
+\item With specific regard to the PCEs, they are not the focal point of this
+package, but they are of potential comparative interest.
+\item With regard to all these functions, I (of course) tested them for
+accuracy and intended behavior, but they are implemented primarily for
+internal package use or as part of estimating risk with \code{estimate_risk()} or
+\code{est_risk()}. For example, although they implement at least basic checks of
+input, some of the input checking and handling is delegated to other
+processes that are invoked when using these functions in the aforementioned
+ways. To give more concrete examples, if invoking these functions outside
+the context of \code{estimate_risk()} or \code{est_risk()}, although implementation of
+the PCEs checks input validity, it just returns \code{NA} with no messaging if it
+finds a problem. The functions for BMI and eGFR also implement checks for
+input validity (such as numeric inputs needing to be a number greater than
+0), but they do not reject extreme numeric values (aside from the \code{age}
+input for eGFR, which implements some further restriction on age). Again,
+however, the calculations have certainly been tested for accuracy, so for
+users who are confident (1) they understand the cautions described here
+and (2) in the fidelity of their input for the functions, they can use them
+judiciously outside of \code{estimate_risk()} or \code{est_risk()}
+(via \verb{preventr:::<function>}).
 }
 }
 }
@@ -433,13 +730,15 @@ the user enters a valid zip code, but no SDI data are available:
 # Example with all required predictor variables (example from Table S25
 # in the supplemental PDF appendix of the PREVENT equations article)
 #
-# Optional predictor variables are all omitted (and thus take their default)
-# `model` is also omitted (and thus takes its default, with the function selecting
-# the model based on the algorithm specified in the "Details" section)
-# `time` is also omitted (and thus takes its default, with the function returning
-# estimates for both 10- and 30-year risk as specified in the "Value" section)
+# Optional predictor variables are all omitted (and thus take their default).
+# `model` is also omitted (and thus takes its default, with the function
+# selecting # the model based on the algorithm specified in the "Details"
+# section).
+# `time` is also omitted (and thus takes its default, with the function 
+# returning estimates for both 10- and 30-year risk as specified in the 
+# "Value" section).
 #
-# Expect the base model to run given absence of optional predictor variables.
+# Expect the base model to run given absence of optional predictor variables
 res <- estimate_risk(
   age = 50, 
   sex = "female",    # or "f"
@@ -454,8 +753,8 @@ res <- estimate_risk(
   bmi = 35
 )
 
-# Based on Table S25, expect the 10-year risk for `total_cvd` to be 0.147.
-# Based on the supplemental Excel file, also expect:
+# Based on Table S25, expect the 10-year risk for `total_cvd` to be 0.147,
+# and based on the supplemental Excel file, also expect:
 # 10-year risks: `ascvd`, 0.092; `heart_failure`, 0.081; 
 # `chd`, 0.044; `stroke`, 0.054
 # 30-year risks: `total_cvd`, 0.53; `ascvd`, 0.354; `heart_failure`, 0.39;
@@ -497,7 +796,8 @@ estimate_risk(
   time = "30yr"      # only 30-year results will show    
 )
  
-# The remaining examples will all be limited to 10-year results  
+# The remaining examples will all be limited to 10-year results unless
+# otherwise specified  
  
 # Example with SDI with valid zip code with SDI data available
 estimate_risk(
@@ -513,7 +813,8 @@ estimate_risk(
   egfr = 67,
   bmi = 30,
   zip = "59043",   # Lame Deer, MT (selected randomly)
-  time = 10        # Note use of numeric 10 here (not "10yr")
+  time = 10        # Note numeric 10 (not "10yr"),
+                   # just to show the option of entering this way
 )
 
 # Example with SDI with valid zip code without SDI data available
@@ -536,7 +837,7 @@ estimate_risk(
 
 # Example with full model (even though zip does not have available SDI, full 
 # model used given availability of HbA1c and UACR; because zip is valid,
-# column `input_problems` will be `NA`)
+# column `input_problems` will be NA)
 estimate_risk(
   age = 66, 
   sex = "female",     
@@ -577,7 +878,159 @@ estimate_risk(
   time = "10yr"
 )
 
-# Expect table of `NA`s due to invalid input for `age` and `sbp`, and column
+# Example of using the convenience functions `calc_bmi()` and `calc_egfr()`
+res_convenience_fxs <- estimate_risk(
+  age = 50, 
+  sex = "female",    
+  sbp = 130, 
+  bp_tx = TRUE,      
+  total_c = 200,     
+  hdl_c = 45,        
+  statin = FALSE,    
+  dm = TRUE,         
+  smoking = FALSE,   
+  egfr = calc_egfr(1), # units unspecified, so treated as 1 mg/dL; eGFR = 69
+  bmi = calc_bmi(70, 150, "metric"), # weight in kg, height in cm; BMI = 31.1
+  time = "10yr",
+  quiet = TRUE
+)
+
+res_direct_entry <- estimate_risk(
+  age = 50, 
+  sex = "female",    
+  sbp = 130, 
+  bp_tx = TRUE,      
+  total_c = 200,     
+  hdl_c = 45,        
+  statin = FALSE,    
+  dm = TRUE,         
+  smoking = FALSE,   
+  egfr = 69,
+  bmi = 31.1,
+  time = "10yr",
+  quiet = TRUE
+)
+
+identical(res_convenience_fxs, res_direct_entry)
+
+# Example of using `model` argument to compare results from PREVENT equations
+# to both versions of the PCEs
+estimate_risk(
+  age = 50, 
+  sex = "female",    
+  sbp = 130, 
+  bp_tx = TRUE,      
+  total_c = 200,     
+  hdl_c = 45,        
+  statin = FALSE,    
+  dm = TRUE,         
+  smoking = FALSE,   
+  egfr = 90,
+  bmi = 35,
+  hba1c = 8,
+  uacr = 30,
+  time = "10yr",
+  model = list(other_models = "pce_both", race_eth = "Black")
+  # Note omission of element `main_model` within the list is okay, and the
+  # element will then be treated as NULL (and thus model selection here
+  # will be "full" given availability of valid HbA1c and UACR)
+)
+
+# Essentially a repeat of example immediately above, but now will specify
+# `main_model` as "hba1c" and limit `other_models` to the revised PCEs
+estimate_risk(
+  age = 50, 
+  sex = "female",    
+  sbp = 130, 
+  bp_tx = TRUE,      
+  total_c = 200,     
+  hdl_c = 45,        
+  statin = FALSE,    
+  dm = TRUE,         
+  smoking = FALSE,   
+  egfr = 90,
+  bmi = 35,
+  hba1c = 8,
+  uacr = 30,
+  time = "10yr",
+  model = list(main_model = "hba1c", other_models = "pce_rev", race_eth = "Black")
+)
+
+# Because the PCEs only give 10-year estimates, if a user specifies an 
+# interest in a 30-year time horizon but also expresses interest in 
+# comparison with the the PCEs, a 10-year time horizon must be added for the
+# PCEs, but this will not automatically result in estimation of 10-year risk
+# for the PREVENT equations.
+estimate_risk(
+  age = 50, 
+  sex = "female",    
+  sbp = 130, 
+  bp_tx = TRUE,      
+  total_c = 200,     
+  hdl_c = 45,        
+  statin = FALSE,    
+  dm = TRUE,         
+  smoking = FALSE,   
+  egfr = 90,
+  bmi = 35,
+  time = "30yr",
+  model = list(other_models = "pce_both", race_eth = "Black")
+)
+
+# Repeat of above, but setting `collapse = TRUE`
+res_collapsed <- estimate_risk(
+  age = 50, 
+  sex = "female",    
+  sbp = 130, 
+  bp_tx = TRUE,      
+  total_c = 200,     
+  hdl_c = 45,        
+  statin = FALSE,    
+  dm = TRUE,         
+  smoking = FALSE,   
+  egfr = 90,
+  bmi = 35,
+  time = "30yr",
+  model = list(other_models = "pce_both", race_eth = "Black"),
+  collapse = TRUE
+)
+
+res_collapsed
+
+# Can also accomplish this after the fact, as documented in "Combining output 
+# into a single data frame" within the "Value" section
+res_uncollapsed <- estimate_risk(
+  age = 50, 
+  sex = "female",    
+  sbp = 130, 
+  bp_tx = TRUE,      
+  total_c = 200,     
+  hdl_c = 45,        
+  statin = FALSE,    
+  dm = TRUE,         
+  smoking = FALSE,   
+  egfr = 90,
+  bmi = 35,
+  time = "30yr",
+  model = list(other_models = "pce_both", race_eth = "Black")
+)
+
+all.equal(
+  do.call(rbind, res_uncollapsed), 
+  res_collapsed, 
+  check.attributes = FALSE
+)
+# Can also accomplish with `dplyr` and `data.table`, as detailed in the
+# "Combining output into a single data frame" subsection of the "Value" 
+# section
+
+
+# Passing a data frame to argument `use_dat`
+if(interactive()) {
+  vignette("using-data-frame")
+}
+ 
+# Expect table of NAs due to invalid input for `age` and `sbp`, and column
 # `input_problems` to contain explanations about problems with `age` and `sbp`
 res <- estimate_risk(
   age = 8675309, 
@@ -615,11 +1068,37 @@ res <- estimate_risk(
 
 res
 
+# If only invalid input is for PCEs, PREVENT equations will still run
+for(time in c("10yr", "30yr", "both")) {
+  cat(paste0("\n", "----- `time = \"", time, "\"` -----", "\n"))
+  print(
+    estimate_risk(
+      age = 38,                  # This age is okay for the PREVENT
+      sex = "female",            # equations, but not for the PCEs
+      sbp = 144, 
+      bp_tx = TRUE,      
+      total_c = 200,     
+      hdl_c = 45,        
+      statin = FALSE,    
+      dm = TRUE,         
+      smoking = FALSE,   
+      egfr = 90,
+      bmi = 35,
+      time = time,
+      model = list(
+        other_models = "pce_both", 
+        race_eth = NA              # Invalid `race_eth` for PCEs
+      ),        
+      quiet = TRUE       
+    )
+  )
+}
+
 # Note `input_problems` column is semicolon-separated, but it is easy to
 # print as separate lines with `gsub()` and `cat()`, e.g.:
 cat(gsub("; ", "\n", res$input_problems))
 \dontshow{if (getRversion() >= "4.1.0") (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 res$input_problems |> gsub(pattern = "; ", replacement = "\n", x = _) |> cat()
-# ... and could, of course, also do with the {magrittr} pipe `\%>\%` if desired
+# ... and could, of course, also use the `magrittr` pipe `\%>\%` if desired
 \dontshow{\}) # examplesIf}
 }

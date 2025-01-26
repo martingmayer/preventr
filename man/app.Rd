@@ -20,8 +20,8 @@ navigates to the Shiny app located at:
 
 Easier-to-remember URLs:
 \itemize{
-\item \url{https://tiny.cc/prevent-equations}
-\item \url{https://tiny.cc/preventequations}
+\item \href{https://martingmayer.shinyapps.io/prevent-equations}{https://tiny.cc/prevent-equations}
+\item \href{https://martingmayer.shinyapps.io/prevent-equations}{https://tiny.cc/preventequations}
 }
 
 The app includes risk visualization and several options for customizing the output.

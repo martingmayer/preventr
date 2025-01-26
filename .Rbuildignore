@@ -4,6 +4,10 @@
 ^README\.Rmd$
 ^_pkgdown\.yml$
 ^docs$
+^.github$
 ^pkgdown$
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
+^vignettes/articles$
+^doc$
+^Meta$

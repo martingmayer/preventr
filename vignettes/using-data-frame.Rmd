@@ -1,0 +1,1157 @@
+---
+title: "Using preventr with a data frame"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Using preventr with a data frame}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(preventr)
+```
+
+```{css, echo=FALSE}
+/*
+
+Stop column headers in tables from being wrapped or hyphenated 
+(looks really bad in this instance)
+
+*/
+
+.row>main {
+  overflow-wrap:normal;
+  hyphens:none;
+}
+```
+
+This vignette shows how you can use a data frame with `preventr`. This has always been possible since the inception of `preventr`, but things became more convenient with the introduction of the `use_dat` and `add_to_dat` arguments for the functions 
+`estimate_risk()` and its synonym `est_risk()` in version 0.11. Hereafter, this vignette will use `est_risk()`. This vignette also assumes the reader has already read the relevant documentation for `est_risk()`, especially pertaining to arguments `use_dat` and `add_to_dat`.
+
+## Using `use_dat` and `add_to_dat`
+
+Let's start by defining some data to use.
+```{r}
+make_vignette_dat <- function(n = 10, add_time_and_model = FALSE) {
+  dat <- dplyr::tibble(
+    # I am specifying `age`, `sex`, `egfr`, and `bmi` manually while letting
+    # other parameters vary via `sample()` to facilitate later aspects of this
+    # vignette (to show identical results from approaches I show below).
+    age = c(40, 55, 45, 51, 52, 58, 57, 36, 49, 47),
+    sex = rep(c("female", "male"), 5),
+    sbp = sample(90:180, n, replace = TRUE),
+    bp_tx = sample(c(TRUE, FALSE), n, replace = TRUE),
+    total_c = sample(130:320, n, replace = TRUE),
+    hdl_c = sample(20:100, n, replace = TRUE),
+    statin = sample(c(TRUE, FALSE), n, replace = TRUE),
+    dm = sample(c(TRUE, FALSE), n, replace = TRUE),
+    smoking = sample(c(TRUE, FALSE), n, replace = TRUE),
+    egfr = c(73, 71, 80, 73, 77, 70, 86, 89, 78, 68),
+    bmi = c(37.4, 32.9, 37.5, 28.6, 37.5, 36.0, 36.7, 28.6, 18.7, 38.6),
+    hba1c = sample(
+      # I want to ensure NAs are equally represented in the sample space,
+      # hence the composition shown below.
+      c(
+        seq(4.5, 15, 0.1), 
+        rep(NA_real_, length(seq(4.5, 15, 0.1)))
+      ), 
+      n, 
+      replace = TRUE
+    ),
+    uacr = sample(
+      c(
+        seq(0.1, 25000, 0.1), 
+        rep(NA_real_, length(seq(0.1, 25000, 0.1)))
+      ), 
+      n, 
+      replace = TRUE
+    ),
+    zip = sample(
+      # (random sample of valid zips)
+      c(
+        "01518", "33321", "85206", "98591", "29138", 
+        "98101", "44124", "48708", "48206", "77642", 
+        rep(NA_character_, n)
+      ), 
+      n, 
+      replace = TRUE
+    )
+  )
+  
+  if(add_time_and_model) {
+    dat <- dat |> 
+      dplyr::mutate(
+        # I use `rep("both", 2)` for `time` because I want that option to have a
+        # higher chance of being selected for this example.
+        time = sample(c("10yr", "30yr", rep("both", 2)), n, replace = TRUE),
+        model = sample(c("base", "hba1c", "uacr", "sdi", "full"), n, replace = TRUE)
+      )
+  }
+  
+  dat
+}
+
+dat <- make_vignette_dat()
+
+knitr::kable(dat)
+```
+
+### Our first call using `use_dat`
+
+In the call below to `est_risk()`, because (1) `dat` does not contain any columns for optional behavior variables and (2) the call omits optional behavior variable arguments aside from `progress = FALSE`, the optional behavior variables will take their default values.
+
+Note also the first column in the return table is `preventr_id`. This is a unique identifier for each row of the input data frame passed to `use_dat`. In this case, each row of the return data frame has 2 rows; this is expected, because we did not pass anything to arguments `time` or `model` in the call to `est_risk()`. They thus take their default values of `time = "both"` and `model = NULL`, with the latter meaning `est_risk()` will automatically select the model based on the input.
+
+```{r}
+res <- est_risk(use_dat = dat, progress = FALSE)
+
+knitr::kable(res)
+```
+
+### Progress bar
+
+Because some data frames may be large, `est_risk()` now has a progress bar that will automatically show (unless `progress = FALSE`) when `use_dat` is a data frame. This is independent of the `quiet` argument. The progress bar requires the `utils` package, but this is part of the R distribution, so outside of unusual situations, you should not need to install it yourself. The code below will not actually execute in this vignette because the progress bar is intended for the console. I include it below simply for demonstration.
+
+```{r, eval = FALSE}
+# The default for `progress` when `use_dat` is a data frame is `TRUE`, so this
+# call would yield a progress bar during computation.
+res_for_prog_bar <- est_risk(use_dat = dat)
+```
+
+### Passing a data frame with a predictor variable located in a differently-named column
+
+You can pass a data frame with a predictor variable located in a differently-named column, and the column can be specified as a character string or symbol.
+
+```{r}
+dat_age_rename <- dat |> dplyr::rename(years_old = age)
+
+res_age_rename_sym <- est_risk(
+  use_dat = dat_age_rename, 
+  age = years_old, 
+  progress = FALSE
+)
+
+res_age_rename_chr <- est_risk(
+  use_dat = dat_age_rename, 
+  age = "years_old", 
+  progress = FALSE
+)
+```
+
+The following two tests will be `FALSE`, because the column names housing the age data differ.
+
+```{r}
+identical(res, res_age_rename_sym) 
+
+identical(res, res_age_rename_chr)
+```
+
+But all of these will be `TRUE`.
+
+```{r} 
+identical(
+  res |> dplyr::select(-age),
+  res_age_rename_sym |> dplyr::select(-years_old)
+)
+
+identical(
+  res |> dplyr::select(-age),
+  res_age_rename_chr |> dplyr::select(-years_old)
+)
+
+identical(res_age_rename_sym, res_age_rename_chr)
+```
+
+And thus, if we rename the `years_old` columns ... 
+
+```{r}
+res_age_rename_sym <- res_age_rename_sym |> dplyr::rename(age = years_old)
+
+res_age_rename_chr <- res_age_rename_chr |> dplyr::rename(age = years_old)
+```
+
+... everything will be identical.
+
+```{r}
+identical(res, res_age_rename_sym) 
+
+identical(res, res_age_rename_chr)
+```
+
+### Optional behavior variables: Data frame vs. in the call
+
+You can also pass optional behavior variables via the data frame. As a reminder, optional behavior variables may *either* be in the data frame passed to `use_dat` in a column with the same name as the argument *or* passed to the function call as usual. If an optional behavior variable is omitted from the call when a user passes a data frame to `use_dat`, the function will first look for a column with the name of the optional behavior variable in the data frame; if it does not find such a column, it will use the default behavior for the optional behavior variable. If the user includes an argument for an optional behavior variable in the call, the function will always use this, irrespective of any column in the data frame that might share the same name. Additionally, the following arguments are not passable via the data frame: `collapse` (ignored when `use_dat` is a data frame), `use_dat` (this would be self-referential), `add_to_dat` (again, essentially self-referential), and `progress` (this applies to the entire call when `use_dat` is a data frame).
+
+In what follows, I will show `time` and `model`, but you could also pass, for example, `optional_strict` or `quiet` if you wanted. Passing optional behavior variables via the data frame is likely most useful when you wish for `est_risk()`'s behavior to vary across rows within the data frame passed to `use_dat`. Otherwise, if you desire the same behavior for the entirety of the call to `est_risk()`, it is likely easier to pass the optional behavior variables in the call to `est_risk()` (or pass nothing to those arguments if you just want the default behavior).
+
+```{r}
+dat_time_model <- make_vignette_dat(add_time_and_model = TRUE)
+
+res_time_model_in_dat <- est_risk(use_dat = dat_time_model, progress = FALSE)
+
+knitr::kable(res_time_model_in_dat)
+```
+
+Because the input data frame in the above call to `est_risk()` has a column named `model`, `est_risk()` will rename this column to `model_input` in the return data frame. This is to accommodate the return data frame also needing to specify the `model` used for any given row, as specified in the documentation of how `use_dat` works when `model` is in the data frame passed to `use_dat` (see the "Value" section of the documentation in particular). This is perhaps most useful when the model input consists of a request for both PREVENT and PCE models (examples involving the PCEs will appear later).
+
+Remember, you can override any of the optional behavior variables by passing them as an argument. Note the different values for `time` and `model` in the data frame.
+
+```{r}
+dat_time_model[["time"]] 
+
+dat_time_model[["model"]]
+```
+
+Despite that, we will only get 10-year estimates from the base model of the PREVENT equations with the following call.
+
+```{r}
+res_time_and_model_in_call <- est_risk(
+  use_dat = dat_time_model, 
+  time = 10, 
+  model = "base",
+  progress = FALSE
+) 
+
+all.equal(unique(res_time_and_model_in_call[["over_years"]]), 10) 
+
+all.equal(unique(res_time_and_model_in_call[["model"]]), "base")  
+```
+
+And likewise, the following call will invoke automatic model selection despite the `model` column being all `"base"`, because we pass the argument `model = NULL` to the call.
+
+```{r}
+res_time_and_model_in_call <- est_risk(
+  use_dat = dat_time_model |> dplyr::mutate(model = "base"), 
+  model = NULL,
+  progress = FALSE
+) 
+
+all.equal(unique(res_time_and_model_in_call[["model_input"]]), "base") 
+res_time_and_model_in_call[["model"]]
+```
+
+### Number of rows returned for a given input row = number of models requested
+
+For any given input row in the data frame passed to `use_dat`, the row will be expanded to match the number of models requested. Stated more formally, each row in the input data frame will be assigned a `preventr_id` value. For the row with `preventr_id` *x* (hereafter, "row *x*"), if *n* represents the number of models requested for row *x*, then row *x* will be replicated *n* times in the return data frame to accommodate reporting the different model outputs for that row. Note also *n* is determined by what the function receives for both the `model` and `time` arguments (because, for example, if `model = "base"` and `time = "both"`, this is a request for 2 models).
+
+One can explore this further by examining the `model` and `time` values in an arbitrary row of the data frame passed to `use_dat` and the corresponding row(s) in the return data frame. In this example, there will only ever be a maximum of 2 rows per row of input, because the example here only considers the PREVENT equations and time horizons of 10 and 30 years. Phrased differently, the variability in number of rows per `preventr_id` for this example will be relatively small: 1 or 2 rows. However, if one were also considering the PCEs, then there could be a maximum of 4 rows per row of input (if one asked for both the original and revised PCEs and both the 10- and 30-year estimates, as this would yield a 10-year estimate from the PREVENT equations, the original PCEs, and the revised PCEs, and a 30-year estimate from the PREVENT equations).
+
+```{r}
+show_random_row <- function(dat, res, n = 5) {
+  
+  rows <- seq_len(nrow(dat))
+  already_seen <- vector("double", n)
+  
+  for(i in seq_len(n)) {
+    
+    random_row <- sample(rows, 1)
+    while(random_row %in% already_seen) random_row <- sample(rows, 1)
+    already_seen[[i]] <- random_row
+    
+    cat(paste0("\n", "--- `preventr_id` ", random_row, " ---", "\n\n"))
+    
+    print(
+      list(
+        # `model_input` has `unlist(..., recursive = FALSE)` because sometimes
+        # column `model` will be a list column, so each item therein will be
+        # enclosed in a list, and unlisting one level improves the appearance of
+        # printing a bit in this case.
+        model_input = unlist(dat[random_row, ][["model"]], recursive = FALSE),
+        time_input = dat[random_row, ][["time"]],
+        nrow_res = dplyr::filter(res, preventr_id == random_row) |> nrow()
+      )
+    )
+  }
+  
+}
+
+show_random_row(dat_time_model, res_time_model_in_dat)
+```
+
+### `add_to_dat`
+
+If you do not want the risk estimation results to be added back to the data frame passed to `use_dat`, set `add_to_dat = FALSE`. The results will be returned as a data frame, and the first column will again be `preventr_id` to identify the row in the `use_dat` data frame that corresponds with the results shown in the return data frame. This column is perhaps of additional importance when `add_to_dat = FALSE`, as the return data frame will *not* have the columns contained in the data frame passed to `use_dat`, so `preventr_id` provides a ready way to reassociate the data frame passed to `use_dat` with the results in the return data frame. 
+
+```{r}
+res_without_dat <- est_risk(
+  use_dat = dat_time_model, 
+  add_to_dat = FALSE, 
+  progress = FALSE
+)
+
+knitr::kable(res_without_dat)
+```
+
+The default for `add_to_dat` is `TRUE` when `use_dat` is a data frame (it is ignored when `use_dat` is anything other than a data frame). `add_to_dat = TRUE` essentially just triggers a left join behind the scenes. As we'll see in the example immediately below, calls with `add_to_dat = FALSE` are still easy to reassociate with the data frame passed to `use_dat`, thanks to the `preventr_id` column in the return data frame.
+
+```{r}
+res_with_dat <- est_risk(use_dat = dat_time_model, progress = FALSE)
+
+# Now, let's check identicality of `res_with_dat` with a version we
+# recreate using `dat_for_join` and `res_without_dat`.
+dat_for_join <- dat_time_model |> 
+  # First, add the `preventer_id` column ...
+  dplyr::mutate(preventr_id = seq_len(nrow(dat_time_model))) |> 
+  # ... and then move it to be the first column in the data frame.
+  dplyr::relocate(preventr_id) 
+
+# Now, do the left join.
+res_with_dat_manual_join <- dat_for_join |> 
+  dplyr::left_join(
+    res_without_dat, 
+    by = "preventr_id",
+    # Because both data frames will have a column named `model`, I'll provide
+    # suffixes to distinguish them. The suffixes below will result in the column 
+    # `model` in `dat_for_join` being renamed to `model_input` and column
+    # `model` in the data frame `res_without_dat` retaining the same name.
+    suffix = c("_input", "")  
+    )
+
+# (You could also do all the above without a pipe sequence, of course.)
+
+identical(res_with_dat, res_with_dat_manual_join)   
+```
+
+### Type-stability of return
+
+The return data frame will be of the same type as the data frame passed to `use_dat`. 
+
+```{r}
+dat_tbl <- dat |> dplyr::mutate(quiet = TRUE)       
+dat_dt <- data.table::as.data.table(dat_tbl)
+dat_df <- as.data.frame(dat_tbl)
+
+class(dat_tbl)
+class(dat_dt)
+class(dat_df)
+
+res_tbl <- est_risk(use_dat = dat_tbl, progress = FALSE)  # Return: tibble
+res_dt <- est_risk(use_dat = dat_dt, progress = FALSE)    # Return: data.table
+res_df <- est_risk(use_dat = dat_df, progress = FALSE)    # Return: data frame
+
+identical(class(dat_tbl), class(res_tbl))
+identical(class(dat_dt), class(res_dt))
+identical(class(dat_df), class(res_df))
+
+# Other than the attributes, these are all equal (of course).
+all.equal(res_tbl, res_dt, check.attributes = FALSE)
+all.equal(res_tbl, res_df, check.attributes = FALSE)
+```
+
+### What about the PCEs?
+
+Yes, you can request the PCEs in conjunction with using `use_dat`. Because of how the `model` argument works when requesting the PCEs (namely, it expects a list in this case), the `model` column in the data frame being passed to `use_dat` needs to be a list column.
+
+```{r}
+dat_with_pce_requests <- dat_time_model |> 
+  # We'll start with the data in `dat_time_model` and then overwrite the `model`
+  # column for this example.
+  dplyr::mutate(
+    # Base R `lapply()` is a convenient choice here, as it will return a list; 
+    # however, this is not the only way to create list columns.
+    model = lapply(
+      seq_len(nrow(dat_time_model)),
+      function(x) {
+        # Let's make some rows just have `NA` (leading to automatic PREVENT
+        # model selection and no risk estimation from the PCEs) and other rows
+        # specify both the PREVENT and PCE models. This is just to demonstrate
+        # flexibility. You could also just generate a basic list column, and
+        # that would be less involved than what I do here.
+        if(x %% 2 == 0) {
+          NA
+        } else { 
+          list(
+            # (We could also omit `main_model`, in which case the PREVENT model
+            # will be selected automatically.)
+            main_model = sample(c("base", "hba1c", "uacr", "sdi", "full"), 1),
+            other_models = sample(c("pce_both", "pce_rev", "pce_orig"), 1),
+            race_eth = sample(c("Black", "White", "Other"), 1)
+          )
+        }
+      }
+    )
+  )
+
+res_with_pce_requests <- est_risk(
+  use_dat = dat_with_pce_requests, 
+  progress = FALSE
+)
+
+knitr::kable(res_with_pce_requests)
+```
+
+Those reviewing closely will notice printing the list column `model_input` results in some extra spaces and the list item names being dropped, but it nevertheless permits insight into what was contained in the list for `model` for each row of the input data frame passed to `use_dat`. And note this is solely a side effect of printing the list column via `knitr::kable()`. The column `model_input` in the return data frame is identical to the column `model` in the data frame passed to `use_dat` aside from the expansion behavior already described (see section "Number of rows returned for a given input row = number of models requested" in this vignette).
+
+```{r}
+identical_cols <- vapply(
+  seq_len(nrow(dat_with_pce_requests)),
+  
+  function(x) {
+    n_row <- res_with_pce_requests |> dplyr::filter(preventr_id == x) |> nrow()
+    
+    identical(
+      rep(dat_with_pce_requests[["model"]][x], n_row),
+      
+      res_with_pce_requests |> 
+        dplyr::filter(preventr_id == x) |>
+        dplyr::pull(model_input)
+    )
+  },
+  
+  logical(1)
+)
+
+all(identical_cols)
+```
+
+On the note of the expansion behavior, note the results here further demonstrate the concept of the number of rows in the return data frame equaling the number of models requested for a given row in the input data frame. 
+
+```{r}
+show_random_row(dat_with_pce_requests, res_with_pce_requests)
+```
+
+Again, specifying the `model` variable in the data frame is likely most helpful when one desires to request different behavior across different rows of the input data frame passed to `use_dat` (just like for any optional behavior variable). If instead you want the same model behavior across all rows, you can either (1) pass nothing to the `model` argument and *not* include a `model` column in the data frame passed to `use_dat` or (2) specify the desired model behavior in the `model` argument, which will also override anything that might exist in a column named `model` in the data frame passed to `use_dat`.
+
+### What about the convenience functions for eGFR and BMI?
+
+Yes, you can use the convenience functions for eGFR and BMI when using `use_dat` and `add_to_dat` (see the documentation for `est_risk()`'s arguments `egfr` and `bmi` if you are not familiar with these convenience functions). The input data frame passed to `use_dat` will need to have the calls to the convenience functions in columns. Because these will be columns, they will need to be list columns.
+
+```{r}
+dat_with_calls_basic <- dat_with_pce_requests |> 
+  dplyr::mutate(
+    egfr = lapply(
+      seq_len(nrow(dat)),
+      function(x) {
+        # We can make some rows have calls to `calc_egfr` and some just have
+        # values. This is just for demonstration, and one could instead have a
+        # simple list column composed entirely of calls.
+        if(x %% 2 == 0) {
+          call("calc_egfr", cr = sample(seq(0.5, 1.5, 0.1), 1))
+        } else {
+          sample(45:90, 1)
+        }
+      }
+    ),
+    bmi = lapply(
+      seq_len(nrow(dat)),
+      function(x) {
+        # The comment above for `egfr` applies here as well.
+        if(x %% 2 == 0) {
+          call(
+            "calc_bmi", 
+            height = sample(60:78, 1),
+            weight = sample(110:200, 1)
+          )
+        } else {
+          sample(20:38, 1)
+        }
+      }
+    )
+  )
+
+res_with_calls_basic <- est_risk(
+  use_dat = dat_with_calls_basic, 
+  progress = FALSE
+)
+
+knitr::kable(res_with_calls_basic)
+```
+
+The above scenario might be less realistic than something like having columns in a data frame for creatinine in mg/dL or μmol/L, height in cm, and weight in kg, and wanting to construct the calls from those. No worries, this is also quite doable.
+
+```{r}
+dat_with_cr_cm_kg <- dat_with_pce_requests |> 
+  dplyr::mutate(
+    # Let's use values for `cr` in mg/dL, `cm`, and `kg` that would yield the
+    # values originally entered directly for `egfr` and `bmi` in
+    # `make_vignette_dat()` to demonstrate identical results when using the
+    # direct values for eGFR and BMI vs. using calls to the convenience
+    # functions. This is why the function `make_vignette_dat()` specifies values
+    # for `age`, `sex`, `egfr`, and `bmi` directly while letting others vary
+    # randomly.
+    cr = c(1, 1.2, 0.9, 1.2, 0.9, 1.2, 0.8, 1.1, 0.9, 1.3),
+    cm = c(199, 182, 184, 197, 189, 187, 191, 163, 199, 171),
+    kg = c(148, 109, 127, 111, 134, 126, 134, 76, 74, 113),
+    # Now, we'll create new list columns containing calls to calculate eGFR and
+    # BMI (and remember, `dat_with_pce_requests` will already have columns for
+    # `egfr` and `bmi`).
+    egfr_call = lapply(
+      seq_len(nrow(dat_with_pce_requests)),
+      function(x) {
+        call("calc_egfr", cr = cr[[x]])
+      }
+    ),
+    bmi_call = lapply(
+      seq_len(nrow(dat_with_pce_requests)),
+      function(x) {
+        call("calc_bmi", height = cm[[x]], weight = kg[[x]], units = "metric")
+      }
+    )
+  )
+
+res_with_calls <- est_risk(
+  use_dat = dat_with_cr_cm_kg, 
+  # Instruct `est_risk()` to use the call columns, else it will default to
+  # grabbing values from `egfr` and `bmi`, which have direct values in them.
+  egfr = "egfr_call", # Again, can pass column names as a character string ...
+  bmi = bmi_call,     # ... or as a symbol
+  progress = FALSE
+)
+
+res_without_calls <- est_risk(
+  use_dat = dat_with_cr_cm_kg,
+  # If you don't specify the call columns, `est_risk()` will default to using
+  # the columns `egfr` and `bmi`, which have the original, direct values for
+  # eGFR and BMI
+  progress = FALSE
+)
+
+knitr::kable(res_with_calls)
+
+identical(res_with_calls, res_without_calls)  
+```
+
+## I don't want to use `use_dat` and `add_to_dat`
+
+### Then don't!
+
+Perhaps you've already created a workflow and don't want to update it to incorporate `use_dat` or `add_to_dat`. Perhaps your use case requires some more nuanced intermediate steps that wouldn't work in conjunction with this new functionality. Perhaps you just vehemently dislike this functionality for some reason (though, admittedly, I would be curious to hear your reasons if this is you; feel free to get in touch). Whatever the case may be, you can still use `est_risk()` in the same way as before. And this includes being able to use a data frame with `est_risk()`. The arguments `use_dat` and `add_to_dat` just likely make many workflows more streamlined. But for example, you can still use `est_risk()` with base R solutions like [lapply()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/lapply.html) or (the perhaps lesser-known) [Map()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/funprog.html), or tidyverse solutions like those found in the [purrr](https://purrr.tidyverse.org/) package. 
+
+Before we start, let's remind ourselves what `dat_with_cr_cm_kg` looks like.
+
+```{r}
+knitr::kable(head(dat_with_cr_cm_kg))
+```
+
+### `lapply()`
+
+Now, let's use good old `lapply()` with `dat_with_cr_cm_kg` and `est_risk()`.
+
+(As a brief aside, you could also certainly use a good old `for()` loop here instead of `lapply()`. Although I do not give a direct demonstration of using a `for()` loop in this vignette, the examples using `lapply()` should make it clear how you could do this with a `for()` loop if you prefer that for some reason. Just make sure you've taken care of pre-allocation. This isn't a *requirement*, but it's good practice and helps with performance in general.)
+
+```{r}
+# First, add `preventr_id` to data frame for joining later, then move it to the
+# first position.
+dat_with_cr_cm_kg <- dat_with_cr_cm_kg |> 
+  dplyr::mutate(preventr_id = seq_len(nrow(dat))) |> 
+  dplyr::relocate(preventr_id)
+
+res_basic_lapply <- lapply(
+  # Using the row numbers of `dat_with_cr_cm_kg` as `x` in `function(x)`...
+  seq_len(nrow(dat_with_cr_cm_kg)),
+  function(x) {
+    # ... run `est_risk()` on each row of `dat_with_cr_cm_kg`
+    est_risk(
+      age = dat_with_cr_cm_kg[["age"]][[x]],
+      sex = dat_with_cr_cm_kg[["sex"]][[x]],
+      sbp = dat_with_cr_cm_kg[["sbp"]][[x]],
+      bp_tx = dat_with_cr_cm_kg[["bp_tx"]][[x]],
+      total_c = dat_with_cr_cm_kg[["total_c"]][[x]],
+      hdl_c = dat_with_cr_cm_kg[["hdl_c"]][[x]],
+      statin = dat_with_cr_cm_kg[["statin"]][[x]],
+      dm = dat_with_cr_cm_kg[["dm"]][[x]],
+      smoking = dat_with_cr_cm_kg[["smoking"]][[x]],
+      egfr = dat_with_cr_cm_kg[["egfr"]][[x]],
+      bmi = dat_with_cr_cm_kg[["bmi"]][[x]],
+      hba1c = dat_with_cr_cm_kg[["hba1c"]][[x]],
+      uacr = dat_with_cr_cm_kg[["uacr"]][[x]],
+      zip = dat_with_cr_cm_kg[["zip"]][[x]],
+      model = dat_with_cr_cm_kg[["model"]][[x]],
+      time = dat_with_cr_cm_kg[["time"]][[x]],
+      quiet = TRUE
+    )  |>
+      # Bind the rows of the return from `est_risk()` together.
+      # (Side note: You can skip this step if you call `est_risk()` with
+      # `collapse = TRUE`.)
+      dplyr::bind_rows() |>
+      # Add column `preventr_id` to facilitate reassociation with the input
+      # data frame.
+      dplyr::mutate(preventr_id = x)
+  }
+) |>
+  # Bind all the results from the `lapply()` call together to make a
+  # single data frame.
+  dplyr::bind_rows() |> 
+  # Finally, do a quick left join to match the results with their
+  # corresponding input row in `dat_with_cr_cm_kg`.
+  dplyr::left_join(
+    x = dat_with_cr_cm_kg, 
+    y = _, 
+    by = "preventr_id",
+    # Because both data frames will have a column named `model`, we'll provide
+    # suffixes to distinguish them. The suffixes below will cause the column 
+    # `model` in `dat_with_cr_cm_kg` to be renamed to `model_input` and column
+    # `model` in the data frame from the pipe sequence (represented via `_`) 
+    # retaining the same name.
+    suffix = c("_input", "")  
+  )
+
+# If all has proceeded as it should've, `res_basic_lapply` should be identical
+# to `res_without_calls` (and thus also to `res_with_calls`) from the above 
+# example (spoiler, it will be).
+identical(res_basic_lapply, res_without_calls)
+```
+
+As somewhat of a quick side note, repeatedly calling `dat_with_cr_cm_kg[["{var}"]][[x]]` in the `lapply()` call above is relatively 
+inefficient vs. doing something like: 
+
+```{r, eval = FALSE}
+with(
+  dat_with_cr_cm_kg[x, ],
+  est_risk(
+    age = age,
+    sex = sex,
+    ...
+  )
+)
+```
+
+However, `dat_with_cr_cm_kg[["{var}"]][[x]]` is at least unambiguous, whereas using `with()` requires understanding its data-masking feature.
+
+I used the more verbose approach for the initial `lapply()` call for a reason, namely to show variations in approach that might be used. Subsequent `lapply()` calls will in fact make use of `with()`.
+
+In addition to reading the [documentation for the `with()` function](https://stat.ethz.ch/R-manual/R-devel/library/base/html/with.html), you can read more about data masking [here (from the rlang package)](https://rlang.r-lib.org/reference/topic-data-mask.html) if interested.
+
+To show some other variants using `lapply()`, I'm going to delve
+into the concept of metaprogramming just a wee bit. Hadley Wickham's [Advanced R](https://adv-r.hadley.nz/index.html) has some excellent content about this in the [metaprogramming section](https://adv-r.hadley.nz/metaprogramming.html), and the tidyverse team has supported such efforts with the fantastic [rlang package](https://rlang.r-lib.org/). However, I'm actually just going to use base R functions here.
+
+In what follows, I define a function that allows us to alter (1) the first argument in the call to `with()` and (2) the arguments passed to the `est_risk()` call inside the `lapply()` call.
+
+```{r}
+do_lapply_and_join <- function(dat, with_arg, ..., eval = TRUE) {
+  
+  dat <- substitute(dat)
+  with_arg <- substitute(with_arg)
+  dots <- eval(substitute(alist(...)))
+  
+  mini_cl <- bquote(
+    {
+      lapply(
+        # Using the row numbers of `.(dat)` as `x` in `function(x)`...
+        seq_len(nrow(.(dat))),
+        function(x) {
+          with(
+            # With the data mask contained in `with_arg` ...
+            .(with_arg),
+              # ... run `est_risk()` with the arguments contained within `dots`.
+              est_risk(..(dots)) 
+          ) |>
+            # The vast majority of the following is nearly identical to the
+            # basic `lapply()` example; it does not make any further use of 
+            # metaprogramming unless otherwise noted.
+            dplyr::bind_rows() |>
+            dplyr::mutate(preventr_id = x)
+        }
+      ) |>
+        dplyr::bind_rows() |> 
+        dplyr::left_join(
+          x = .(dat),       # Note the use of `.(dat)` 
+          y = _, 
+          by = "preventr_id",
+          suffix = c("_input", "")  
+        )
+    },
+    splice = TRUE           # This tells `bquote()` to splice anything in `..()`
+  )
+  
+  if(eval) eval(mini_cl, parent.frame()) else mini_cl
+}
+```
+
+We can now use this "augmented" `lapply()` for further demonstrations.
+
+```{r}
+# Let's start by showing results identical to `res_basic_lapply`.
+res_aug_lapply <- do_lapply_and_join(
+  dat = dat_with_cr_cm_kg,
+  with_arg = dat_with_cr_cm_kg[x, ],
+  age = age,
+  sex = sex,
+  sbp = sbp,
+  bp_tx = bp_tx,
+  total_c = total_c,
+  hdl_c = hdl_c,
+  statin = statin,
+  dm = dm,
+  smoking = smoking,
+  egfr = egfr,
+  bmi = bmi,
+  hba1c = hba1c,
+  uacr = uacr,
+  zip = zip,
+  # Because of the data mask passed via argument `with_arg`, the evaluation
+  # environment will be row x of the data frame (where x is defined within the
+  # `lapply()` call). Thus, `model` will still be a list column, so I need to
+  # get that list item out of the list column before passing it to
+  # `est_risk()`.
+  #
+  # For `model`, I could instead do `unlist()`, but given this vignette also
+  # demonstrates list columns containing calls (where `unlist()` will not do),
+  # I will use `[[1]]` here for consistency. Note I can be confident the list
+  # item I need from the list column `model` is indeed the first (and only)
+  # list item, and the list item I extract via `[[1]]` will then either be
+  # `NA` or a list with list items `main_model`, `other_models`, and
+  # `race_eth` given how I created `dat_with_cr_cm_kg`.
+  model = model[[1]],
+  time = time,
+  quiet = TRUE
+)
+```
+
+Before we look at the results in `res_aug_lapply`, let's understand what the call to `do_lapply_and_join()` is doing. With the above call, if we had instead set `eval = FALSE`, we would have gotten the following:
+
+```{r, eval = FALSE}
+lapply(
+  seq_len(nrow(dat_with_cr_cm_kg)),  # `dat_with_cr_cm_kg` replaces `.(dat)`
+  function(x) {
+    with(
+      dat_with_cr_cm_kg[x, ],        # `dat_with_cr_cm_kg[x, ]` replaces 
+      est_risk(                      # `.(with_arg)`
+        age = age,                   
+        sex = sex,                   # The arguments appearing in `est_risk()`
+        sbp = sbp,                   # were spliced into the call from `..(dots)`
+        bp_tx = bp_tx, 
+        total_c = total_c, 
+        hdl_c = hdl_c, 
+        statin = statin, 
+        dm = dm, 
+        smoking = smoking, 
+        egfr = egfr, 
+        bmi = bmi, 
+        hba1c = hba1c,
+        uacr = uacr, 
+        zip = zip, 
+        model = model[[1]], 
+        time = time, 
+        quiet = TRUE
+      ) 
+    ) |>
+      dplyr::bind_rows() |>
+      dplyr::mutate(preventr_id = x)
+  }
+) |>
+  dplyr::bind_rows() |> 
+  dplyr::left_join(
+    x = dat_with_cr_cm_kg,            # `dat_with_cr_cm_kg` replaces `.(dat)`
+    y = _, 
+    by = "preventr_id",
+    suffix = c("_input", "")  
+  )
+```
+
+... but that's only partly true, because the real return would have been much harder to read due to the automatic formatting of the call and how piping works (e.g., lots of nested calls). For the curious, the *real* return (though functionally identical to the above) would have actually been something like:
+
+```{r, include = FALSE}
+# Run this to get the return, but then put it in the code block that follows so
+# it doesn't look quite as bad
+do_lapply_and_join(
+  dat = dat_with_cr_cm_kg,
+  with_arg = dat_with_cr_cm_kg[x, ],
+  age = age,
+  sex = sex,
+  sbp = sbp,
+  bp_tx = bp_tx,
+  total_c = total_c,
+  hdl_c = hdl_c,
+  statin = statin,
+  dm = dm,
+  smoking = smoking,
+  egfr = egfr,
+  bmi = bmi,
+  hba1c = hba1c,
+  uacr = uacr,
+  zip = zip,
+  model = model[[1]],
+  time = time,
+  quiet = TRUE,
+  eval = FALSE
+)
+```
+
+```{r, eval = FALSE}
+{
+    dplyr::left_join(x = dat_with_cr_cm_kg, y =
+        dplyr::bind_rows(lapply(seq_len(nrow(dat_with_cr_cm_kg)), 
+        function(x) {
+            dplyr::mutate(dplyr::bind_rows(with(dat_with_cr_cm_kg[x, 
+                ], est_risk(age = age, sex = sex, sbp = sbp, 
+                bp_tx = bp_tx, total_c = total_c, hdl_c = hdl_c, 
+                statin = statin, dm = dm, smoking = smoking, 
+                egfr = egfr, bmi = bmi, hba1c = hba1c, uacr = uacr, 
+                zip = zip, model = model[[1]], time = time, quiet = TRUE))), 
+                preventr_id = x)
+        })), by = "preventr_id", suffix = c("_input", 
+        ""))
+}
+```
+
+The point here is not to give an exhaustive (or exhausting!) vignette on metaprogramming, so I'll stop there. I just wanted to briefly show what happens with the above function. With that under our belt, let's confirm identicality of results.
+
+```{r}
+identical(res_aug_lapply, res_basic_lapply)
+```
+
+Let's now look at some variations.
+
+```{r}
+res_aug_lapply_variant <- do_lapply_and_join(
+  dat = dat_with_cr_cm_kg,
+  with_arg = dat_with_cr_cm_kg,
+  age = age[[x]],
+  sex = sex[[x]],
+  sbp = sbp[[x]],
+  bp_tx = bp_tx[[x]],
+  total_c = total_c[[x]],
+  hdl_c = hdl_c[[x]],
+  statin = statin[[x]],
+  dm = dm[[x]],
+  smoking = smoking[[x]],
+  egfr = egfr[[x]],
+  bmi = bmi[[x]],
+  hba1c = hba1c[[x]],
+  uacr = uacr[[x]],
+  zip = zip[[x]],
+  model = model[[x]],
+  time = time[[x]],
+  quiet = TRUE
+)
+
+identical(res_aug_lapply_variant, res_basic_lapply)
+```
+
+Calls are fine as well.
+
+```{r}
+res_aug_lapply_with_calls <- do_lapply_and_join(
+  dat = dat_with_cr_cm_kg,
+  with_arg = dat_with_cr_cm_kg[x, ],
+  age = age,
+  sex = sex,
+  sbp = sbp,
+  bp_tx = bp_tx,
+  total_c = total_c,
+  hdl_c = hdl_c,
+  statin = statin,
+  dm = dm,
+  smoking = smoking,
+  # If needed, review the comment associated with `res_aug_lapply` to understand
+  # why arguments `egfr`, `bmi`, and `model` are specified like this.
+  egfr = egfr_call[[1]],
+  bmi = bmi_call[[1]],
+  hba1c = hba1c,
+  uacr = uacr,
+  zip = zip,
+  model = model[[1]],
+  time = time,
+  quiet = TRUE
+)
+
+identical(res_aug_lapply_with_calls, res_basic_lapply)
+```
+
+You can construct calls in a more "on the fly" way as well.
+
+```{r}
+res_aug_lapply_with_calls_in_flight <- do_lapply_and_join(
+  dat = dat_with_cr_cm_kg,
+  with_arg = dat_with_cr_cm_kg[x, ],
+  age = age,
+  sex = sex,
+  sbp = sbp,
+  bp_tx = bp_tx,
+  total_c = total_c,
+  hdl_c = hdl_c,
+  statin = statin,
+  dm = dm,
+  smoking = smoking,
+  egfr = call("calc_egfr", cr = cr),
+  bmi = call("calc_bmi", height = cm, weight = kg, units = "metric"),
+  hba1c = hba1c,
+  uacr = uacr,
+  zip = zip,
+  model = model[[1]],
+  time = time,
+  quiet = TRUE
+)
+
+identical(res_aug_lapply_with_calls_in_flight, res_basic_lapply)
+```
+
+And of course, you can also pass optional behavior variables in the call (again, this will override any column that might exist in the data frame by the same name).
+
+```{r}
+res_auto_opts_in_call <- est_risk(
+  use_dat = dat_with_cr_cm_kg,
+  model = "base",
+  time = "10yr",
+  progress = FALSE
+)
+
+res_aug_lapply_opts_in_call <- do_lapply_and_join(
+  dat = dat_with_cr_cm_kg,
+  with_arg = dat_with_cr_cm_kg[x, ],
+  age = age,
+  sex = sex,
+  sbp = sbp,
+  bp_tx = bp_tx,
+  total_c = total_c,
+  hdl_c = hdl_c,
+  statin = statin,
+  dm = dm,
+  smoking = smoking,
+  egfr = egfr,
+  bmi = bmi,
+  hba1c = hba1c,
+  uacr = uacr,
+  zip = zip,
+  model = "base",
+  time = "10yr",
+  quiet = TRUE
+)
+
+identical(res_auto_opts_in_call, res_aug_lapply_opts_in_call)
+```
+
+### `Map()`
+
+`est_risk()` also works with `Map()`.
+
+```{r}
+do_map_and_join <- function(dat, ...) {
+
+  dat <- dat |> dplyr::mutate(preventr_id = seq_len(nrow(dat)))
+  dots <- eval(substitute(alist(...)))
+  
+  res <- eval(
+    bquote(
+      # With the data mask introduced by `dat`, evaluate `Map()` with the
+      # function `est_risk()` and the arguments contained in `dots`.
+      # (In other words, call `est_risk()` with the arguments in `dots` for
+      # each row of `dat`.) 
+      with(dat, Map(est_risk, ..(dots))),
+      splice = TRUE
+    )
+  )
+  
+  # `res` from the above call to `Map()` will be a list, and the items in
+  # the list may also be a list (e.g., a list of data frames), as such, we'll
+  # need to iterate through `res` and bind the data frames together. We'll also
+  # need to add the `preventr_id` column.
+  for(i in seq_along(res)) {
+    res[[i]] <- res[[i]] |> 
+      dplyr::bind_rows() |>
+      dplyr::mutate(preventr_id = i) |> 
+      dplyr::relocate(preventr_id)
+  }
+  
+  # Now do the left join, detailed previously in this vignette.
+  dplyr::left_join(
+      x = dat, 
+      y = dplyr::bind_rows(res), 
+      by = "preventr_id",
+      suffix = c("_input", "")  
+    )
+}
+
+res_map <- do_map_and_join(
+  dat_with_cr_cm_kg,
+  age = age,
+  sex = sex,
+  sbp = sbp,
+  bp_tx = bp_tx,
+  total_c = total_c,
+  hdl_c = hdl_c,
+  statin = statin,
+  dm = dm,
+  smoking = smoking,
+  egfr = egfr,
+  bmi = bmi,
+  hba1c = hba1c,
+  uacr = uacr,
+  zip = zip,
+  model = "base",
+  time = "10yr",
+  quiet = TRUE
+)
+
+identical(res_auto_opts_in_call, res_map)
+```
+
+Let's now look at some variants.
+
+```{r}
+res_map_all_cols <- do_map_and_join(
+  dat_with_cr_cm_kg,
+  age = age,
+  sex = sex,
+  sbp = sbp,
+  bp_tx = bp_tx,
+  total_c = total_c,
+  hdl_c = hdl_c,
+  statin = statin,
+  dm = dm,
+  smoking = smoking,
+  # Note I'm passing the call columns here, showing you can still use the
+  # convenience functions (stored as calls in list columns) with `Map()`.
+  egfr = egfr_call,
+  bmi = bmi_call,
+  hba1c = hba1c,
+  uacr = uacr,
+  zip = zip,
+  model = model,
+  time = time,
+  quiet = TRUE
+)
+
+identical(res_map_all_cols, res_basic_lapply)
+
+# You can also pass applicable optional behavior variables.
+res_map_only_10yr_hba1c_not_quiet <- do_map_and_join(
+  dat_with_cr_cm_kg,
+  age = age,
+  sex = sex,
+  sbp = sbp,
+  bp_tx = bp_tx,
+  total_c = total_c,
+  hdl_c = hdl_c,
+  statin = statin,
+  dm = dm,
+  smoking = smoking,
+  egfr = egfr_call,
+  bmi = bmi_call,
+  hba1c = hba1c,
+  uacr = uacr,
+  zip = zip,
+  model = "hba1c",
+  time = "10yr",
+  quiet = FALSE
+)
+
+# Despite `dat_with_cr_cm_kg` having columns `time` and `model`, the `time` and
+# `model` arguments in the call to `est_risk()` (via `Map()`) get priority.
+dat_with_cr_cm_kg[["model"]]
+dat_with_cr_cm_kg[["time"]]
+
+all.equal(unique(res_map_only_10yr_hba1c_not_quiet[["over_years"]]), 10)
+all.equal(unique(res_map_only_10yr_hba1c_not_quiet[["model"]]), "hba1c")
+```
+
+### `purrr::pmap()`
+
+When calling `purrr::pmap()` with a bare call to the function and the entire
+data frame, `purrr::pmap()` expects either (1) no unused arguments (i.e., each column in the data frame will match an argument in the function being mapped over), or (2) the unused columns are absorbed by a `...` argument in the function over which you are mapping. As such, we'll need to slightly adjust the data frame `dat_with_cr_cm_kg` to remove columns not corresponding to an argument in `est_risk()`.
+
+```{r}
+pmap_data_frame_approach <- 
+  dat_with_cr_cm_kg |>
+  # Remove columns not corresponding to an argument in `est_risk()`.
+  dplyr::select(-c(preventr_id, cr, cm, kg, egfr_call, bmi_call)) |> 
+  purrr::pmap(est_risk)
+
+# Very similar to the `Map()` examples above, we'll need to bind the results
+# from `purrr::pmap()` together and do some other minor actions, so I've 
+# converted that into a mini-function to avoid repetition in these examples.
+combine_pmap_res_and_join <- function(pmap_res, dat) {
+  for(i in seq_along(pmap_res)) {
+    pmap_res[[i]] <- pmap_res[[i]] |> 
+      dplyr::bind_rows() |>
+      dplyr::mutate(preventr_id = i) |> 
+      dplyr::relocate(preventr_id)
+  }
+  
+  dplyr::left_join(
+    x = dat, 
+    y = dplyr::bind_rows(pmap_res), 
+    by = "preventr_id",
+    suffix = c("_input", "")  
+  )
+}
+
+pmap_data_frame_approach <- 
+  combine_pmap_res_and_join(pmap_data_frame_approach, dat_with_cr_cm_kg)
+
+identical(pmap_data_frame_approach, res_basic_lapply)
+```
+
+As an alternative, you can leave the data frame alone, but pass `purrr::pmap()` a more explicitly-delineated list for argument `.l`.
+
+```{r}
+pmap_list_approach <- purrr::pmap(
+  with(
+    dat_with_cr_cm_kg,
+    list(
+      age = age,
+      sex = sex,
+      sbp = sbp,
+      bp_tx = bp_tx,
+      total_c = total_c,
+      hdl_c = hdl_c,
+      statin = statin,
+      dm = dm,
+      smoking = smoking,
+      egfr = egfr,
+      bmi = bmi,
+      hba1c = hba1c,
+      uacr = uacr,
+      zip = zip,
+      model = model,
+      time = time,
+      # Note passing an explicitly-delineated list for argument `.l` allows us
+      # to easily specify the `quiet` argument here
+      quiet = TRUE
+    )
+  ),
+  est_risk
+)
+
+pmap_list_approach <- 
+  combine_pmap_res_and_join(pmap_list_approach, dat_with_cr_cm_kg)
+
+identical(pmap_list_approach, res_basic_lapply)
+```
+
+Calls continue to be fine.
+
+```{r}
+pmap_list_approach_with_call <- purrr::pmap(
+  with(
+    dat_with_cr_cm_kg,
+    list(
+      age = age,
+      sex = sex,
+      sbp = sbp,
+      bp_tx = bp_tx,
+      total_c = total_c,
+      hdl_c = hdl_c,
+      statin = statin,
+      dm = dm,
+      smoking = smoking,
+      egfr = egfr_call,
+      bmi = bmi_call,
+      hba1c = hba1c,
+      uacr = uacr,
+      zip = zip,
+      model = model,
+      time = time,
+      quiet = TRUE
+    )
+  ),
+  est_risk
+)
+
+pmap_list_approach_with_call <- 
+  combine_pmap_res_and_join(pmap_list_approach_with_call, dat_with_cr_cm_kg)
+
+identical(pmap_list_approach_with_call, res_basic_lapply)
+```
+
+## Wrap-up
+
+If you've made it this far, kudos on reading through the whole thing. Admittedly, I didn't anticipate this vignette getting this long when I starting writing it, but here we are. I hope this has been helpful.

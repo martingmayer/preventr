@@ -66,9 +66,9 @@
         uacr = 900, quiet = FALSE)
     Message
       Please check the following required variables: 
-      `total_c` entered as 800, but must be between 130 and 320
+      * `total_c` entered as 800, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as 800, but must be between 130 and 320
+      * `total_c` entered as 800, but must be between 130 and 320
     Output
       $total_cvd
       # A tibble: 1 x 4
@@ -129,29 +129,29 @@
       nested_lapply("sbp")
     Message
       Please check the following required variables: 
-      `sbp` entered as 0, but must be between 90 and 180
+      * `sbp` entered as 0, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as 0, but must be between 90 and 180
+      * `sbp` entered as 0, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as 8675309, but must be between 90 and 180
+      * `sbp` entered as 8675309, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as 8675309, but must be between 90 and 180
+      * `sbp` entered as 8675309, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as "potato", but must be between 90 and 180
+      * `sbp` entered as "potato", but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as "potato", but must be between 90 and 180
+      * `sbp` entered as "potato", but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as FALSE, but must be between 90 and 180
+      * `sbp` entered as FALSE, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as FALSE, but must be between 90 and 180
+      * `sbp` entered as FALSE, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as NA, but must be between 90 and 180
+      * `sbp` entered as NA, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as NA, but must be between 90 and 180
+      * `sbp` entered as NA, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as NULL, but must be between 90 and 180
+      * `sbp` entered as NULL, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as NULL, but must be between 90 and 180
+      * `sbp` entered as NULL, but must be between 90 and 180
     Output
       $`0`
       $`0`$not_quiet
@@ -748,29 +748,29 @@
       nested_lapply("total_c", chol_unit = "mg")
     Message
       Please check the following required variables: 
-      `total_c` entered as 0, but must be between 130 and 320
+      * `total_c` entered as 0, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as 0, but must be between 130 and 320
+      * `total_c` entered as 0, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as 8675309, but must be between 130 and 320
+      * `total_c` entered as 8675309, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as 8675309, but must be between 130 and 320
+      * `total_c` entered as 8675309, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as "potato", but must be between 130 and 320
+      * `total_c` entered as "potato", but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as "potato", but must be between 130 and 320
+      * `total_c` entered as "potato", but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as FALSE, but must be between 130 and 320
+      * `total_c` entered as FALSE, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as FALSE, but must be between 130 and 320
+      * `total_c` entered as FALSE, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as NA, but must be between 130 and 320
+      * `total_c` entered as NA, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as NA, but must be between 130 and 320
+      * `total_c` entered as NA, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as NULL, but must be between 130 and 320
+      * `total_c` entered as NULL, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as NULL, but must be between 130 and 320
+      * `total_c` entered as NULL, but must be between 130 and 320
     Output
       $`0`
       $`0`$not_quiet

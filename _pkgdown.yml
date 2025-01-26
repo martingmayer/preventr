@@ -9,14 +9,14 @@ home:
     structure: [links, license, citation, authors, toc]
 navbar:
   structure:
-    left:  [intro, reference, news]
+    left:  [intro, reference, articles, news]
     right: [search, github, lightswitch]
 footer:
   structure:
     left:  [developed_by]
     right: [built_with]
   components:
-    developed_by: "{preventr} was built by [Martin Mayer](https://martingmayer.com)"
+    developed_by: "preventr was built by [Martin Mayer](https://martingmayer.com)"
 authors:
   Martin Mayer:
     href: "https://www.martingmayer.com"

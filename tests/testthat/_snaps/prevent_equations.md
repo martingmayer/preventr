@@ -4,29 +4,29 @@
       nested_lapply("age", 29, 80)
     Message
       Please check the following required variables: 
-      `age` entered as 29, but must be between 30 and 79
+      * `age` entered as 29, but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as 29, but must be between 30 and 79
+      * `age` entered as 29, but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as 80, but must be between 30 and 79
+      * `age` entered as 80, but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as 80, but must be between 30 and 79
+      * `age` entered as 80, but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as "potato", but must be between 30 and 79
+      * `age` entered as "potato", but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as "potato", but must be between 30 and 79
+      * `age` entered as "potato", but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as FALSE, but must be between 30 and 79
+      * `age` entered as FALSE, but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as FALSE, but must be between 30 and 79
+      * `age` entered as FALSE, but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as NA, but must be between 30 and 79
+      * `age` entered as NA, but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as NA, but must be between 30 and 79
+      * `age` entered as NA, but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as NULL, but must be between 30 and 79
+      * `age` entered as NULL, but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as NULL, but must be between 30 and 79
+      * `age` entered as NULL, but must be between 30 and 79 for the PREVENT models
     Output
       $`29`
       $`29`$not_quiet
@@ -70,10 +70,10 @@
       
       $`29`$not_quiet$input_problems
       $`29`$not_quiet$input_problems$female
-      [1] "`age` entered as 29, but must be between 30 and 79"
+      [1] "`age` entered as 29, but must be between 30 and 79 for the PREVENT models"
       
       $`29`$not_quiet$input_problems$male
-      [1] "`age` entered as 29, but must be between 30 and 79"
+      [1] "`age` entered as 29, but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -118,10 +118,10 @@
       
       $`29`$quiet$input_problems
       $`29`$quiet$input_problems$female
-      [1] "`age` entered as 29, but must be between 30 and 79"
+      [1] "`age` entered as 29, but must be between 30 and 79 for the PREVENT models"
       
       $`29`$quiet$input_problems$male
-      [1] "`age` entered as 29, but must be between 30 and 79"
+      [1] "`age` entered as 29, but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -168,10 +168,10 @@
       
       $`80`$not_quiet$input_problems
       $`80`$not_quiet$input_problems$female
-      [1] "`age` entered as 80, but must be between 30 and 79"
+      [1] "`age` entered as 80, but must be between 30 and 79 for the PREVENT models"
       
       $`80`$not_quiet$input_problems$male
-      [1] "`age` entered as 80, but must be between 30 and 79"
+      [1] "`age` entered as 80, but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -216,10 +216,10 @@
       
       $`80`$quiet$input_problems
       $`80`$quiet$input_problems$female
-      [1] "`age` entered as 80, but must be between 30 and 79"
+      [1] "`age` entered as 80, but must be between 30 and 79 for the PREVENT models"
       
       $`80`$quiet$input_problems$male
-      [1] "`age` entered as 80, but must be between 30 and 79"
+      [1] "`age` entered as 80, but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -266,10 +266,10 @@
       
       $potato$not_quiet$input_problems
       $potato$not_quiet$input_problems$female
-      [1] "`age` entered as \"potato\", but must be between 30 and 79"
+      [1] "`age` entered as \"potato\", but must be between 30 and 79 for the PREVENT models"
       
       $potato$not_quiet$input_problems$male
-      [1] "`age` entered as \"potato\", but must be between 30 and 79"
+      [1] "`age` entered as \"potato\", but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -314,10 +314,10 @@
       
       $potato$quiet$input_problems
       $potato$quiet$input_problems$female
-      [1] "`age` entered as \"potato\", but must be between 30 and 79"
+      [1] "`age` entered as \"potato\", but must be between 30 and 79 for the PREVENT models"
       
       $potato$quiet$input_problems$male
-      [1] "`age` entered as \"potato\", but must be between 30 and 79"
+      [1] "`age` entered as \"potato\", but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -364,10 +364,10 @@
       
       $`FALSE`$not_quiet$input_problems
       $`FALSE`$not_quiet$input_problems$female
-      [1] "`age` entered as FALSE, but must be between 30 and 79"
+      [1] "`age` entered as FALSE, but must be between 30 and 79 for the PREVENT models"
       
       $`FALSE`$not_quiet$input_problems$male
-      [1] "`age` entered as FALSE, but must be between 30 and 79"
+      [1] "`age` entered as FALSE, but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -412,10 +412,10 @@
       
       $`FALSE`$quiet$input_problems
       $`FALSE`$quiet$input_problems$female
-      [1] "`age` entered as FALSE, but must be between 30 and 79"
+      [1] "`age` entered as FALSE, but must be between 30 and 79 for the PREVENT models"
       
       $`FALSE`$quiet$input_problems$male
-      [1] "`age` entered as FALSE, but must be between 30 and 79"
+      [1] "`age` entered as FALSE, but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -462,10 +462,10 @@
       
       $`NA`$not_quiet$input_problems
       $`NA`$not_quiet$input_problems$female
-      [1] "`age` entered as NA, but must be between 30 and 79"
+      [1] "`age` entered as NA, but must be between 30 and 79 for the PREVENT models"
       
       $`NA`$not_quiet$input_problems$male
-      [1] "`age` entered as NA, but must be between 30 and 79"
+      [1] "`age` entered as NA, but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -510,10 +510,10 @@
       
       $`NA`$quiet$input_problems
       $`NA`$quiet$input_problems$female
-      [1] "`age` entered as NA, but must be between 30 and 79"
+      [1] "`age` entered as NA, but must be between 30 and 79 for the PREVENT models"
       
       $`NA`$quiet$input_problems$male
-      [1] "`age` entered as NA, but must be between 30 and 79"
+      [1] "`age` entered as NA, but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -560,10 +560,10 @@
       
       $`NULL`$not_quiet$input_problems
       $`NULL`$not_quiet$input_problems$female
-      [1] "`age` entered as NULL, but must be between 30 and 79"
+      [1] "`age` entered as NULL, but must be between 30 and 79 for the PREVENT models"
       
       $`NULL`$not_quiet$input_problems$male
-      [1] "`age` entered as NULL, but must be between 30 and 79"
+      [1] "`age` entered as NULL, but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -608,10 +608,10 @@
       
       $`NULL`$quiet$input_problems
       $`NULL`$quiet$input_problems$female
-      [1] "`age` entered as NULL, but must be between 30 and 79"
+      [1] "`age` entered as NULL, but must be between 30 and 79 for the PREVENT models"
       
       $`NULL`$quiet$input_problems$male
-      [1] "`age` entered as NULL, but must be between 30 and 79"
+      [1] "`age` entered as NULL, but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -623,33 +623,33 @@
       nested_lapply("age", test_vals = "wrong_extended")
     Message
       Please check the following required variables: 
-      `age` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 30 and 79
+      * `age` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 30 and 79
+      * `age` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 30 and 79
+      * `age` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 30 and 79
+      * `age` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as list(age = 50), but must be between 30 and 79
+      * `age` entered as list(age = 50), but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as list(age = 50), but must be between 30 and 79
+      * `age` entered as list(age = 50), but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 30 and 79
+      * `age` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 30 and 79
+      * `age` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as structure(50, dim = c(1L, 1L)), but must be between 30 and 79
+      * `age` entered as structure(50, dim = c(1L, 1L)), but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as structure(50, dim = c(1L, 1L)), but must be between 30 and 79
+      * `age` entered as structure(50, dim = c(1L, 1L)), but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as structure(1:10, dim = c(2L, 5L)), but must be between 30 and 79
+      * `age` entered as structure(1:10, dim = c(2L, 5L)), but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as structure(1:10, dim = c(2L, 5L)), but must be between 30 and 79
+      * `age` entered as structure(1:10, dim = c(2L, 5L)), but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as c(0, 8675309), but must be between 30 and 79
+      * `age` entered as c(0, 8675309), but must be between 30 and 79 for the PREVENT models
       Please check the following required variables: 
-      `age` entered as c(0, 8675309), but must be between 30 and 79
+      * `age` entered as c(0, 8675309), but must be between 30 and 79 for the PREVENT models
     Output
       $dataframe_1
       $dataframe_1$not_quiet
@@ -693,10 +693,10 @@
       
       $dataframe_1$not_quiet$input_problems
       $dataframe_1$not_quiet$input_problems$female
-      [1] "`age` entered as structure(list(age = 50), class = \"data.frame\", row.names = c(NA, -1L)), but must be between 30 and 79"
+      [1] "`age` entered as structure(list(age = 50), class = \"data.frame\", row.names = c(NA, -1L)), but must be between 30 and 79 for the PREVENT models"
       
       $dataframe_1$not_quiet$input_problems$male
-      [1] "`age` entered as structure(list(age = 50), class = \"data.frame\", row.names = c(NA, -1L)), but must be between 30 and 79"
+      [1] "`age` entered as structure(list(age = 50), class = \"data.frame\", row.names = c(NA, -1L)), but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -741,10 +741,10 @@
       
       $dataframe_1$quiet$input_problems
       $dataframe_1$quiet$input_problems$female
-      [1] "`age` entered as structure(list(age = 50), class = \"data.frame\", row.names = c(NA, -1L)), but must be between 30 and 79"
+      [1] "`age` entered as structure(list(age = 50), class = \"data.frame\", row.names = c(NA, -1L)), but must be between 30 and 79 for the PREVENT models"
       
       $dataframe_1$quiet$input_problems$male
-      [1] "`age` entered as structure(list(age = 50), class = \"data.frame\", row.names = c(NA, -1L)), but must be between 30 and 79"
+      [1] "`age` entered as structure(list(age = 50), class = \"data.frame\", row.names = c(NA, -1L)), but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -791,10 +791,10 @@
       
       $dataframe_gt_1$not_quiet$input_problems
       $dataframe_gt_1$not_quiet$input_problems$female
-      [1] "`age` entered as structure(list(alpha = 1, bravo = TRUE, charlie = \"cat\"), class = \"data.frame\", row.names = c(NA, -1L)), but must be between 30 and 79"
+      [1] "`age` entered as structure(list(alpha = 1, bravo = TRUE, charlie = \"cat\"), class = \"data.frame\", row.names = c(NA, -1L)), but must be between 30 and 79 for the PREVENT models"
       
       $dataframe_gt_1$not_quiet$input_problems$male
-      [1] "`age` entered as structure(list(alpha = 1, bravo = TRUE, charlie = \"cat\"), class = \"data.frame\", row.names = c(NA, -1L)), but must be between 30 and 79"
+      [1] "`age` entered as structure(list(alpha = 1, bravo = TRUE, charlie = \"cat\"), class = \"data.frame\", row.names = c(NA, -1L)), but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -839,10 +839,10 @@
       
       $dataframe_gt_1$quiet$input_problems
       $dataframe_gt_1$quiet$input_problems$female
-      [1] "`age` entered as structure(list(alpha = 1, bravo = TRUE, charlie = \"cat\"), class = \"data.frame\", row.names = c(NA, -1L)), but must be between 30 and 79"
+      [1] "`age` entered as structure(list(alpha = 1, bravo = TRUE, charlie = \"cat\"), class = \"data.frame\", row.names = c(NA, -1L)), but must be between 30 and 79 for the PREVENT models"
       
       $dataframe_gt_1$quiet$input_problems$male
-      [1] "`age` entered as structure(list(alpha = 1, bravo = TRUE, charlie = \"cat\"), class = \"data.frame\", row.names = c(NA, -1L)), but must be between 30 and 79"
+      [1] "`age` entered as structure(list(alpha = 1, bravo = TRUE, charlie = \"cat\"), class = \"data.frame\", row.names = c(NA, -1L)), but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -889,10 +889,10 @@
       
       $list_1$not_quiet$input_problems
       $list_1$not_quiet$input_problems$female
-      [1] "`age` entered as list(age = 50), but must be between 30 and 79"
+      [1] "`age` entered as list(age = 50), but must be between 30 and 79 for the PREVENT models"
       
       $list_1$not_quiet$input_problems$male
-      [1] "`age` entered as list(age = 50), but must be between 30 and 79"
+      [1] "`age` entered as list(age = 50), but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -937,10 +937,10 @@
       
       $list_1$quiet$input_problems
       $list_1$quiet$input_problems$female
-      [1] "`age` entered as list(age = 50), but must be between 30 and 79"
+      [1] "`age` entered as list(age = 50), but must be between 30 and 79 for the PREVENT models"
       
       $list_1$quiet$input_problems$male
-      [1] "`age` entered as list(age = 50), but must be between 30 and 79"
+      [1] "`age` entered as list(age = 50), but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -987,10 +987,10 @@
       
       $list$not_quiet$input_problems
       $list$not_quiet$input_problems$female
-      [1] "`age` entered as list(alpha = 1, bravo = TRUE, charlie = \"cat\"), but must be between 30 and 79"
+      [1] "`age` entered as list(alpha = 1, bravo = TRUE, charlie = \"cat\"), but must be between 30 and 79 for the PREVENT models"
       
       $list$not_quiet$input_problems$male
-      [1] "`age` entered as list(alpha = 1, bravo = TRUE, charlie = \"cat\"), but must be between 30 and 79"
+      [1] "`age` entered as list(alpha = 1, bravo = TRUE, charlie = \"cat\"), but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -1035,10 +1035,10 @@
       
       $list$quiet$input_problems
       $list$quiet$input_problems$female
-      [1] "`age` entered as list(alpha = 1, bravo = TRUE, charlie = \"cat\"), but must be between 30 and 79"
+      [1] "`age` entered as list(alpha = 1, bravo = TRUE, charlie = \"cat\"), but must be between 30 and 79 for the PREVENT models"
       
       $list$quiet$input_problems$male
-      [1] "`age` entered as list(alpha = 1, bravo = TRUE, charlie = \"cat\"), but must be between 30 and 79"
+      [1] "`age` entered as list(alpha = 1, bravo = TRUE, charlie = \"cat\"), but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -1085,10 +1085,10 @@
       
       $matrix_1$not_quiet$input_problems
       $matrix_1$not_quiet$input_problems$female
-      [1] "`age` entered as structure(50, dim = c(1L, 1L)), but must be between 30 and 79"
+      [1] "`age` entered as structure(50, dim = c(1L, 1L)), but must be between 30 and 79 for the PREVENT models"
       
       $matrix_1$not_quiet$input_problems$male
-      [1] "`age` entered as structure(50, dim = c(1L, 1L)), but must be between 30 and 79"
+      [1] "`age` entered as structure(50, dim = c(1L, 1L)), but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -1133,10 +1133,10 @@
       
       $matrix_1$quiet$input_problems
       $matrix_1$quiet$input_problems$female
-      [1] "`age` entered as structure(50, dim = c(1L, 1L)), but must be between 30 and 79"
+      [1] "`age` entered as structure(50, dim = c(1L, 1L)), but must be between 30 and 79 for the PREVENT models"
       
       $matrix_1$quiet$input_problems$male
-      [1] "`age` entered as structure(50, dim = c(1L, 1L)), but must be between 30 and 79"
+      [1] "`age` entered as structure(50, dim = c(1L, 1L)), but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -1183,10 +1183,10 @@
       
       $matrix_gt_1$not_quiet$input_problems
       $matrix_gt_1$not_quiet$input_problems$female
-      [1] "`age` entered as structure(1:10, dim = c(2L, 5L)), but must be between 30 and 79"
+      [1] "`age` entered as structure(1:10, dim = c(2L, 5L)), but must be between 30 and 79 for the PREVENT models"
       
       $matrix_gt_1$not_quiet$input_problems$male
-      [1] "`age` entered as structure(1:10, dim = c(2L, 5L)), but must be between 30 and 79"
+      [1] "`age` entered as structure(1:10, dim = c(2L, 5L)), but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -1231,10 +1231,10 @@
       
       $matrix_gt_1$quiet$input_problems
       $matrix_gt_1$quiet$input_problems$female
-      [1] "`age` entered as structure(1:10, dim = c(2L, 5L)), but must be between 30 and 79"
+      [1] "`age` entered as structure(1:10, dim = c(2L, 5L)), but must be between 30 and 79 for the PREVENT models"
       
       $matrix_gt_1$quiet$input_problems$male
-      [1] "`age` entered as structure(1:10, dim = c(2L, 5L)), but must be between 30 and 79"
+      [1] "`age` entered as structure(1:10, dim = c(2L, 5L)), but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -1281,10 +1281,10 @@
       
       $vec_gt_1$not_quiet$input_problems
       $vec_gt_1$not_quiet$input_problems$female
-      [1] "`age` entered as c(0, 8675309), but must be between 30 and 79"
+      [1] "`age` entered as c(0, 8675309), but must be between 30 and 79 for the PREVENT models"
       
       $vec_gt_1$not_quiet$input_problems$male
-      [1] "`age` entered as c(0, 8675309), but must be between 30 and 79"
+      [1] "`age` entered as c(0, 8675309), but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -1329,10 +1329,10 @@
       
       $vec_gt_1$quiet$input_problems
       $vec_gt_1$quiet$input_problems$female
-      [1] "`age` entered as c(0, 8675309), but must be between 30 and 79"
+      [1] "`age` entered as c(0, 8675309), but must be between 30 and 79 for the PREVENT models"
       
       $vec_gt_1$quiet$input_problems$male
-      [1] "`age` entered as c(0, 8675309), but must be between 30 and 79"
+      [1] "`age` entered as c(0, 8675309), but must be between 30 and 79 for the PREVENT models"
       
       
       
@@ -1344,17 +1344,17 @@
       lapply(test_vals_basic(), function(x) check_equations_partial_sans_sex(x, FALSE))
     Message
       Please check the following required variables: 
-      `sex` entered as 0, but must be one of "female", "f", "male", "m"
+      * `sex` entered as 0, but must be one of "female", "f", "male", "m"
       Please check the following required variables: 
-      `sex` entered as 8675309, but must be one of "female", "f", "male", "m"
+      * `sex` entered as 8675309, but must be one of "female", "f", "male", "m"
       Please check the following required variables: 
-      `sex` entered as "potato", but must be one of "female", "f", "male", "m"
+      * `sex` entered as "potato", but must be one of "female", "f", "male", "m"
       Please check the following required variables: 
-      `sex` entered as FALSE, but must be one of "female", "f", "male", "m"
+      * `sex` entered as FALSE, but must be one of "female", "f", "male", "m"
       Please check the following required variables: 
-      `sex` entered as NA, but must be one of "female", "f", "male", "m"
+      * `sex` entered as NA, but must be one of "female", "f", "male", "m"
       Please check the following required variables: 
-      `sex` entered as NULL, but must be one of "female", "f", "male", "m"
+      * `sex` entered as NULL, but must be one of "female", "f", "male", "m"
     Output
       $`0`
       $`0`$res_10yr
@@ -1610,19 +1610,19 @@
         FALSE))
     Message
       Please check the following required variables: 
-      `sex` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "female", "f", "male", "m"
+      * `sex` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "female", "f", "male", "m"
       Please check the following required variables: 
-      `sex` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "female", "f", "male", "m"
+      * `sex` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "female", "f", "male", "m"
       Please check the following required variables: 
-      `sex` entered as list(age = 50), but must be one of "female", "f", "male", "m"
+      * `sex` entered as list(age = 50), but must be one of "female", "f", "male", "m"
       Please check the following required variables: 
-      `sex` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "female", "f", "male", "m"
+      * `sex` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "female", "f", "male", "m"
       Please check the following required variables: 
-      `sex` entered as structure(50, dim = c(1L, 1L)), but must be one of "female", "f", "male", "m"
+      * `sex` entered as structure(50, dim = c(1L, 1L)), but must be one of "female", "f", "male", "m"
       Please check the following required variables: 
-      `sex` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "female", "f", "male", "m"
+      * `sex` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "female", "f", "male", "m"
       Please check the following required variables: 
-      `sex` entered as c(0, 8675309), but must be one of "female", "f", "male", "m"
+      * `sex` entered as c(0, 8675309), but must be one of "female", "f", "male", "m"
     Output
       $dataframe_1
       $dataframe_1$res_10yr
@@ -1918,29 +1918,29 @@
       nested_lapply("sbp", 89, 181)
     Message
       Please check the following required variables: 
-      `sbp` entered as 89, but must be between 90 and 180
+      * `sbp` entered as 89, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as 89, but must be between 90 and 180
+      * `sbp` entered as 89, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as 181, but must be between 90 and 180
+      * `sbp` entered as 181, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as 181, but must be between 90 and 180
+      * `sbp` entered as 181, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as "potato", but must be between 90 and 180
+      * `sbp` entered as "potato", but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as "potato", but must be between 90 and 180
+      * `sbp` entered as "potato", but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as FALSE, but must be between 90 and 180
+      * `sbp` entered as FALSE, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as FALSE, but must be between 90 and 180
+      * `sbp` entered as FALSE, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as NA, but must be between 90 and 180
+      * `sbp` entered as NA, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as NA, but must be between 90 and 180
+      * `sbp` entered as NA, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as NULL, but must be between 90 and 180
+      * `sbp` entered as NULL, but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as NULL, but must be between 90 and 180
+      * `sbp` entered as NULL, but must be between 90 and 180
     Output
       $`89`
       $`89`$not_quiet
@@ -2537,33 +2537,33 @@
       nested_lapply("sbp", test_vals = "wrong_extended")
     Message
       Please check the following required variables: 
-      `sbp` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 90 and 180
+      * `sbp` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 90 and 180
+      * `sbp` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 90 and 180
+      * `sbp` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 90 and 180
+      * `sbp` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as list(age = 50), but must be between 90 and 180
+      * `sbp` entered as list(age = 50), but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as list(age = 50), but must be between 90 and 180
+      * `sbp` entered as list(age = 50), but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 90 and 180
+      * `sbp` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 90 and 180
+      * `sbp` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as structure(50, dim = c(1L, 1L)), but must be between 90 and 180
+      * `sbp` entered as structure(50, dim = c(1L, 1L)), but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as structure(50, dim = c(1L, 1L)), but must be between 90 and 180
+      * `sbp` entered as structure(50, dim = c(1L, 1L)), but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as structure(1:10, dim = c(2L, 5L)), but must be between 90 and 180
+      * `sbp` entered as structure(1:10, dim = c(2L, 5L)), but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as structure(1:10, dim = c(2L, 5L)), but must be between 90 and 180
+      * `sbp` entered as structure(1:10, dim = c(2L, 5L)), but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as c(0, 8675309), but must be between 90 and 180
+      * `sbp` entered as c(0, 8675309), but must be between 90 and 180
       Please check the following required variables: 
-      `sbp` entered as c(0, 8675309), but must be between 90 and 180
+      * `sbp` entered as c(0, 8675309), but must be between 90 and 180
     Output
       $dataframe_1
       $dataframe_1$not_quiet
@@ -3257,26 +3257,26 @@
     Code
       nested_lapply("bp_tx")
     Message
-      Estimates are from: Base model.
-      Estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
       Please check the following required variables: 
-      `bp_tx` entered as 8675309, but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as 8675309, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as 8675309, but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as 8675309, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as "potato", but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as "potato", but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as "potato", but must be one of TRUE, 1, FALSE, 0
-      Estimates are from: Base model.
-      Estimates are from: Base model.
+      * `bp_tx` entered as "potato", but must be one of TRUE, 1, FALSE, 0
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
       Please check the following required variables: 
-      `bp_tx` entered as NA, but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as NA, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as NA, but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as NA, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as NULL, but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as NULL, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as NULL, but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as NULL, but must be one of TRUE, 1, FALSE, 0
     Output
       $`0`
       $`0`$not_quiet
@@ -3873,33 +3873,33 @@
       nested_lapply("bp_tx", test_vals = "wrong_extended")
     Message
       Please check the following required variables: 
-      `bp_tx` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as list(age = 50), but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as list(age = 50), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as list(age = 50), but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as list(age = 50), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as structure(50, dim = c(1L, 1L)), but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as structure(50, dim = c(1L, 1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as structure(50, dim = c(1L, 1L)), but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as structure(50, dim = c(1L, 1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as structure(1:10, dim = c(2L, 5L)), but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as structure(1:10, dim = c(2L, 5L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as structure(1:10, dim = c(2L, 5L)), but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as structure(1:10, dim = c(2L, 5L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as c(0, 8675309), but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as c(0, 8675309), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `bp_tx` entered as c(0, 8675309), but must be one of TRUE, 1, FALSE, 0
+      * `bp_tx` entered as c(0, 8675309), but must be one of TRUE, 1, FALSE, 0
     Output
       $dataframe_1
       $dataframe_1$not_quiet
@@ -4594,29 +4594,29 @@
       nested_lapply("total_c", 129, 321, "mg/dL")
     Message
       Please check the following required variables: 
-      `total_c` entered as 129, but must be between 130 and 320
+      * `total_c` entered as 129, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as 129, but must be between 130 and 320
+      * `total_c` entered as 129, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as 321, but must be between 130 and 320
+      * `total_c` entered as 321, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as 321, but must be between 130 and 320
+      * `total_c` entered as 321, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as "potato", but must be between 130 and 320
+      * `total_c` entered as "potato", but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as "potato", but must be between 130 and 320
+      * `total_c` entered as "potato", but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as FALSE, but must be between 130 and 320
+      * `total_c` entered as FALSE, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as FALSE, but must be between 130 and 320
+      * `total_c` entered as FALSE, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as NA, but must be between 130 and 320
+      * `total_c` entered as NA, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as NA, but must be between 130 and 320
+      * `total_c` entered as NA, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as NULL, but must be between 130 and 320
+      * `total_c` entered as NULL, but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as NULL, but must be between 130 and 320
+      * `total_c` entered as NULL, but must be between 130 and 320
     Output
       $`129`
       $`129`$not_quiet
@@ -5213,41 +5213,41 @@
       nested_lapply("total_c", 3.3, 8.3, "mmol/L")
     Message
       Please check the following required variables: 
-      `total_c` entered as 3.3, but must be between 3.36 and 8.28
-      `hdl_c` entered as 45, but must be between 0.52 and 2.59
+      * `total_c` entered as 3.3, but must be between 3.36 and 8.28
+      * `hdl_c` entered as 45, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as 3.3, but must be between 3.36 and 8.28
-      `hdl_c` entered as 45, but must be between 0.52 and 2.59
+      * `total_c` entered as 3.3, but must be between 3.36 and 8.28
+      * `hdl_c` entered as 45, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as 8.3, but must be between 3.36 and 8.28
-      `hdl_c` entered as 45, but must be between 0.52 and 2.59
+      * `total_c` entered as 8.3, but must be between 3.36 and 8.28
+      * `hdl_c` entered as 45, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as 8.3, but must be between 3.36 and 8.28
-      `hdl_c` entered as 45, but must be between 0.52 and 2.59
+      * `total_c` entered as 8.3, but must be between 3.36 and 8.28
+      * `hdl_c` entered as 45, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as "potato", but must be between 3.36 and 8.28
-      `hdl_c` entered as 45, but must be between 0.52 and 2.59
+      * `total_c` entered as "potato", but must be between 3.36 and 8.28
+      * `hdl_c` entered as 45, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as "potato", but must be between 3.36 and 8.28
-      `hdl_c` entered as 45, but must be between 0.52 and 2.59
+      * `total_c` entered as "potato", but must be between 3.36 and 8.28
+      * `hdl_c` entered as 45, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as FALSE, but must be between 3.36 and 8.28
-      `hdl_c` entered as 45, but must be between 0.52 and 2.59
+      * `total_c` entered as FALSE, but must be between 3.36 and 8.28
+      * `hdl_c` entered as 45, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as FALSE, but must be between 3.36 and 8.28
-      `hdl_c` entered as 45, but must be between 0.52 and 2.59
+      * `total_c` entered as FALSE, but must be between 3.36 and 8.28
+      * `hdl_c` entered as 45, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as NA, but must be between 3.36 and 8.28
-      `hdl_c` entered as 45, but must be between 0.52 and 2.59
+      * `total_c` entered as NA, but must be between 3.36 and 8.28
+      * `hdl_c` entered as 45, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as NA, but must be between 3.36 and 8.28
-      `hdl_c` entered as 45, but must be between 0.52 and 2.59
+      * `total_c` entered as NA, but must be between 3.36 and 8.28
+      * `hdl_c` entered as 45, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as NULL, but must be between 3.36 and 8.28
-      `hdl_c` entered as 45, but must be between 0.52 and 2.59
+      * `total_c` entered as NULL, but must be between 3.36 and 8.28
+      * `hdl_c` entered as 45, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as NULL, but must be between 3.36 and 8.28
-      `hdl_c` entered as 45, but must be between 0.52 and 2.59
+      * `total_c` entered as NULL, but must be between 3.36 and 8.28
+      * `hdl_c` entered as 45, but must be between 0.52 and 2.59
     Output
       $`3.3`
       $`3.3`$not_quiet
@@ -5844,33 +5844,33 @@
       nested_lapply("total_c", test_vals = "wrong_extended")
     Message
       Please check the following required variables: 
-      `total_c` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 130 and 320
+      * `total_c` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 130 and 320
+      * `total_c` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 130 and 320
+      * `total_c` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 130 and 320
+      * `total_c` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as list(age = 50), but must be between 130 and 320
+      * `total_c` entered as list(age = 50), but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as list(age = 50), but must be between 130 and 320
+      * `total_c` entered as list(age = 50), but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 130 and 320
+      * `total_c` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 130 and 320
+      * `total_c` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as structure(50, dim = c(1L, 1L)), but must be between 130 and 320
+      * `total_c` entered as structure(50, dim = c(1L, 1L)), but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as structure(50, dim = c(1L, 1L)), but must be between 130 and 320
+      * `total_c` entered as structure(50, dim = c(1L, 1L)), but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as structure(1:10, dim = c(2L, 5L)), but must be between 130 and 320
+      * `total_c` entered as structure(1:10, dim = c(2L, 5L)), but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as structure(1:10, dim = c(2L, 5L)), but must be between 130 and 320
+      * `total_c` entered as structure(1:10, dim = c(2L, 5L)), but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as c(0, 8675309), but must be between 130 and 320
+      * `total_c` entered as c(0, 8675309), but must be between 130 and 320
       Please check the following required variables: 
-      `total_c` entered as c(0, 8675309), but must be between 130 and 320
+      * `total_c` entered as c(0, 8675309), but must be between 130 and 320
     Output
       $dataframe_1
       $dataframe_1$not_quiet
@@ -6565,29 +6565,29 @@
       nested_lapply("hdl_c", 19, 101, "mg/dL")
     Message
       Please check the following required variables: 
-      `hdl_c` entered as 19, but must be between 20 and 100
+      * `hdl_c` entered as 19, but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as 19, but must be between 20 and 100
+      * `hdl_c` entered as 19, but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as 101, but must be between 20 and 100
+      * `hdl_c` entered as 101, but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as 101, but must be between 20 and 100
+      * `hdl_c` entered as 101, but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as "potato", but must be between 20 and 100
+      * `hdl_c` entered as "potato", but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as "potato", but must be between 20 and 100
+      * `hdl_c` entered as "potato", but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as FALSE, but must be between 20 and 100
+      * `hdl_c` entered as FALSE, but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as FALSE, but must be between 20 and 100
+      * `hdl_c` entered as FALSE, but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as NA, but must be between 20 and 100
+      * `hdl_c` entered as NA, but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as NA, but must be between 20 and 100
+      * `hdl_c` entered as NA, but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as NULL, but must be between 20 and 100
+      * `hdl_c` entered as NULL, but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as NULL, but must be between 20 and 100
+      * `hdl_c` entered as NULL, but must be between 20 and 100
     Output
       $`19`
       $`19`$not_quiet
@@ -7184,41 +7184,41 @@
       nested_lapply("hdl_c", 0.5, 2.6, "mmol/L")
     Message
       Please check the following required variables: 
-      `total_c` entered as 200, but must be between 3.36 and 8.28
-      `hdl_c` entered as 0.5, but must be between 0.52 and 2.59
+      * `total_c` entered as 200, but must be between 3.36 and 8.28
+      * `hdl_c` entered as 0.5, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as 200, but must be between 3.36 and 8.28
-      `hdl_c` entered as 0.5, but must be between 0.52 and 2.59
+      * `total_c` entered as 200, but must be between 3.36 and 8.28
+      * `hdl_c` entered as 0.5, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as 200, but must be between 3.36 and 8.28
-      `hdl_c` entered as 2.6, but must be between 0.52 and 2.59
+      * `total_c` entered as 200, but must be between 3.36 and 8.28
+      * `hdl_c` entered as 2.6, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as 200, but must be between 3.36 and 8.28
-      `hdl_c` entered as 2.6, but must be between 0.52 and 2.59
+      * `total_c` entered as 200, but must be between 3.36 and 8.28
+      * `hdl_c` entered as 2.6, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as 200, but must be between 3.36 and 8.28
-      `hdl_c` entered as "potato", but must be between 0.52 and 2.59
+      * `total_c` entered as 200, but must be between 3.36 and 8.28
+      * `hdl_c` entered as "potato", but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as 200, but must be between 3.36 and 8.28
-      `hdl_c` entered as "potato", but must be between 0.52 and 2.59
+      * `total_c` entered as 200, but must be between 3.36 and 8.28
+      * `hdl_c` entered as "potato", but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as 200, but must be between 3.36 and 8.28
-      `hdl_c` entered as FALSE, but must be between 0.52 and 2.59
+      * `total_c` entered as 200, but must be between 3.36 and 8.28
+      * `hdl_c` entered as FALSE, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as 200, but must be between 3.36 and 8.28
-      `hdl_c` entered as FALSE, but must be between 0.52 and 2.59
+      * `total_c` entered as 200, but must be between 3.36 and 8.28
+      * `hdl_c` entered as FALSE, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as 200, but must be between 3.36 and 8.28
-      `hdl_c` entered as NA, but must be between 0.52 and 2.59
+      * `total_c` entered as 200, but must be between 3.36 and 8.28
+      * `hdl_c` entered as NA, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as 200, but must be between 3.36 and 8.28
-      `hdl_c` entered as NA, but must be between 0.52 and 2.59
+      * `total_c` entered as 200, but must be between 3.36 and 8.28
+      * `hdl_c` entered as NA, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as 200, but must be between 3.36 and 8.28
-      `hdl_c` entered as NULL, but must be between 0.52 and 2.59
+      * `total_c` entered as 200, but must be between 3.36 and 8.28
+      * `hdl_c` entered as NULL, but must be between 0.52 and 2.59
       Please check the following required variables: 
-      `total_c` entered as 200, but must be between 3.36 and 8.28
-      `hdl_c` entered as NULL, but must be between 0.52 and 2.59
+      * `total_c` entered as 200, but must be between 3.36 and 8.28
+      * `hdl_c` entered as NULL, but must be between 0.52 and 2.59
     Output
       $`0.5`
       $`0.5`$not_quiet
@@ -7815,33 +7815,33 @@
       nested_lapply("hdl_c", test_vals = "wrong_extended")
     Message
       Please check the following required variables: 
-      `hdl_c` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 20 and 100
+      * `hdl_c` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 20 and 100
+      * `hdl_c` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 20 and 100
+      * `hdl_c` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 20 and 100
+      * `hdl_c` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as list(age = 50), but must be between 20 and 100
+      * `hdl_c` entered as list(age = 50), but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as list(age = 50), but must be between 20 and 100
+      * `hdl_c` entered as list(age = 50), but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 20 and 100
+      * `hdl_c` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 20 and 100
+      * `hdl_c` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as structure(50, dim = c(1L, 1L)), but must be between 20 and 100
+      * `hdl_c` entered as structure(50, dim = c(1L, 1L)), but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as structure(50, dim = c(1L, 1L)), but must be between 20 and 100
+      * `hdl_c` entered as structure(50, dim = c(1L, 1L)), but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as structure(1:10, dim = c(2L, 5L)), but must be between 20 and 100
+      * `hdl_c` entered as structure(1:10, dim = c(2L, 5L)), but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as structure(1:10, dim = c(2L, 5L)), but must be between 20 and 100
+      * `hdl_c` entered as structure(1:10, dim = c(2L, 5L)), but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as c(0, 8675309), but must be between 20 and 100
+      * `hdl_c` entered as c(0, 8675309), but must be between 20 and 100
       Please check the following required variables: 
-      `hdl_c` entered as c(0, 8675309), but must be between 20 and 100
+      * `hdl_c` entered as c(0, 8675309), but must be between 20 and 100
     Output
       $dataframe_1
       $dataframe_1$not_quiet
@@ -8535,26 +8535,26 @@
     Code
       nested_lapply("statin")
     Message
-      Estimates are from: Base model.
-      Estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
       Please check the following required variables: 
-      `statin` entered as 8675309, but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as 8675309, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as 8675309, but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as 8675309, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as "potato", but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as "potato", but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as "potato", but must be one of TRUE, 1, FALSE, 0
-      Estimates are from: Base model.
-      Estimates are from: Base model.
+      * `statin` entered as "potato", but must be one of TRUE, 1, FALSE, 0
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
       Please check the following required variables: 
-      `statin` entered as NA, but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as NA, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as NA, but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as NA, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as NULL, but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as NULL, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as NULL, but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as NULL, but must be one of TRUE, 1, FALSE, 0
     Output
       $`0`
       $`0`$not_quiet
@@ -9151,33 +9151,33 @@
       nested_lapply("statin", test_vals = "wrong_extended")
     Message
       Please check the following required variables: 
-      `statin` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as list(age = 50), but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as list(age = 50), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as list(age = 50), but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as list(age = 50), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as structure(50, dim = c(1L, 1L)), but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as structure(50, dim = c(1L, 1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as structure(50, dim = c(1L, 1L)), but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as structure(50, dim = c(1L, 1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as structure(1:10, dim = c(2L, 5L)), but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as structure(1:10, dim = c(2L, 5L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as structure(1:10, dim = c(2L, 5L)), but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as structure(1:10, dim = c(2L, 5L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as c(0, 8675309), but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as c(0, 8675309), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `statin` entered as c(0, 8675309), but must be one of TRUE, 1, FALSE, 0
+      * `statin` entered as c(0, 8675309), but must be one of TRUE, 1, FALSE, 0
     Output
       $dataframe_1
       $dataframe_1$not_quiet
@@ -9871,26 +9871,26 @@
     Code
       nested_lapply("dm")
     Message
-      Estimates are from: Base model.
-      Estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
       Please check the following required variables: 
-      `dm` entered as 8675309, but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as 8675309, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as 8675309, but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as 8675309, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as "potato", but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as "potato", but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as "potato", but must be one of TRUE, 1, FALSE, 0
-      Estimates are from: Base model.
-      Estimates are from: Base model.
+      * `dm` entered as "potato", but must be one of TRUE, 1, FALSE, 0
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
       Please check the following required variables: 
-      `dm` entered as NA, but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as NA, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as NA, but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as NA, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as NULL, but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as NULL, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as NULL, but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as NULL, but must be one of TRUE, 1, FALSE, 0
     Output
       $`0`
       $`0`$not_quiet
@@ -10487,33 +10487,33 @@
       nested_lapply("dm", test_vals = "wrong_extended")
     Message
       Please check the following required variables: 
-      `dm` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as list(age = 50), but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as list(age = 50), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as list(age = 50), but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as list(age = 50), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as structure(50, dim = c(1L, 1L)), but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as structure(50, dim = c(1L, 1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as structure(50, dim = c(1L, 1L)), but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as structure(50, dim = c(1L, 1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as structure(1:10, dim = c(2L, 5L)), but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as structure(1:10, dim = c(2L, 5L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as structure(1:10, dim = c(2L, 5L)), but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as structure(1:10, dim = c(2L, 5L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as c(0, 8675309), but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as c(0, 8675309), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `dm` entered as c(0, 8675309), but must be one of TRUE, 1, FALSE, 0
+      * `dm` entered as c(0, 8675309), but must be one of TRUE, 1, FALSE, 0
     Output
       $dataframe_1
       $dataframe_1$not_quiet
@@ -11207,26 +11207,26 @@
     Code
       nested_lapply("smoking")
     Message
-      Estimates are from: Base model.
-      Estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
       Please check the following required variables: 
-      `smoking` entered as 8675309, but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as 8675309, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as 8675309, but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as 8675309, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as "potato", but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as "potato", but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as "potato", but must be one of TRUE, 1, FALSE, 0
-      Estimates are from: Base model.
-      Estimates are from: Base model.
+      * `smoking` entered as "potato", but must be one of TRUE, 1, FALSE, 0
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
       Please check the following required variables: 
-      `smoking` entered as NA, but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as NA, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as NA, but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as NA, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as NULL, but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as NULL, but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as NULL, but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as NULL, but must be one of TRUE, 1, FALSE, 0
     Output
       $`0`
       $`0`$not_quiet
@@ -11823,33 +11823,33 @@
       nested_lapply("smoking", test_vals = "wrong_extended")
     Message
       Please check the following required variables: 
-      `smoking` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as list(age = 50), but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as list(age = 50), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as list(age = 50), but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as list(age = 50), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as structure(50, dim = c(1L, 1L)), but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as structure(50, dim = c(1L, 1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as structure(50, dim = c(1L, 1L)), but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as structure(50, dim = c(1L, 1L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as structure(1:10, dim = c(2L, 5L)), but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as structure(1:10, dim = c(2L, 5L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as structure(1:10, dim = c(2L, 5L)), but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as structure(1:10, dim = c(2L, 5L)), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as c(0, 8675309), but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as c(0, 8675309), but must be one of TRUE, 1, FALSE, 0
       Please check the following required variables: 
-      `smoking` entered as c(0, 8675309), but must be one of TRUE, 1, FALSE, 0
+      * `smoking` entered as c(0, 8675309), but must be one of TRUE, 1, FALSE, 0
     Output
       $dataframe_1
       $dataframe_1$not_quiet
@@ -12544,29 +12544,29 @@
       nested_lapply("egfr", 14, 141)
     Message
       Please check the following required variables: 
-      `egfr` entered as 14, but must be between 15 and 140
+      * `egfr` entered as 14, but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as 14, but must be between 15 and 140
+      * `egfr` entered as 14, but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as 141, but must be between 15 and 140
+      * `egfr` entered as 141, but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as 141, but must be between 15 and 140
+      * `egfr` entered as 141, but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as "potato", but must be between 15 and 140
+      * `egfr` entered as "potato", but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as "potato", but must be between 15 and 140
+      * `egfr` entered as "potato", but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as FALSE, but must be between 15 and 140
+      * `egfr` entered as FALSE, but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as FALSE, but must be between 15 and 140
+      * `egfr` entered as FALSE, but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as NA, but must be between 15 and 140
+      * `egfr` entered as NA, but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as NA, but must be between 15 and 140
+      * `egfr` entered as NA, but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as NULL, but must be between 15 and 140
+      * `egfr` entered as NULL, but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as NULL, but must be between 15 and 140
+      * `egfr` entered as NULL, but must be between 15 and 140
     Output
       $`14`
       $`14`$not_quiet
@@ -13163,33 +13163,33 @@
       nested_lapply("egfr", test_vals = "wrong_extended")
     Message
       Please check the following required variables: 
-      `egfr` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 15 and 140
+      * `egfr` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 15 and 140
+      * `egfr` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 15 and 140
+      * `egfr` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 15 and 140
+      * `egfr` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as list(age = 50), but must be between 15 and 140
+      * `egfr` entered as list(age = 50), but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as list(age = 50), but must be between 15 and 140
+      * `egfr` entered as list(age = 50), but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 15 and 140
+      * `egfr` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 15 and 140
+      * `egfr` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as structure(50, dim = c(1L, 1L)), but must be between 15 and 140
+      * `egfr` entered as structure(50, dim = c(1L, 1L)), but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as structure(50, dim = c(1L, 1L)), but must be between 15 and 140
+      * `egfr` entered as structure(50, dim = c(1L, 1L)), but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as structure(1:10, dim = c(2L, 5L)), but must be between 15 and 140
+      * `egfr` entered as structure(1:10, dim = c(2L, 5L)), but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as structure(1:10, dim = c(2L, 5L)), but must be between 15 and 140
+      * `egfr` entered as structure(1:10, dim = c(2L, 5L)), but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as c(0, 8675309), but must be between 15 and 140
+      * `egfr` entered as c(0, 8675309), but must be between 15 and 140
       Please check the following required variables: 
-      `egfr` entered as c(0, 8675309), but must be between 15 and 140
+      * `egfr` entered as c(0, 8675309), but must be between 15 and 140
     Output
       $dataframe_1
       $dataframe_1$not_quiet
@@ -13884,29 +13884,29 @@
       nested_lapply("bmi", 18.4, 40)
     Message
       Please check the following required variables: 
-      `bmi` entered as 18.4, but must be between 18.5 and 39.9
+      * `bmi` entered as 18.4, but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as 18.4, but must be between 18.5 and 39.9
+      * `bmi` entered as 18.4, but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as 40, but must be between 18.5 and 39.9
+      * `bmi` entered as 40, but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as 40, but must be between 18.5 and 39.9
+      * `bmi` entered as 40, but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as "potato", but must be between 18.5 and 39.9
+      * `bmi` entered as "potato", but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as "potato", but must be between 18.5 and 39.9
+      * `bmi` entered as "potato", but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as FALSE, but must be between 18.5 and 39.9
+      * `bmi` entered as FALSE, but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as FALSE, but must be between 18.5 and 39.9
+      * `bmi` entered as FALSE, but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as NA, but must be between 18.5 and 39.9
+      * `bmi` entered as NA, but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as NA, but must be between 18.5 and 39.9
+      * `bmi` entered as NA, but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as NULL, but must be between 18.5 and 39.9
+      * `bmi` entered as NULL, but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as NULL, but must be between 18.5 and 39.9
+      * `bmi` entered as NULL, but must be between 18.5 and 39.9
     Output
       $`18.4`
       $`18.4`$not_quiet
@@ -14503,33 +14503,33 @@
       nested_lapply("bmi", test_vals = "wrong_extended")
     Message
       Please check the following required variables: 
-      `bmi` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 18.5 and 39.9
+      * `bmi` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 18.5 and 39.9
+      * `bmi` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 18.5 and 39.9
+      * `bmi` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 18.5 and 39.9
+      * `bmi` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as list(age = 50), but must be between 18.5 and 39.9
+      * `bmi` entered as list(age = 50), but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as list(age = 50), but must be between 18.5 and 39.9
+      * `bmi` entered as list(age = 50), but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 18.5 and 39.9
+      * `bmi` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 18.5 and 39.9
+      * `bmi` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as structure(50, dim = c(1L, 1L)), but must be between 18.5 and 39.9
+      * `bmi` entered as structure(50, dim = c(1L, 1L)), but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as structure(50, dim = c(1L, 1L)), but must be between 18.5 and 39.9
+      * `bmi` entered as structure(50, dim = c(1L, 1L)), but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as structure(1:10, dim = c(2L, 5L)), but must be between 18.5 and 39.9
+      * `bmi` entered as structure(1:10, dim = c(2L, 5L)), but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as structure(1:10, dim = c(2L, 5L)), but must be between 18.5 and 39.9
+      * `bmi` entered as structure(1:10, dim = c(2L, 5L)), but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as c(0, 8675309), but must be between 18.5 and 39.9
+      * `bmi` entered as c(0, 8675309), but must be between 18.5 and 39.9
       Please check the following required variables: 
-      `bmi` entered as c(0, 8675309), but must be between 18.5 and 39.9
+      * `bmi` entered as c(0, 8675309), but must be between 18.5 and 39.9
     Output
       $dataframe_1
       $dataframe_1$not_quiet
@@ -15224,33 +15224,33 @@
       nested_lapply("hba1c", 4.4, 15.1)
     Message
       Please check the following optional variables: 
-      `hba1c` entered as 4.4, but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as 4.4, but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as 4.4, but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as 4.4, but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as 15.1, but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as 15.1, but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as 15.1, but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as 15.1, but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as "potato", but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as "potato", but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as "potato", but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as "potato", but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as FALSE, but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as FALSE, but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as FALSE, but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
-      Estimates are from: Base model.
-      Estimates are from: Base model.
-      Estimates are from: Base model.
-      Estimates are from: Base model.
+      * `hba1c` entered as FALSE, but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
     Output
       $`4.4`
       $`4.4`$not_quiet
@@ -15847,47 +15847,47 @@
       nested_lapply("hba1c", test_vals = "wrong_extended")
     Message
       Please check the following optional variables: 
-      `hba1c` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as list(age = 50), but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as list(age = 50), but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as list(age = 50), but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as list(age = 50), but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as structure(50, dim = c(1L, 1L)), but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as structure(50, dim = c(1L, 1L)), but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as structure(50, dim = c(1L, 1L)), but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as structure(50, dim = c(1L, 1L)), but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as structure(1:10, dim = c(2L, 5L)), but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as structure(1:10, dim = c(2L, 5L)), but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as structure(1:10, dim = c(2L, 5L)), but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as structure(1:10, dim = c(2L, 5L)), but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as c(0, 8675309), but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as c(0, 8675309), but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `hba1c` entered as c(0, 8675309), but must be between 4.5 and 15 (so set to NULL)
-      Estimates are from: Base model.
+      * `hba1c` entered as c(0, 8675309), but must be between 4.5 and 15 (so set to NULL)
+      PREVENT estimates are from: Base model.
     Output
       $dataframe_1
       $dataframe_1$not_quiet
@@ -16582,33 +16582,33 @@
       nested_lapply("uacr", 0.09, 25000.1)
     Message
       Please check the following optional variables: 
-      `uacr` entered as 0.09, but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as 0.09, but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as 0.09, but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as 0.09, but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as 25000.1, but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as 25000.1, but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as 25000.1, but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as 25000.1, but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as "potato", but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as "potato", but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as "potato", but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as "potato", but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as FALSE, but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as FALSE, but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as FALSE, but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
-      Estimates are from: Base model.
-      Estimates are from: Base model.
-      Estimates are from: Base model.
-      Estimates are from: Base model.
+      * `uacr` entered as FALSE, but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
     Output
       $`0.09`
       $`0.09`$not_quiet
@@ -17205,47 +17205,47 @@
       nested_lapply("uacr", test_vals = "wrong_extended")
     Message
       Please check the following optional variables: 
-      `uacr` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as list(age = 50), but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as list(age = 50), but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as list(age = 50), but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as list(age = 50), but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as structure(50, dim = c(1L, 1L)), but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as structure(50, dim = c(1L, 1L)), but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as structure(50, dim = c(1L, 1L)), but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as structure(50, dim = c(1L, 1L)), but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as structure(1:10, dim = c(2L, 5L)), but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as structure(1:10, dim = c(2L, 5L)), but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as structure(1:10, dim = c(2L, 5L)), but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as structure(1:10, dim = c(2L, 5L)), but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as c(0, 8675309), but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as c(0, 8675309), but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `uacr` entered as c(0, 8675309), but must be between 0.1 and 25000 (so set to NULL)
-      Estimates are from: Base model.
+      * `uacr` entered as c(0, 8675309), but must be between 0.1 and 25000 (so set to NULL)
+      PREVENT estimates are from: Base model.
     Output
       $dataframe_1
       $dataframe_1$not_quiet
@@ -17940,33 +17940,33 @@
       nested_lapply("zip")
     Message
       Please check the following optional variables: 
-      `zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 0 not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 0 not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 0 not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 0 not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 8675309 not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 8675309 not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 8675309 not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 8675309 not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` "potato" not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` "potato" not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` "potato" not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` "potato" not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` FALSE not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` FALSE not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` FALSE not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
-      Estimates are from: Base model.
-      Estimates are from: Base model.
-      Estimates are from: Base model.
-      Estimates are from: Base model.
+      * `zip` FALSE not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
     Output
       $`0`
       $`0`$not_quiet
@@ -18010,10 +18010,10 @@
       
       $`0`$not_quiet$input_problems
       $`0`$not_quiet$input_problems$female
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 0 not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 0 not found among valid zip codes (so set to NULL)"
       
       $`0`$not_quiet$input_problems$male
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 0 not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 0 not found among valid zip codes (so set to NULL)"
       
       
       
@@ -18058,10 +18058,10 @@
       
       $`0`$quiet$input_problems
       $`0`$quiet$input_problems$female
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 0 not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 0 not found among valid zip codes (so set to NULL)"
       
       $`0`$quiet$input_problems$male
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 0 not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 0 not found among valid zip codes (so set to NULL)"
       
       
       
@@ -18108,10 +18108,10 @@
       
       $`8675309`$not_quiet$input_problems
       $`8675309`$not_quiet$input_problems$female
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 8675309 not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 8675309 not found among valid zip codes (so set to NULL)"
       
       $`8675309`$not_quiet$input_problems$male
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 8675309 not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 8675309 not found among valid zip codes (so set to NULL)"
       
       
       
@@ -18156,10 +18156,10 @@
       
       $`8675309`$quiet$input_problems
       $`8675309`$quiet$input_problems$female
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 8675309 not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 8675309 not found among valid zip codes (so set to NULL)"
       
       $`8675309`$quiet$input_problems$male
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 8675309 not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` 8675309 not found among valid zip codes (so set to NULL)"
       
       
       
@@ -18563,47 +18563,47 @@
       nested_lapply("zip", test_vals = "wrong_extended")
     Message
       Please check the following optional variables: 
-      `zip` structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)) not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)) not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)) not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)) not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)) not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)) not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)) not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)) not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` list(age = 50) not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` list(age = 50) not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` list(age = 50) not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` list(age = 50) not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` list(alpha = 1, bravo = TRUE, charlie = "cat") not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` list(alpha = 1, bravo = TRUE, charlie = "cat") not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` list(alpha = 1, bravo = TRUE, charlie = "cat") not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` list(alpha = 1, bravo = TRUE, charlie = "cat") not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(50, dim = c(1L, 1L)) not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(50, dim = c(1L, 1L)) not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(50, dim = c(1L, 1L)) not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(50, dim = c(1L, 1L)) not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(1:10, dim = c(2L, 5L)) not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(1:10, dim = c(2L, 5L)) not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(1:10, dim = c(2L, 5L)) not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(1:10, dim = c(2L, 5L)) not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` c(0, 8675309) not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` c(0, 8675309) not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
       Please check the following optional variables: 
-      `zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` c(0, 8675309) not found among valid zip codes (so set to NULL)
-      Estimates are from: Base model.
+      * `zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` c(0, 8675309) not found among valid zip codes (so set to NULL)
+      PREVENT estimates are from: Base model.
     Output
       $dataframe_1
       $dataframe_1$not_quiet
@@ -19039,10 +19039,10 @@
       
       $matrix_1$not_quiet$input_problems
       $matrix_1$not_quiet$input_problems$female
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(50, dim = c(1L, 1L)) not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(50, dim = c(1L, 1L)) not found among valid zip codes (so set to NULL)"
       
       $matrix_1$not_quiet$input_problems$male
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(50, dim = c(1L, 1L)) not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(50, dim = c(1L, 1L)) not found among valid zip codes (so set to NULL)"
       
       
       
@@ -19087,10 +19087,10 @@
       
       $matrix_1$quiet$input_problems
       $matrix_1$quiet$input_problems$female
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(50, dim = c(1L, 1L)) not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(50, dim = c(1L, 1L)) not found among valid zip codes (so set to NULL)"
       
       $matrix_1$quiet$input_problems$male
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(50, dim = c(1L, 1L)) not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(50, dim = c(1L, 1L)) not found among valid zip codes (so set to NULL)"
       
       
       
@@ -19137,10 +19137,10 @@
       
       $matrix_gt_1$not_quiet$input_problems
       $matrix_gt_1$not_quiet$input_problems$female
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(1:10, dim = c(2L, 5L)) not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(1:10, dim = c(2L, 5L)) not found among valid zip codes (so set to NULL)"
       
       $matrix_gt_1$not_quiet$input_problems$male
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(1:10, dim = c(2L, 5L)) not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(1:10, dim = c(2L, 5L)) not found among valid zip codes (so set to NULL)"
       
       
       
@@ -19185,10 +19185,10 @@
       
       $matrix_gt_1$quiet$input_problems
       $matrix_gt_1$quiet$input_problems$female
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(1:10, dim = c(2L, 5L)) not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(1:10, dim = c(2L, 5L)) not found among valid zip codes (so set to NULL)"
       
       $matrix_gt_1$quiet$input_problems$male
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(1:10, dim = c(2L, 5L)) not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` structure(1:10, dim = c(2L, 5L)) not found among valid zip codes (so set to NULL)"
       
       
       
@@ -19235,10 +19235,10 @@
       
       $vec_gt_1$not_quiet$input_problems
       $vec_gt_1$not_quiet$input_problems$female
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` c(0, 8675309) not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` c(0, 8675309) not found among valid zip codes (so set to NULL)"
       
       $vec_gt_1$not_quiet$input_problems$male
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` c(0, 8675309) not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` c(0, 8675309) not found among valid zip codes (so set to NULL)"
       
       
       
@@ -19283,10 +19283,10 @@
       
       $vec_gt_1$quiet$input_problems
       $vec_gt_1$quiet$input_problems$female
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` c(0, 8675309) not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` c(0, 8675309) not found among valid zip codes (so set to NULL)"
       
       $vec_gt_1$quiet$input_problems$male
-      [1] "`zip` was entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` c(0, 8675309) not found among valid zip codes (so set to NULL)"
+      [1] "`zip` entered as a number, which can cause problems (e.g., zips that start with a 0), and `zip` c(0, 8675309) not found among valid zip codes (so set to NULL)"
       
       
       
@@ -19298,25 +19298,25 @@
       nested_lapply("model")
     Message
       Please check the following required variables: 
-      `model` entered as 0, but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as 0, but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as 0, but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as 0, but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as 8675309, but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as 8675309, but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as 8675309, but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as 8675309, but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as "potato", but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as "potato", but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as "potato", but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as "potato", but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as FALSE, but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as FALSE, but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as FALSE, but must be one of "base", "hba1c", "uacr", "sdi", "full"
-      Estimates are from: Base model.
-      Estimates are from: Base model.
-      Estimates are from: Base model.
-      Estimates are from: Base model.
+      * `model` entered as FALSE, but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
     Output
       $`0`
       $`0`$not_quiet
@@ -19360,10 +19360,10 @@
       
       $`0`$not_quiet$input_problems
       $`0`$not_quiet$input_problems$female
-      [1] "`model` entered as 0, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as 0, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $`0`$not_quiet$input_problems$male
-      [1] "`model` entered as 0, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as 0, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -19408,10 +19408,10 @@
       
       $`0`$quiet$input_problems
       $`0`$quiet$input_problems$female
-      [1] "`model` entered as 0, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as 0, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $`0`$quiet$input_problems$male
-      [1] "`model` entered as 0, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as 0, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -19458,10 +19458,10 @@
       
       $`8675309`$not_quiet$input_problems
       $`8675309`$not_quiet$input_problems$female
-      [1] "`model` entered as 8675309, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as 8675309, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $`8675309`$not_quiet$input_problems$male
-      [1] "`model` entered as 8675309, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as 8675309, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -19506,10 +19506,10 @@
       
       $`8675309`$quiet$input_problems
       $`8675309`$quiet$input_problems$female
-      [1] "`model` entered as 8675309, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as 8675309, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $`8675309`$quiet$input_problems$male
-      [1] "`model` entered as 8675309, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as 8675309, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -19556,10 +19556,10 @@
       
       $potato$not_quiet$input_problems
       $potato$not_quiet$input_problems$female
-      [1] "`model` entered as \"potato\", but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as \"potato\", but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $potato$not_quiet$input_problems$male
-      [1] "`model` entered as \"potato\", but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as \"potato\", but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -19604,10 +19604,10 @@
       
       $potato$quiet$input_problems
       $potato$quiet$input_problems$female
-      [1] "`model` entered as \"potato\", but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as \"potato\", but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $potato$quiet$input_problems$male
-      [1] "`model` entered as \"potato\", but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as \"potato\", but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -19654,10 +19654,10 @@
       
       $`FALSE`$not_quiet$input_problems
       $`FALSE`$not_quiet$input_problems$female
-      [1] "`model` entered as FALSE, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as FALSE, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $`FALSE`$not_quiet$input_problems$male
-      [1] "`model` entered as FALSE, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as FALSE, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -19702,10 +19702,10 @@
       
       $`FALSE`$quiet$input_problems
       $`FALSE`$quiet$input_problems$female
-      [1] "`model` entered as FALSE, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as FALSE, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $`FALSE`$quiet$input_problems$male
-      [1] "`model` entered as FALSE, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as FALSE, but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -19913,33 +19913,33 @@
       nested_lapply("model", test_vals = "wrong_extended")
     Message
       Please check the following required variables: 
-      `model` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as list(age = 50), but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as list(age = 50), but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as list(age = 50), but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as list(age = 50), but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as structure(50, dim = c(1L, 1L)), but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as structure(50, dim = c(1L, 1L)), but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as structure(50, dim = c(1L, 1L)), but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as structure(50, dim = c(1L, 1L)), but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as c(0, 8675309), but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as c(0, 8675309), but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
       Please check the following required variables: 
-      `model` entered as c(0, 8675309), but must be one of "base", "hba1c", "uacr", "sdi", "full"
+      * `model` entered as c(0, 8675309), but must be one of "base", "hba1c", "uacr", "sdi", "full", or a list as specified in the documentation
     Output
       $dataframe_1
       $dataframe_1$not_quiet
@@ -19983,10 +19983,10 @@
       
       $dataframe_1$not_quiet$input_problems
       $dataframe_1$not_quiet$input_problems$female
-      [1] "`model` entered as structure(list(age = 50), class = \"data.frame\", row.names = c(NA, -1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as structure(list(age = 50), class = \"data.frame\", row.names = c(NA, -1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $dataframe_1$not_quiet$input_problems$male
-      [1] "`model` entered as structure(list(age = 50), class = \"data.frame\", row.names = c(NA, -1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as structure(list(age = 50), class = \"data.frame\", row.names = c(NA, -1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -20031,10 +20031,10 @@
       
       $dataframe_1$quiet$input_problems
       $dataframe_1$quiet$input_problems$female
-      [1] "`model` entered as structure(list(age = 50), class = \"data.frame\", row.names = c(NA, -1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as structure(list(age = 50), class = \"data.frame\", row.names = c(NA, -1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $dataframe_1$quiet$input_problems$male
-      [1] "`model` entered as structure(list(age = 50), class = \"data.frame\", row.names = c(NA, -1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as structure(list(age = 50), class = \"data.frame\", row.names = c(NA, -1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -20081,10 +20081,10 @@
       
       $dataframe_gt_1$not_quiet$input_problems
       $dataframe_gt_1$not_quiet$input_problems$female
-      [1] "`model` entered as structure(list(alpha = 1, bravo = TRUE, charlie = \"cat\"), class = \"data.frame\", row.names = c(NA, -1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as structure(list(alpha = 1, bravo = TRUE, charlie = \"cat\"), class = \"data.frame\", row.names = c(NA, -1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $dataframe_gt_1$not_quiet$input_problems$male
-      [1] "`model` entered as structure(list(alpha = 1, bravo = TRUE, charlie = \"cat\"), class = \"data.frame\", row.names = c(NA, -1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as structure(list(alpha = 1, bravo = TRUE, charlie = \"cat\"), class = \"data.frame\", row.names = c(NA, -1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -20129,10 +20129,10 @@
       
       $dataframe_gt_1$quiet$input_problems
       $dataframe_gt_1$quiet$input_problems$female
-      [1] "`model` entered as structure(list(alpha = 1, bravo = TRUE, charlie = \"cat\"), class = \"data.frame\", row.names = c(NA, -1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as structure(list(alpha = 1, bravo = TRUE, charlie = \"cat\"), class = \"data.frame\", row.names = c(NA, -1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $dataframe_gt_1$quiet$input_problems$male
-      [1] "`model` entered as structure(list(alpha = 1, bravo = TRUE, charlie = \"cat\"), class = \"data.frame\", row.names = c(NA, -1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as structure(list(alpha = 1, bravo = TRUE, charlie = \"cat\"), class = \"data.frame\", row.names = c(NA, -1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -20179,10 +20179,10 @@
       
       $list_1$not_quiet$input_problems
       $list_1$not_quiet$input_problems$female
-      [1] "`model` entered as list(age = 50), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as list(age = 50), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $list_1$not_quiet$input_problems$male
-      [1] "`model` entered as list(age = 50), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as list(age = 50), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -20227,10 +20227,10 @@
       
       $list_1$quiet$input_problems
       $list_1$quiet$input_problems$female
-      [1] "`model` entered as list(age = 50), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as list(age = 50), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $list_1$quiet$input_problems$male
-      [1] "`model` entered as list(age = 50), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as list(age = 50), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -20277,10 +20277,10 @@
       
       $list$not_quiet$input_problems
       $list$not_quiet$input_problems$female
-      [1] "`model` entered as list(alpha = 1, bravo = TRUE, charlie = \"cat\"), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as list(alpha = 1, bravo = TRUE, charlie = \"cat\"), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $list$not_quiet$input_problems$male
-      [1] "`model` entered as list(alpha = 1, bravo = TRUE, charlie = \"cat\"), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as list(alpha = 1, bravo = TRUE, charlie = \"cat\"), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -20325,10 +20325,10 @@
       
       $list$quiet$input_problems
       $list$quiet$input_problems$female
-      [1] "`model` entered as list(alpha = 1, bravo = TRUE, charlie = \"cat\"), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as list(alpha = 1, bravo = TRUE, charlie = \"cat\"), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $list$quiet$input_problems$male
-      [1] "`model` entered as list(alpha = 1, bravo = TRUE, charlie = \"cat\"), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as list(alpha = 1, bravo = TRUE, charlie = \"cat\"), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -20375,10 +20375,10 @@
       
       $matrix_1$not_quiet$input_problems
       $matrix_1$not_quiet$input_problems$female
-      [1] "`model` entered as structure(50, dim = c(1L, 1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as structure(50, dim = c(1L, 1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $matrix_1$not_quiet$input_problems$male
-      [1] "`model` entered as structure(50, dim = c(1L, 1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as structure(50, dim = c(1L, 1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -20423,10 +20423,10 @@
       
       $matrix_1$quiet$input_problems
       $matrix_1$quiet$input_problems$female
-      [1] "`model` entered as structure(50, dim = c(1L, 1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as structure(50, dim = c(1L, 1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $matrix_1$quiet$input_problems$male
-      [1] "`model` entered as structure(50, dim = c(1L, 1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as structure(50, dim = c(1L, 1L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -20473,10 +20473,10 @@
       
       $matrix_gt_1$not_quiet$input_problems
       $matrix_gt_1$not_quiet$input_problems$female
-      [1] "`model` entered as structure(1:10, dim = c(2L, 5L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as structure(1:10, dim = c(2L, 5L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $matrix_gt_1$not_quiet$input_problems$male
-      [1] "`model` entered as structure(1:10, dim = c(2L, 5L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as structure(1:10, dim = c(2L, 5L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -20521,10 +20521,10 @@
       
       $matrix_gt_1$quiet$input_problems
       $matrix_gt_1$quiet$input_problems$female
-      [1] "`model` entered as structure(1:10, dim = c(2L, 5L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as structure(1:10, dim = c(2L, 5L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $matrix_gt_1$quiet$input_problems$male
-      [1] "`model` entered as structure(1:10, dim = c(2L, 5L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as structure(1:10, dim = c(2L, 5L)), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -20571,10 +20571,10 @@
       
       $vec_gt_1$not_quiet$input_problems
       $vec_gt_1$not_quiet$input_problems$female
-      [1] "`model` entered as c(0, 8675309), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as c(0, 8675309), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $vec_gt_1$not_quiet$input_problems$male
-      [1] "`model` entered as c(0, 8675309), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as c(0, 8675309), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -20619,10 +20619,10 @@
       
       $vec_gt_1$quiet$input_problems
       $vec_gt_1$quiet$input_problems$female
-      [1] "`model` entered as c(0, 8675309), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as c(0, 8675309), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       $vec_gt_1$quiet$input_problems$male
-      [1] "`model` entered as c(0, 8675309), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\""
+      [1] "`model` entered as c(0, 8675309), but must be one of \"base\", \"hba1c\", \"uacr\", \"sdi\", \"full\", or a list as specified in the documentation"
       
       
       
@@ -20635,17 +20635,17 @@
         "f", x, FALSE))
     Message
       Please check the following required variables: 
-      `time` entered as 0, but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as 0, but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as 8675309, but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as 8675309, but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as "potato", but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as "potato", but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as FALSE, but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as FALSE, but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as NA, but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as NA, but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as NULL, but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as NULL, but must be one of "both", "10", "10yr", "30", "30yr"
     Output
       $`0`
       $`0`$res
@@ -20721,17 +20721,17 @@
         "m", x, FALSE))
     Message
       Please check the following required variables: 
-      `time` entered as 0, but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as 0, but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as 8675309, but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as 8675309, but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as "potato", but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as "potato", but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as FALSE, but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as FALSE, but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as NA, but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as NA, but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as NULL, but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as NULL, but must be one of "both", "10", "10yr", "30", "30yr"
     Output
       $`0`
       $`0`$res
@@ -20953,19 +20953,19 @@
         check_equations_partial_sans_sex_and_time("f", x, FALSE))
     Message
       Please check the following required variables: 
-      `time` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as list(age = 50), but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as list(age = 50), but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as structure(50, dim = c(1L, 1L)), but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as structure(50, dim = c(1L, 1L)), but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as c(0, 8675309), but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as c(0, 8675309), but must be one of "both", "10", "10yr", "30", "30yr"
     Output
       $dataframe_1
       $dataframe_1$res
@@ -21052,19 +21052,19 @@
         check_equations_partial_sans_sex_and_time("m", x, FALSE))
     Message
       Please check the following required variables: 
-      `time` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as list(age = 50), but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as list(age = 50), but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as structure(50, dim = c(1L, 1L)), but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as structure(50, dim = c(1L, 1L)), but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "both", "10", "10yr", "30", "30yr"
       Please check the following required variables: 
-      `time` entered as c(0, 8675309), but must be one of "both", "10", "10yr", "30", "30yr"
+      * `time` entered as c(0, 8675309), but must be one of "both", "10", "10yr", "30", "30yr"
     Output
       $dataframe_1
       $dataframe_1$res
@@ -21318,41 +21318,41 @@
       nested_lapply("chol_unit")
     Message
       Please check the following required variables: 
-      `chol_unit` entered as 0, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as 0, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as 0, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as 0, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as 0, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as 0, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as 0, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as 0, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as 8675309, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as 8675309, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as 8675309, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as 8675309, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as 8675309, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as 8675309, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as 8675309, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as 8675309, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as "potato", but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as "potato", but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as "potato", but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as "potato", but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as "potato", but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as "potato", but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as "potato", but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as "potato", but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as FALSE, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as FALSE, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as FALSE, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as FALSE, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as FALSE, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as FALSE, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as FALSE, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as FALSE, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as NA, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as NA, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as NA, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as NA, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as NA, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as NA, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as NA, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as NA, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as NULL, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as NULL, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as NULL, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as NULL, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as NULL, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as NULL, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as NULL, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as NULL, but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
     Output
       $`0`
       $`0`$not_quiet
@@ -21949,47 +21949,47 @@
       nested_lapply("chol_unit", test_vals = "wrong_extended")
     Message
       Please check the following required variables: 
-      `chol_unit` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as structure(list(age = 50), class = "data.frame", row.names = c(NA, -1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as structure(list(alpha = 1, bravo = TRUE, charlie = "cat"), class = "data.frame", row.names = c(NA, -1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as list(age = 50), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as list(age = 50), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as list(age = 50), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as list(age = 50), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as list(age = 50), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as list(age = 50), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as list(age = 50), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as list(age = 50), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as list(alpha = 1, bravo = TRUE, charlie = "cat"), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as structure(50, dim = c(1L, 1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as structure(50, dim = c(1L, 1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as structure(50, dim = c(1L, 1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as structure(50, dim = c(1L, 1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as structure(50, dim = c(1L, 1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as structure(50, dim = c(1L, 1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as structure(50, dim = c(1L, 1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as structure(50, dim = c(1L, 1L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as structure(1:10, dim = c(2L, 5L)), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as c(0, 8675309), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as c(0, 8675309), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as c(0, 8675309), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as c(0, 8675309), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
       Please check the following required variables: 
-      `chol_unit` entered as c(0, 8675309), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
-      `chol_unit` entered as c(0, 8675309), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
+      * `chol_unit` entered as c(0, 8675309), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `total_c` to be valid
+      * `chol_unit` entered as c(0, 8675309), but must be one of "mg/dL", "mg", "mmol/L", "mmol" for `hdl_c` to be valid
     Output
       $dataframe_1
       $dataframe_1$not_quiet
@@ -23250,8 +23250,8 @@
       check_equations(age = 50, total_c = 200, hdl_c = 45, sbp = 160, dm = TRUE,
         smoking = 0, bmi = 35, egfr = 90, bp_tx = 1, statin = FALSE, time = "10yr")
     Message
-      Estimates are from: Base model.
-      Estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
     Output
       $total_cvd
       # A tibble: 1 x 2
@@ -23307,8 +23307,8 @@
         smoking = FALSE, bmi = 35, egfr = 90, bp_tx = TRUE, statin = 0, uacr = 40,
         time = "10yr")
     Message
-      Estimates are from: Base model adding UACR.
-      Estimates are from: Base model adding UACR.
+      PREVENT estimates are from: Base model adding UACR.
+      PREVENT estimates are from: Base model adding UACR.
     Output
       $total_cvd
       # A tibble: 1 x 2
@@ -23364,8 +23364,8 @@
         smoking = FALSE, bmi = 35, egfr = 90, bp_tx = TRUE, statin = 0, hba1c = 7.5,
         time = "10yr")
     Message
-      Estimates are from: Base model adding HbA1c.
-      Estimates are from: Base model adding HbA1c.
+      PREVENT estimates are from: Base model adding HbA1c.
+      PREVENT estimates are from: Base model adding HbA1c.
     Output
       $total_cvd
       # A tibble: 1 x 2
@@ -23426,8 +23426,8 @@
     Code
       sdi_10yr_partial(zip = "03883")
     Message
-      Estimates are from: Base model adding SDI.
-      Estimates are from: Base model adding SDI.
+      PREVENT estimates are from: Base model adding SDI.
+      PREVENT estimates are from: Base model adding SDI.
     Output
       $total_cvd
       # A tibble: 1 x 2
@@ -23488,8 +23488,8 @@
     Code
       sdi_10yr_partial(zip = "49544")
     Message
-      Estimates are from: Base model adding SDI.
-      Estimates are from: Base model adding SDI.
+      PREVENT estimates are from: Base model adding SDI.
+      PREVENT estimates are from: Base model adding SDI.
     Output
       $total_cvd
       # A tibble: 1 x 2
@@ -23550,8 +23550,8 @@
     Code
       sdi_10yr_partial(zip = "49507")
     Message
-      Estimates are from: Base model adding SDI.
-      Estimates are from: Base model adding SDI.
+      PREVENT estimates are from: Base model adding SDI.
+      PREVENT estimates are from: Base model adding SDI.
     Output
       $total_cvd
       # A tibble: 1 x 2
@@ -23606,8 +23606,8 @@
       check_equations_partial(age = 75, statin = TRUE, dm = 0, smoking = 1, hba1c = 7.5,
         uacr = 40, zip = "49507", time = "10yr")
     Message
-      Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
-      Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+      PREVENT estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+      PREVENT estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
     Output
       $total_cvd
       # A tibble: 1 x 2
@@ -23662,8 +23662,8 @@
       check_equations(age = 50, total_c = 200, hdl_c = 45, sbp = 160, dm = TRUE,
         smoking = 0, bmi = 35, egfr = 90, bp_tx = 1, statin = FALSE, time = "30yr")
     Message
-      Estimates are from: Base model.
-      Estimates are from: Base model.
+      PREVENT estimates are from: Base model.
+      PREVENT estimates are from: Base model.
     Output
       $total_cvd
       # A tibble: 1 x 2
@@ -23719,8 +23719,8 @@
         smoking = FALSE, bmi = 35, egfr = 90, bp_tx = TRUE, statin = 0, uacr = 40,
         time = "30yr")
     Message
-      Estimates are from: Base model adding UACR.
-      Estimates are from: Base model adding UACR.
+      PREVENT estimates are from: Base model adding UACR.
+      PREVENT estimates are from: Base model adding UACR.
     Output
       $total_cvd
       # A tibble: 1 x 2
@@ -23776,8 +23776,8 @@
         smoking = FALSE, bmi = 35, egfr = 90, bp_tx = TRUE, statin = 0, hba1c = 7.5,
         time = "30yr")
     Message
-      Estimates are from: Base model adding HbA1c.
-      Estimates are from: Base model adding HbA1c.
+      PREVENT estimates are from: Base model adding HbA1c.
+      PREVENT estimates are from: Base model adding HbA1c.
     Output
       $total_cvd
       # A tibble: 1 x 2
@@ -23838,8 +23838,8 @@
     Code
       sdi_30yr_partial(zip = "03883")
     Message
-      Estimates are from: Base model adding SDI.
-      Estimates are from: Base model adding SDI.
+      PREVENT estimates are from: Base model adding SDI.
+      PREVENT estimates are from: Base model adding SDI.
     Output
       $total_cvd
       # A tibble: 1 x 2
@@ -23900,8 +23900,8 @@
     Code
       sdi_30yr_partial(zip = "49544")
     Message
-      Estimates are from: Base model adding SDI.
-      Estimates are from: Base model adding SDI.
+      PREVENT estimates are from: Base model adding SDI.
+      PREVENT estimates are from: Base model adding SDI.
     Output
       $total_cvd
       # A tibble: 1 x 2
@@ -23962,8 +23962,8 @@
     Code
       sdi_30yr_partial(zip = "49507")
     Message
-      Estimates are from: Base model adding SDI.
-      Estimates are from: Base model adding SDI.
+      PREVENT estimates are from: Base model adding SDI.
+      PREVENT estimates are from: Base model adding SDI.
     Output
       $total_cvd
       # A tibble: 1 x 2
@@ -24018,12 +24018,12 @@
       check_equations_partial(age = 75, statin = TRUE, dm = 0, smoking = 1, hba1c = 7.5,
         uacr = 40, zip = "49507", time = "30yr")
     Message
-      Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+      PREVENT estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
     Condition
       Warning:
       Estimating 30-year risk in people > 59 years of age is questionable
     Message
-      Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+      PREVENT estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
     Condition
       Warning:
       Estimating 30-year risk in people > 59 years of age is questionable
@@ -24078,10 +24078,11 @@
 # Optional predictors are handled correctly, one optional predictor is valid
 
     Code
-      list(uacr_okay_hba1c_not_zip_null = uacr_okay_hba1c_not_zip_null$input_problems,
-      uacr_okay_hba1c_null_zip_not = uacr_okay_hba1c_null_zip_not$input_problems,
-      uacr_okay_others_not = uacr_okay_others_not$input_problems,
-      uacr_model_by_itself = uacr_model_by_itself$input_problems)
+      list(uacr_okay_hba1c_not_zip_null = uacr_okay_hba1c_not_zip_null[[
+        "input_problems"]], uacr_okay_hba1c_null_zip_not = uacr_okay_hba1c_null_zip_not[[
+        "input_problems"]], uacr_okay_others_not = uacr_okay_others_not[[
+        "input_problems"]], uacr_model_by_itself = uacr_model_by_itself[[
+        "input_problems"]])
     Output
       $uacr_okay_hba1c_not_zip_null
       $uacr_okay_hba1c_not_zip_null$female_10yr
@@ -24143,10 +24144,11 @@
 ---
 
     Code
-      list(hba1c_okay_uacr_not_zip_null = hba1c_okay_uacr_not_zip_null$input_problems,
-      hba1c_okay_uacr_null_zip_not = hba1c_okay_uacr_null_zip_not$input_problems,
-      hba1c_okay_others_not = hba1c_okay_others_not$input_problems,
-      hba1c_model_by_itself = hba1c_model_by_itself$input_problems)
+      list(hba1c_okay_uacr_not_zip_null = hba1c_okay_uacr_not_zip_null[[
+        "input_problems"]], hba1c_okay_uacr_null_zip_not = hba1c_okay_uacr_null_zip_not[[
+        "input_problems"]], hba1c_okay_others_not = hba1c_okay_others_not[[
+        "input_problems"]], hba1c_model_by_itself = hba1c_model_by_itself[[
+        "input_problems"]])
     Output
       $hba1c_okay_uacr_not_zip_null
       $hba1c_okay_uacr_not_zip_null$female_10yr
@@ -24208,10 +24210,10 @@
 ---
 
     Code
-      list(zip_okay_uacr_not_hba1c_null = zip_okay_uacr_not_hba1c_null$input_problems,
-      zip_okay_uacr_null_hba1c_not = zip_okay_uacr_null_hba1c_not$input_problems,
-      zip_okay_others_not = zip_okay_others_not$input_problems, zip_by_itself = zip_by_itself$
-        input_problems)
+      list(zip_okay_uacr_not_hba1c_null = zip_okay_uacr_not_hba1c_null[[
+        "input_problems"]], zip_okay_uacr_null_hba1c_not = zip_okay_uacr_null_hba1c_not[[
+        "input_problems"]], zip_okay_others_not = zip_okay_others_not[[
+        "input_problems"]], zip_by_itself = zip_by_itself[["input_problems"]])
     Output
       $zip_okay_uacr_not_hba1c_null
       $zip_okay_uacr_not_hba1c_null$female_10yr
@@ -24273,8 +24275,8 @@
 # Optional predictors are handled correctly, two optional predictors are valid
 
     Code
-      list(full_model_invalid_uacr = full_model_invalid_uacr$input_problems,
-      full_model_uacr_null = full_model_uacr_null$input_problems)
+      list(full_model_invalid_uacr = full_model_invalid_uacr[["input_problems"]],
+      full_model_uacr_null = full_model_uacr_null[["input_problems"]])
     Output
       $full_model_invalid_uacr
       $full_model_invalid_uacr$female_10yr
@@ -24308,8 +24310,8 @@
 ---
 
     Code
-      list(full_model_invalid_hba1c = full_model_invalid_hba1c$input_problems,
-      full_model_hba1c_null = full_model_hba1c_null$input_problems)
+      list(full_model_invalid_hba1c = full_model_invalid_hba1c[["input_problems"]],
+      full_model_hba1c_null = full_model_hba1c_null[["input_problems"]])
     Output
       $full_model_invalid_hba1c
       $full_model_invalid_hba1c$female_10yr
@@ -24343,8 +24345,8 @@
 ---
 
     Code
-      list(full_model_invalid_zip = full_model_invalid_zip$input_problems,
-      full_model_zip_null = full_model_zip_null$input_problems)
+      list(full_model_invalid_zip = full_model_invalid_zip[["input_problems"]],
+      full_model_zip_null = full_model_zip_null[["input_problems"]])
     Output
       $full_model_invalid_zip
       $full_model_invalid_zip$female_10yr
@@ -24378,8 +24380,8 @@
 # Invalid UACR is same as no UACR, only optional is UACR
 
     Code
-      list(invalid_uacr = invalid_uacr$input_problems, no_uacr = no_uacr$
-        input_problems)
+      list(invalid_uacr = invalid_uacr[["input_problems"]], no_uacr = no_uacr[[
+        "input_problems"]])
     Output
       $invalid_uacr
       $invalid_uacr$female_10yr
@@ -24413,8 +24415,8 @@
 # Invalid HbA1c is same as no HbA1c, only optional is HbA1c
 
     Code
-      list(invalid_hba1c = invalid_hba1c$input_problems, no_hba1c = no_hba1c$
-        input_problems)
+      list(invalid_hba1c = invalid_hba1c[["input_problems"]], no_hba1c = no_hba1c[[
+        "input_problems"]])
     Output
       $invalid_hba1c
       $invalid_hba1c$female_10yr
@@ -24448,7 +24450,8 @@
 # Invalid zip is same as no zip, only optional is zip
 
     Code
-      list(invalid_zip = invalid_zip$input_problems, no_zip = no_zip$input_problems)
+      list(invalid_zip = invalid_zip[["input_problems"]], no_zip = no_zip[[
+        "input_problems"]])
     Output
       $invalid_zip
       $invalid_zip$female_10yr
@@ -24538,12 +24541,12 @@
     Code
       check_equations_partial(age = 67, statin = FALSE, hba1c = 9)
     Message
-      Estimates are from: Base model adding HbA1c.
+      PREVENT estimates are from: Base model adding HbA1c.
     Condition
       Warning:
       Estimating 30-year risk in people > 59 years of age is questionable
     Message
-      Estimates are from: Base model adding HbA1c.
+      PREVENT estimates are from: Base model adding HbA1c.
     Condition
       Warning:
       Estimating 30-year risk in people > 59 years of age is questionable
@@ -24606,12 +24609,12 @@
     Code
       check_equations_partial(age = 67, statin = TRUE, uacr = 1000)
     Message
-      Estimates are from: Base model adding UACR.
+      PREVENT estimates are from: Base model adding UACR.
     Condition
       Warning:
       Estimating 30-year risk in people > 59 years of age is questionable
     Message
-      Estimates are from: Base model adding UACR.
+      PREVENT estimates are from: Base model adding UACR.
     Condition
       Warning:
       Estimating 30-year risk in people > 59 years of age is questionable
@@ -24674,12 +24677,12 @@
     Code
       check_equations_partial(age = 71, statin = TRUE, hba1c = 9, uacr = 1000)
     Message
-      Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+      PREVENT estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
     Condition
       Warning:
       Estimating 30-year risk in people > 59 years of age is questionable
     Message
-      Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+      PREVENT estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
     Condition
       Warning:
       Estimating 30-year risk in people > 59 years of age is questionable
@@ -24742,12 +24745,12 @@
     Code
       check_equations_partial(age = 71, statin = TRUE, hba1c = 9, uacr = 1000, zip = "49507")
     Message
-      Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+      PREVENT estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
     Condition
       Warning:
       Estimating 30-year risk in people > 59 years of age is questionable
     Message
-      Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+      PREVENT estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
     Condition
       Warning:
       Estimating 30-year risk in people > 59 years of age is questionable
@@ -24811,12 +24814,12 @@
       check_equations_partial(age = 71, sbp = 145, bp_tx = 0, hba1c = 6.7, uacr = 10,
         zip = NA)
     Message
-      Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+      PREVENT estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
     Condition
       Warning:
       Estimating 30-year risk in people > 59 years of age is questionable
     Message
-      Estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
+      PREVENT estimates are from: Base model adding HbA1c, SDI, and UACR (also referred to as the full model).
     Condition
       Warning:
       Estimating 30-year risk in people > 59 years of age is questionable
