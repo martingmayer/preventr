@@ -172,7 +172,7 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #' 
 #' @description
 #'  `estimate_risk()` and `est_risk()` are the same function, with the latter
-#'  being a function synonym for those who favor syntactical brevity.
+#'  being a function synonym for those who favor syntactic brevity.
 #'  
 #'  Estimation via the PREVENT equations includes both 10- and 30-year risk of 5
 #'  events:
@@ -197,8 +197,24 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'   Note the PCEs have a lower age limit of 40, so for ages 30-39, the function
 #'   will only provide estimates for the PREVENT equations, irrespective of
 #'   whether a user also requests estimation via the PCEs via the `model`
-#'   argument (more precisely, the function will still carry out the estimation
-#'   from the PCEs, but will return `NA`).
+#'   argument (more precisely, requested PCE comparison row(s) will be returned
+#'   with `NA` estimates).
+#' 
+#'   Alternatively, if a user passes a data frame to the `age` argument, the function will 
+#'   assign this data frame to the argument `use_dat` unless `use_dat` is already
+#'   a data frame. This permits modestly quicker calls, where `estimate_risk(df)` becomes 
+#'   equal to `estimate_risk(use_dat = df)`. However, a data frame passed explicitly to 
+#'   `use_dat` will always take precedence over a data frame passed to `age`, so if a user 
+#'   passes a data frame to both `age` and `use_dat`, this will result in an invalid call, 
+#'   because passing an argument for `age` when `use_dat` is a data frame triggers the column 
+#'   renaming behavior further described in the details for the argument `use_dat`. Furthermore, 
+#'   note this special property of passing a data frame as the first argument of `estimate_risk()` 
+#'   (i.e., `estimate_risk(df)`) requires the data frame to have a column named `age`,
+#'   because `estimate_risk(df)` is equivalent to `estimate_risk(age = df)`, so the `age`
+#'   argument is already occupied and thus not a candidate for renaming; as a corollary,
+#'   something like `estimate_risk(df, age = "years_old")` translates (via standard R handling
+#'   of function arguments) to `estimate_risk(age = "years_old", sex = df)`, which obviously
+#'   will not work.
 #' @param sex Character (required predictor variable): Either `"female"` or
 #'   `"male"` (`"f"` and `"m"` are accepted abbreviations).
 #' @param sbp Numeric (required predictor variable): Systolic blood pressure
@@ -208,8 +224,8 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'   Whether the person is on blood pressure treatment, either `TRUE` or `FALSE`
 #'   (1 or 0 are accepted as alternative input).
 #' @param total_c Numeric (required predictor variable): Total cholesterol in
-#'   mg/dL or mmol/L (see `chol_unit` argument), from 130-320 (for `chol_unit =
-#'   "mg/dL"`) or 3.36-8.28 (for `chol_unit = "mmol/L"`).
+#'   mg/dL or mmol/L (see `chol_unit` argument), from 130-320 (for 
+#'   `chol_unit = "mg/dL"`) or 3.36-8.28 (for `chol_unit = "mmol/L"`).
 #' @param hdl_c Numeric (required predictor variable): High-density lipoprotein
 #'   cholesterol (HDL-C) in mg/dL or mmol/L (see `chol_unit` argument), from
 #'   20-100 (for `chol_unit = "mg/dL"`) or 0.52-2.59 (for `chol_unit =
@@ -244,7 +260,7 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'   `"base"` (the base model), `"hba1c"` (the base model adding HbA1c),
 #'   `"uacr"` (the base model adding UACR), `"sdi"` (the base model adding SDI),
 #'   or `"full"` (the base model adding HbA1c, UACR, and SDI). If `NULL`, the
-#'   model will be determined by algorithm specified in the "Details" section,
+#'   model will be determined by the algorithm specified in the "Details" section,
 #'   and this is the intended argument for most users. The ability to specify
 #'   mainly exists for specific use cases (e.g., research purposes).
 #'   - If passing a list, the list must have the following elements unless 
@@ -423,8 +439,8 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'  - The synonym for `calc_bmi()` is `calculate_bmi()`.
 #'  
 #'  These convenience functions add value where a person might have the necessary
-#'  components to calculate the respective parameter but do not have handy the 
-#'  parameter itself.
+#'  components to calculate the respective parameter but do not have the 
+#'  parameter itself handy.
 #'  
 #'  The syntax for these convenience functions is as follows:
 #'  - `calc_egfr(cr, units = "mg/dL", age, sex, quiet = FALSE)`
@@ -457,8 +473,8 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'  
 #'  ## What is the Social Deprivation Index (SDI)?
 #'  
-#'  Read more from the [Robert Graham Center's page on the SDI](https://www.graham-center.org/maps-data-tools/social-deprivation-index.html)
-#'  (https://www.graham-center.org/maps-data-tools/social-deprivation-index.html)
+#'  Read more on the [Robert Graham Center's page on the SDI](https://www.graham-center.org/evidence-based-research/featured-work/social-deprivation-index)
+#'  (https://www.graham-center.org/evidence-based-research/featured-work/social-deprivation-index)
 #'  
 #'  ## Model selection when `model = NULL`
 #'  
@@ -525,10 +541,10 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'  the context of `estimate_risk()` or `est_risk()`, although implementation of 
 #'  the PCEs checks input validity, it just returns `NA` with no messaging if it 
 #'  finds a problem. The functions for BMI and eGFR also implement checks for 
-#'  input validity (such as numeric inputs needing to be a number greater than 
+#'  input validity (such as numeric inputs needing to be numbers greater than 
 #'  0), but they do not reject extreme numeric values (aside from the `age` 
 #'  input for eGFR, which implements some further restriction on age). Again, 
-#'  however, the calculations have certainly been tested for accuracy, so for 
+#'  however, the calculations have certainly been tested for accuracy. So, for 
 #'  users who are confident (1) they understand the cautions described here 
 #'  and (2) in the fidelity of their input for the functions, they can use them 
 #'  judiciously outside of `estimate_risk()` or `est_risk()` 
@@ -538,7 +554,7 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'   ## Basic information about the return
 #'   
 #'   `estimate_risk()` will always return either (1) a list of length 2, with
-#'   each list element having a single data frame or (2) a single data frame.
+#'   each list element containing a single data frame or (2) a single data frame.
 #'   All references herein to a data frame being returned are for a data frame
 #'   as a tibble (see the [tibble](https://cran.r-project.org/package=tibble)
 #'   package for more detail) unless `use_dat` receives a data frame, in which
@@ -608,7 +624,7 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'   - If `add_to_dat = FALSE`, the returned data frame will *not* include the
 #'   columns in `use_dat`, so the composition of the return data frame will be:
 #'   `preventr_id` column + risk estimation columns. The replication behavior 
-#'   described for when  `add_to_dat = TRUE` will still occur. For this reason, 
+#'   described for when `add_to_dat = TRUE` will still occur. For this reason, 
 #'   the `preventr_id` column is perhaps especially important when 
 #'   `add_to_dat = FALSE`, as it provides a mechanism to associate the results 
 #'   with the original data frame.
@@ -642,8 +658,8 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'
 #'   ## When invalid input parameters exist for one or more required predictor variable(s)
 #'
-#'   The function will issue a warning about the problematic variables, unless
-#'   `quiet = FALSE`. A data frame will be returned with the following 
+#'   The function will notify the user about the problematic variables, unless
+#'   `quiet = TRUE`. A data frame will be returned with the following 
 #'   characteristics:
 #'   - All risk estimates will be set to `NA_real_`
 #'   - The `model` column will state "none"
@@ -662,8 +678,8 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'   
 #'   ### When `optional_strict = FALSE`
 #'
-#'   The function will issue a warning about the problematic variables, unless
-#'   `quiet = FALSE`. The problematic optional variables will then be
+#'   The function will notify the user about the problematic variables, unless
+#'   `quiet = TRUE`. The problematic optional variables will then be
 #'   functionally discarded and the PREVENT equations still run, in accordance
 #'   with the specifications detailed in the "Details" section regarding model
 #'   selection. A data frame will be returned with the following
@@ -680,7 +696,7 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'   ## When estimating 30-year risk and age > 59
 #'   
 #'   The function advises 30-year risk prediction for people > 59 years is 
-#'   questionable via two warnings:
+#'   questionable through two mechanisms:
 #'   
 #'   - in the console (that can be suppressed by setting `quiet = TRUE`)
 #'   - in the column `input_problems` of the return tibble (`quiet` has no 
@@ -711,7 +727,7 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'
 #'   If a list containing elements `other_models` and `race_eth` is passed to
 #'   argument `model`, then within the sub-context of running additional models
-#'   for comparison, the elements `other_models` and `race_eth` are  required.
+#'   for comparison, the elements `other_models` and `race_eth` are required.
 #'   Thus, if either `other_models` or `race_eth` is invalid, the returned
 #'   row(s) within the data frame will function comparably to what is described
 #'   for the circumstance when invalid input exists for one or more required
@@ -725,7 +741,7 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'   would contain two rows dedicated to the PCEs (given `other_models =
 #'   "pce_both"`, a valid argument), but each row would behave in the manner
 #'   described for the PREVENT equations when one or more required predictor
-#'   variable is invalid. That is, each row dedicated to the PCEs would consist
+#'   variables are invalid. That is, each row dedicated to the PCEs would consist
 #'   of `NA`s (of the appropriate type) for each column, aside from the column
 #'   `model`, which would say `"none"`, and the column `input_problems`, which
 #'   would specify there was erroneous input for the argument `race_eth`.
@@ -744,7 +760,7 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #'   ## Combining output into a single data frame
 #'   
 #'   Depending on the arguments to the function, the output may be a list of
-#'   data frames, one for each time horizon, (see the subsection "Basic
+#'   data frames, one for each time horizon (see the subsection "Basic
 #'   information about the return" within the "Value" section). The argument
 #'   `collapse` supports collapsing these into a single data frame, but it is
 #'   also easy to do outside of this package, e.g.:
@@ -775,7 +791,7 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #' #
 #' # Optional predictor variables are all omitted (and thus take their default).
 #' # `model` is also omitted (and thus takes its default, with the function
-#' # selecting # the model based on the algorithm specified in the "Details"
+#' # selecting the model based on the algorithm specified in the "Details"
 #' # section).
 #' # `time` is also omitted (and thus takes its default, with the function 
 #' # returning estimates for both 10- and 30-year risk as specified in the 
@@ -1001,7 +1017,7 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #' 
 #' # Because the PCEs only give 10-year estimates, if a user specifies an 
 #' # interest in a 30-year time horizon but also expresses interest in 
-#' # comparison with the the PCEs, a 10-year time horizon must be added for the
+#' # comparison with the PCEs, a 10-year time horizon must be added for the
 #' # PCEs, but this will not automatically result in estimation of 10-year risk
 #' # for the PREVENT equations.
 #' estimate_risk(
@@ -1140,9 +1156,17 @@ run_models <- function(model = c("base", "uacr", "hba1c", "sdi", "full"),
 #' # Note `input_problems` column is semicolon-separated, but it is easy to
 #' # print as separate lines with `gsub()` and `cat()`, e.g.:
 #' cat(gsub("; ", "\n", res$input_problems))
-#' @examplesIf getRversion() >= "4.1.0"
-#' res$input_problems |> gsub(pattern = "; ", replacement = "\n", x = _) |> cat()
-#' # ... and could, of course, also use the `magrittr` pipe `%>%` if desired
+#' 
+#' # ... and you could also do this with a piped format as well, e.g.:
+#' # res$input_problems |> 
+#' #   gsub(pattern = "; ", replacement = "\n", x = _) |> 
+#' #   cat()
+#' #
+#' # --- or ---
+#' #
+#' # res$input_problems %>% 
+#' #   gsub(pattern = "; ", replacement = "\n", x = .) %>% 
+#' #   cat()
 #' 
 #' @rdname estimate_risk
 #' @export
@@ -1172,7 +1196,26 @@ estimate_risk <- function(age,
   
   # Get call (used for various things, e.g., calculation of eGFR and BMI)
   cl <- match.call()
-  
+ 
+  # If the `age` argument is a data frame, then use that data frame
+  # as the data frame for the `use_dat` argument, and then reset `age` as
+  # if it had never been passed (i.e., missing) so that the function 
+  # will then proceed to handle the data frame as it would if it had
+  # been passed directly to `use_dat` in the first place.
+  if(
+    (missing(use_dat) || is.null(use_dat) || !is.data.frame(use_dat)) && 
+      is.data.frame(age)
+  ) {
+    use_dat <- age # Assign the data frame passed to `age` to `use_dat`.
+    age <- substitute() # Reset `age` to missing.
+
+    # Now do the same for the call.
+    # Notice use of `NULL` here instead of `substitute()`, 
+    # because the goal is to remove the `age` argument from the call entirely.
+    cl$use_dat <- cl$age 
+    cl$age <- NULL 
+  }
+
   # Functions to generate empty tibble and messages if input probs ----
   input_probs_return_tibble <- function(input_probs) {
     dplyr::tibble(
@@ -1200,16 +1243,6 @@ estimate_risk <- function(age,
     optional_is_strict = optional_strict
   ) {
     
-    main_model_tibble <- if(optional_is_strict) {
-      input_probs_return_tibble(
-        paste0(c(var_problems$required, var_problems$optional), collapse = "; ")
-      )
-    } else {
-      input_probs_return_tibble(
-        paste0(var_problems$required, collapse = "; ")
-      )
-    }
-    
     var_problems_accounting_for_poss_age_dupe <-
       if("age" %in% names(var_problems$required) && "age" %in% names(var_problems$comparison)) {
         c(
@@ -1224,6 +1257,16 @@ estimate_risk <- function(age,
       } else {
         c(var_problems$required, var_problems$comparison)
       }
+    
+    main_model_tibble <- if(optional_is_strict) {
+      input_probs_return_tibble(
+        paste0(c(var_problems_accounting_for_poss_age_dupe, var_problems$optional), collapse = "; ")
+      )
+    } else {
+      input_probs_return_tibble(
+        paste0(var_problems$required, collapse = "; ")
+      )
+    }
     
     other_models_tibble <- if(optional_is_strict) {
       input_probs_return_tibble(
@@ -1753,7 +1796,7 @@ estimate_risk <- function(age,
             dplyr::add_row(
               model = "pce_orig", 
               ascvd = eval(pce_model_call),
-              over_years = 10
+              over_years = 10L
             )
         } else {
           
@@ -1769,7 +1812,7 @@ estimate_risk <- function(age,
             dplyr::add_row(
               model = "pce_rev", 
               ascvd = eval(pce_rev_model_call),
-              over_years = 10
+              over_years = 10L
             )
         } else {
           
@@ -1838,8 +1881,12 @@ app <- function(...) {
           "launch the app in your browser. You can either install the `utils` ",
           "package and try again or just visit ",
           "https://martingmayer.shinyapps.io/prevent-equations in your browser. ",
-          "https://tiny.cc/prevent-equations or ",
-          "https://tiny.cc/preventequations will also work."
+          "https://tiny.cc/preventrapp",
+          " will also work (as will ",
+          "https://tiny.cc/preventequations", 
+          " or ",
+          "https://tiny.cc/prevent-equations",
+          ")."
           )
       )
     }
@@ -1847,3 +1894,4 @@ app <- function(...) {
   
   invisible(NULL)
 }
+

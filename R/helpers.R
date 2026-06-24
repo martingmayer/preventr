@@ -132,10 +132,11 @@ na_or_empty_to_na <- function(val) {
 }
 
 percentify <- function(risk) {
+  
   res <- vapply(
     risk, 
     function(x) {
-      paste0(x * 100, if(is.na(x)) "" else "%")
+      if(is.na(x)) "NA" else paste0(x * 100, "%")
     },
     character(1)
   )
@@ -870,24 +871,38 @@ standardize_sex <- function(sex) {
 
 stylize_model_to_run <- function(model, capital_base = TRUE) {
   
-  stopifnot(model %in% c("base", "hba1c", "uacr", "sdi", "full"))
+  stopifnot(
+    all(
+      model %in% 
+        c("base", "hba1c", "uacr", "sdi", "full", "pce_orig", "pce_rev", "none")
+    )
+  )
+  
   stopifnot(isTRUE(capital_base) || isFALSE(capital_base))
   
-  base <- if(model == "base") "Base model" else "Base model adding "
-  additional <- 
-    if(model == "base") {
-      ""
-    } else if(model == "hba1c") {
-      "HbA1c"
-    } else if(model == "full") {
-      "HbA1c, SDI, and UACR (also referred to as the full model)"
-    } else if(model %in% c("uacr", "sdi")) {
-      toupper(model)
-    }
+  if(all(model %in% c("pce_orig", "pce_rev"))) {
+    
+    res <- "Pooled Cohort Equations"
   
-  res <- paste0(base, additional)
-  
-  if(!capital_base) res <- gsub("Base", "base", res, fixed = TRUE)
+  } else {
+    
+    base <- if(model == "base") "Base model" else "Base model adding "
+    
+    additional <- 
+      if(model == "base") {
+        ""
+      } else if(model == "hba1c") {
+        "HbA1c"
+      } else if(model == "full") {
+        "HbA1c, SDI, and UACR (also referred to as the full model)"
+      } else if(model %in% c("uacr", "sdi")) {
+        toupper(model)
+      }
+    
+    res <- paste0(base, additional)
+    
+    if(!capital_base) res <- gsub("Base", "base", res, fixed = TRUE)
+  }
   
   res
 }

@@ -62,19 +62,17 @@ install.packages("preventr")
 You can install the development version of `preventr` from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("martingmayer/preventr")
+# install.packages("pak") # if you don't have pak installed already
+pak::pak("martingmayer/preventr")
 ```
 
 ## Using `preventr`
 
 Despite the work it does, I designed `preventr` with the goal of having a simple,
-intuitive API. The "workhorses" are "behind the scenes", culminating in one function (and synonym) being exposed to the user for estimation of risk:
-
-- `estimate_risk()` (or `est_risk()`) 
+intuitive API. The "workhorses" are "behind the scenes", culminating in one function (and synonym) being exposed to the user for estimation of risk and one function being exposed to the user for plotting risk. These are: `estimate_risk()` (or `est_risk()`) and `plot_risk()`.
 
 ```{r risk}
-# Very basic example; see function documentation for much more detail and
+# Very basic examples; see function documentation and vignettes for much more detail and
 # many more examples
 # 
 # If the package is loaded (e.g., `library(preventr)`) or the function is made 
@@ -84,7 +82,7 @@ intuitive API. The "workhorses" are "behind the scenes", culminating in one func
 # helpful for clarity of code, for avoiding potential namespace conflicts, etc. 
 # However, a full discussion of pros and cons and when one approach might be
 # favored over another is beyond the scope of this package or this comment.
-preventr::estimate_risk(
+risk <- preventr::estimate_risk(
   age = 50,
   sex = "female",
   sbp = 160,
@@ -95,9 +93,15 @@ preventr::estimate_risk(
   dm = TRUE,
   smoking = FALSE,
   egfr = 90,
-  bmi = 35
+  bmi = 35,
+  collapse = TRUE
 )
 
+risk
+
+plots <- preventr::plot_risk(risk, progress = FALSE)
+
+plots$plot
 ```
 
 ## There's an app for that
@@ -108,6 +112,7 @@ In addition to the R package, I created a Shiny app that is driven by the `preve
     
 Easier-to-remember URLs: 
 
+- [https://tiny.cc/preventrapp](https://tiny.cc/preventrapp)
 - [https://tiny.cc/prevent-equations](https://martingmayer.shinyapps.io/prevent-equations)
 - [https://tiny.cc/preventequations](https://martingmayer.shinyapps.io/prevent-equations)
 
@@ -129,13 +134,13 @@ Users should rest assured if any changes come to the API, I will avoid breaking 
 
 If you use `preventr` in your work, please cite the package as follows: 
 
-```r
+```{r cite}
 citation("preventr")
 ```
 
 ## Acknowledgments
 
-This package would, of course, not be possible without the efforts from the authors of the PREVENT equations. Additionally, the Social Deprivation Index (SDI) is a key element informing the PREVENT equations. Citations for both appear below, as does acknowledgment of the other packages and software I used in creating `preventr`. 
+This package would not be possible without the efforts from the authors of the PREVENT equations. Additionally, the Social Deprivation Index (SDI) is a key element informing the PREVENT equations. Citations for both appear below, as does acknowledgment of the other packages and software I used in creating `preventr`. 
 
 **The PREVENT equations**
 
@@ -143,7 +148,7 @@ Khan SS, Matsushita K, Sang Y, Ballew SH, Grams ME, Surapaneni A, Blaha MJ, Cars
 
 **Social Deprivation Index (SDI)**
 
-Social deprivation index (SDI). Robert Graham Center - Policy Studies in Family Medicine & Primary Care. (2018, November 5). Retrieved December 13, 2023, from https://www.graham-center.org/maps-data-tools/social-deprivation-index.html.
+Social deprivation index (SDI). Robert Graham Center - Policy Studies in Family Medicine & Primary Care. (2018, November 5). Retrieved December 13, 2023, from https://web.archive.org/web/20231213195628/https://www.graham-center.org/maps-data-tools/social-deprivation-index.html. I now cite the Wayback Machine version from the Internet Archive because the original page URL (visible within the Wayback Machine URL) has been permanently redirected to https://www.graham-center.org/evidence-based-research/featured-work/social-deprivation-index.
 
 **Other literature, packages, and software**
 

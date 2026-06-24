@@ -1,0 +1,774 @@
+---
+title: "Plotting risk estimates"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Plotting risk estimates}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(preventr)
+```
+
+## Introduction
+
+`plot_risk()`
+creates horizontal bar charts from risk estimates produced by
+`estimate_risk()`
+/
+`est_risk()` (the vignette will hereafter use `est_risk()`).
+It can also plot manually constructed data, but the manual input still
+needs to match the output format of `est_risk()`.
+
+This vignette focuses on four things:
+
+- what
+  `plot_risk()`
+  expects for `risk_dat`
+- what it returns under different input patterns
+- how the default data frame behavior works
+- how to control the appearance of the plots
+
+The examples deliberately start by showing the default behavior when
+`risk_dat` is a data frame. After that, most examples in the vignette
+would benefit from `add_to_dat = FALSE` so the vignette renders the plot
+output directly.
+
+Additionally, the vignette will want to make heavy use of the argument
+`progress = FALSE` in calls to
+`plot_risk()`,
+which suppresses the progress bar. This is because the progress bar does
+not print well in a knitted document, but it does not affect the data
+requirements, return structure, or plot appearance. In ordinary use,
+`progress` defaults to `TRUE`, and as the name implies, it gives a
+visual indication of progress; this can be especially helpful when
+`risk_dat` is a large data frame.
+
+As such, the vignette will often use a minor variant of
+`plot_risk()`
+that defaults to `add_to_dat = FALSE` and `progress = FALSE` to make the
+examples more concise and visually clear.
+
+```{r plot-risk-helper}
+plot_risk_no_add_no_prog <- function(..., add_to_dat = FALSE, progress = FALSE) {
+  plot_risk(..., add_to_dat = add_to_dat, progress = progress)
+}
+```
+
+## What `plot_risk()` expects
+
+For its argument `risk_dat`, the function
+`plot_risk()`
+accepts either a data frame or a list of data frames. In either case,
+the input needs to match the risk-estimate output schema used by `est_risk()`.
+In practical terms, this means the following:
+
+- The data frame(s) within `risk_dat` (whether passed directly or as a
+  list of data frames) must contain `model`, `over_years`, and at least
+  one risk-estimate column among `total_cvd`, `ascvd`, `heart_failure`,
+  `chd`, and `stroke`.
+- If the data represent multiple people or instances in one data frame,
+  `preventr_id` is required.
+- If passing a list of data frames, this implies `risk_dat` is for a
+  single person, because `est_risk()`
+  only outputs a list of data frames when estimating risk for a single
+  person (when estimating over both 10- and 30-year time horizons with
+  `collapse = FALSE`). In addition to the aforementioned required
+  columns, the structure of the list of data frames must also match the
+  output of `est_risk()`,
+  meaning the names of the list elements must be `"risk_est_10yr"` and
+  `"risk_est_30yr"`, with the maximum number of rows for 10-year
+  estimates being 3 and the maximum number of rows for the 30-year
+  estimates being 1 and the column `preventr_id` not being present.
+- `input_problems` is optional, but if it contains the specific 30-year
+  age warning used by `est_risk()`,
+  that warning is displayed as a subtitle
+
+The safest way to obtain valid input is to start from `est_risk()`.
+
+## Example data used in this vignette
+
+```{r example-data}
+risk_10_year <- est_risk(
+  age = 55,
+  sex = "female",
+  sbp = 140,
+  bp_tx = TRUE,
+  total_c = 210,
+  hdl_c = 50,
+  statin = FALSE,
+  dm = TRUE,
+  smoking = FALSE,
+  egfr = 90,
+  bmi = 31,
+  time = "10yr"
+)
+
+risk_30_year <- est_risk(
+  age = 55,
+  sex = "female",
+  sbp = 140,
+  bp_tx = TRUE,
+  total_c = 210,
+  hdl_c = 50,
+  statin = FALSE,
+  dm = TRUE,
+  smoking = FALSE,
+  egfr = 90,
+  bmi = 31,
+  time = "30yr"
+)
+
+risk_both <- rbind(risk_10_year, risk_30_year)
+# Identical to a call to `est_risk()` with the arguments used for either
+# `risk_10_year` or `risk_30_year`, other than setting `time = "both"` and
+# `collapse = TRUE`.
+
+fake_dat <- data.frame(
+    age = c(45L, 55L),
+    sex = c("female", "male"),
+    sbp = c(140, 144),
+    bp_tx = c(TRUE, FALSE),
+    total_c = c(210, 240),
+    hdl_c = c(50, 40),
+    statin = c(FALSE, TRUE),
+    dm = c(TRUE, FALSE),
+    smoking = c(FALSE, TRUE),
+    egfr = c(90, 60),
+    bmi = c(31, 28)
+)
+
+risk_multi <- est_risk(use_dat = fake_dat, progress = FALSE)
+# Setting `progress = FALSE` here to avoid showing the progress bar in the
+# vignette, as it does not print well in a knitted document.
+
+fake_dat_warning <- fake_dat
+fake_dat_warning$age[[2]] <- 65
+
+risk_warning <- est_risk(use_dat = fake_dat_warning, time = 30, progress = FALSE)
+
+manual_single <- data.frame(
+  total_cvd = 0.152,
+  ascvd = 0.101,
+  heart_failure = 0.051,
+  chd = 0.062,
+  stroke = 0.039,
+  model = "base",
+  over_years = 10,
+  input_problems = NA_character_
+)
+
+manual_multi <- data.frame(
+  preventr_id = c(1L, 2L),
+  total_cvd = c(0.152, 0.280),
+  ascvd = c(0.101, 0.210),
+  heart_failure = c(0.051, 0.070),
+  chd = c(0.062, 0.135),
+  stroke = c(0.039, 0.075),
+  model = c("base", "base"),
+  over_years = c(10L, 10L),
+  input_problems = c(NA_character_, NA_character_)
+)
+
+manual_multi_with_pce <- data.frame(
+  preventr_id = c(1L, rep(2L, 3)),
+  total_cvd = c(0.152, 0.175, NA_real_, 0.280),
+  ascvd = c(0.101, 0.105, 0.2, 0.210),
+  heart_failure = c(0.051, 0.07, NA_real_, 0.070),
+  chd = c(0.062, 0.075, NA_real_, 0.135),
+  stroke = c(0.039, 0.03, NA_real_, 0.075),
+  model = c("base", "sdi", "pce_orig", "sdi"),
+  over_years = c(rep(10L, 3), 30L),
+  input_problems = rep(NA_character_, 4)
+)
+
+manual_list <- list(
+  risk_est_10yr = data.frame(
+    total_cvd = 0.152,
+    ascvd = 0.101,
+    heart_failure = 0.051,
+    chd = 0.062,
+    stroke = 0.039,
+    model = "base",
+    over_years = 10L,
+    input_problems = NA_character_
+  ),
+  risk_est_30yr = data.frame(
+    total_cvd = 0.430,
+    ascvd = 0.280,
+    heart_failure = 0.150,
+    chd = 0.160,
+    stroke = 0.120,
+    model = "base",
+    over_years = 30L,
+    input_problems = NA_character_
+  )
+)
+```
+
+## The default behavior for data-frame input
+
+When `risk_dat` is a data frame, `add_to_dat = TRUE` by default, so the
+plot is added back onto the data frame as the list-column `plot`. This
+is a convenient way to keep the plot objects attached to the data frame
+while still being able to render them when needed.
+
+```{r default-return}
+# Note this first example uses the real `plot_risk()` with the default behavior of
+# `add_to_dat = TRUE` to show the data frame with the plot attached as a list-column.
+# It still uses `progress = FALSE` to avoid showing the progress bar in the vignette,
+# as it does not print well in a knitted document.
+default_plot_df <- plot_risk(risk_multi, progress = FALSE)
+
+names(default_plot_df)
+
+str(default_plot_df, max.level = 1)
+
+all(vapply(default_plot_df$plot, ggplot2::is_ggplot, logical(1)))
+```
+
+To render a plot stored in that list-column, extract it explicitly.
+
+```{r default-return-plot}
+default_plot_df$plot[[1]]
+```
+
+When the column `plot` has more than one plot object, calling the column
+directly renders all the plots in a list.
+
+```{r default-return-plot-list}
+default_plot_df$plot
+```
+
+## Return formats and the roles of `add_to_dat` and `collapse`
+
+The return format of
+`plot_risk()`
+depends on three things:
+
+- whether `risk_dat` is a data frame or a list of data frames,
+- whether `add_to_dat` is `TRUE` or `FALSE`, and
+- for list input only, whether `collapse` is `TRUE` or `FALSE`.
+
+This table summarizes the return format based on these factors:
+
+| Structure of `risk_dat` | Value of `add_to_dat` | Value of `collapse` | Output format |
+|----|---:|---:|----|
+| data frame | `TRUE` | not applicable | data frame with `plot` list-column |
+| data frame | `FALSE` | not applicable | ggplot object or list of ggplot objects |
+| list of data frames | `TRUE` | `TRUE` | single, collapsed data frame with `plot` list-column |
+| list of data frames | `TRUE` | `FALSE` | list of data frames, each with `plot` list-column |
+| list of data frames | `FALSE` | not applicable | list of ggplot objects |
+
+Two details are worth emphasizing:
+
+- `collapse` is only relevant when `risk_dat` is a list of data frames
+  and `add_to_dat = TRUE`.
+- If you want to actually *see* the plots (e.g., in your console, a
+  knitted document, etc.), `add_to_dat = FALSE` accomplishes that;
+  otherwise, you can extract the plot objects from the data frame that
+  is returned when `add_to_dat = TRUE`.
+
+## Rendering plots directly
+
+If you want
+`plot_risk()`
+to return the plot object itself rather than appending it to the input
+data, set `add_to_dat = FALSE`.
+
+For a single plotting unit, this yields a single `ggplot` object.
+
+```{r direct-single-plot}
+# Again, this example uses the real `plot_risk()` with `add_to_dat = FALSE`
+# to show the plot object directly. It still uses `progress = FALSE` to
+# avoid showing the progress bar in the vignette, as it does not print well
+# in a knitted document.
+p_direct <- plot_risk(risk_10_year, add_to_dat = FALSE, progress = FALSE)
+class(p_direct)
+p_direct
+```
+
+After this point, most examples in the vignette are intended to show
+plot output directly and all examples use `progress = FALSE` to suppress
+the progress bar; thus, the vignette will hereafter make heavy use the
+`plot_risk_no_add_no_prog()` variant previously defined to avoid having
+to specify `add_to_dat = FALSE` and `progress = FALSE` repeatedly. This
+helps the examples be more concise and clear.
+
+## Using a manually constructed data frame
+
+You do not need to start from `est_risk()`,
+but your input must still obey the minimum required structure.
+
+```{r manual-single-plot}
+plot_risk_no_add_no_prog(manual_single)
+```
+
+An important detail to recall is that `model` and `over_years` are part
+of the minimum schema. A data frame containing only risk columns is not
+sufficient. The manually-created data frame `manual_single` meets these
+criteria.
+
+```{r manual-single-str}
+str(manual_single)
+```
+
+## Reordering or restricting outcomes
+
+By default, `outcomes = "all"` expands to:
+
+- `total_cvd`
+- `ascvd`
+- `heart_failure`
+- `chd`
+- `stroke`
+
+You can supply a character vector to change outcome inclusion, outcome
+order, or both.
+
+```{r subset-outcomes}
+plot_risk_no_add_no_prog(risk_10_year, outcomes = c("stroke", "chd", "ascvd"))
+```
+
+## Annotation controls
+
+The `annotation` argument accepts:
+
+- `"all"` (the default)
+- `"none"`
+- one or more of `"title"`, `"subtitle"`, and `"caption"`
+
+Notice "annotation" here refers only to the title, subtitle, and caption. Other text elements, such as the outcome labels and risk percentages are not controlled by the `annotation` argument. Likewise, `annotation` does not impact elements associated with the legend (when the legend applies); these elements are controlled by the `legend`, `lines`, and `line_text` arguments, which are discussed in the [section herein on legend and threshold line controls](#legend-and-threshold-line-controls).
+
+### Removing annotation
+
+```{r annotation-none}
+plot_risk_no_add_no_prog(risk_10_year, annotation = "none")
+```
+
+### Keeping only selected annotation components
+
+```{r annotation-selected}
+plot_risk_no_add_no_prog(risk_10_year, annotation = c("title", "caption"))
+```
+
+### Showing the 30-year age-warning subtitle
+
+If `input_problems` contains the specific warning string used by `est_risk()`
+for 30-year estimation in people older than 59 years,
+`plot_risk()`
+uses that text as a subtitle.
+
+```{r annotation-warning-subtitle}
+# Reminder of ages and time horizons for the `risk_warning` data frame,
+# remembering that the 30-year age warning applies to people older than
+# 59 years when estimating over a 30-year time horizon.
+risk_warning[, c("age", "over_years")]
+
+# We thus expect a warning subtitle for the second row of `risk_warning`
+# but not the first row.
+plot_risk_no_add_no_prog(risk_warning)
+```
+
+## Color schemes
+
+`plot_risk()`
+supports two color schemes:
+
+- `"single"`
+- `"categories"`
+
+### Single-color plots
+
+For `color_scheme = "single"`, `color_dat` should be a single color
+value.
+
+```{r color-single}
+plot_risk_no_add_no_prog(
+  risk_10_year,
+  color_scheme = "single",
+  color_dat = "#1b9e77"
+)
+```
+
+You can also specify the color using a named color or call to
+[`rgb()`](https://rdrr.io/r/grDevices/rgb.html), as long as the result
+is a single color value.
+
+```{r color-single-named}
+plot_risk_no_add_no_prog(
+  risk_10_year,
+  color_scheme = "single",
+  color_dat = "mediumorchid4"
+)
+
+plot_risk_no_add_no_prog(
+  risk_10_year,
+  color_scheme = "single",
+  color_dat = rgb(0.8, 0.6, 0.7)
+)
+```
+
+### Category-based plots
+
+For `color_scheme = "categories"`, `color_dat` should be a data frame
+with columns `threshold` and `color`.
+
+The rules are:
+
+- you can supply up to three user-defined threshold-color pairs
+- thresholds should fall strictly between 0.001 and 0.999
+- duplicated, missing, or out-of-range thresholds are discarded
+- the remaining threshold-color pairs are sorted by threshold value
+- a final catch-all category is always created for values at or above
+  the highest valid threshold, using `color_for_last_group`
+
+```{r color-dat}
+color_dat <- data.frame(
+  threshold = c(0.20, 0.30, 0.40),
+  color = c("#1db8b8", "#d70b9a", "#799dfa")
+)
+```
+
+```{r color-categories}
+plot_risk_no_add_no_prog(
+  risk_30_year,
+  color_scheme = "categories",
+  color_dat = color_dat
+)
+```
+
+The final risk group, meaning values at or above the highest valid
+threshold, uses `color_for_last_group`.
+
+```{r color-last-group}
+plot_risk_no_add_no_prog(
+  risk_30_year,
+  color_scheme = "categories",
+  color_dat = color_dat,
+  color_for_last_group = rgb(25, 25, 112, maxColorValue = 255)
+)
+```
+
+### Cleaning threshold input
+
+`plot_risk()`
+cleans category-threshold input by removing invalid or duplicate
+thresholds and sorting the remaining threshold-color pairs.
+
+```{r color-categories-cleaning}
+# Note: The "messy" aspect here pertains to the thresholds being
+# out of order. The colors are fine, because any valid color value
+# is accepted, including a mixture of named colors, hex codes, and
+# calls to `rgb()`.
+color_dat_messy <- data.frame(
+  threshold = c(0.375, 0.175, 0.275),
+  color = c(rgb(0.5, 0.3, 0.9), "#1c1c69", "brown4")
+)
+
+plot_risk_no_add_no_prog(
+  risk_30_year,
+  color_scheme = "categories",
+  color_dat = color_dat_messy
+)
+```
+
+## Legend and threshold-line controls
+
+The arguments `legend`, `lines`, and `line_text` are only used when
+`color_scheme = "categories"`.
+
+### Removing the legend
+
+```{r categories-no-legend}
+plot_risk_no_add_no_prog(
+  risk_30_year,
+  color_scheme = "categories",
+  color_dat = color_dat,
+  legend = FALSE
+)
+```
+
+### Removing the dashed threshold lines
+
+```{r categories-no-lines}
+plot_risk_no_add_no_prog(
+  risk_30_year,
+  color_scheme = "categories",
+  color_dat = color_dat,
+  lines = FALSE
+)
+```
+
+### Keeping lines but removing line text
+
+```{r categories-no-line-text}
+plot_risk_no_add_no_prog(
+  risk_30_year,
+  color_scheme = "categories",
+  color_dat = color_dat,
+  line_text = FALSE
+)
+```
+
+## Base font size
+
+You can adjust the overall text size with `base_size`.
+
+```{r base-size}
+plot_risk_no_add_no_prog(risk_10_year, base_size = 14)
+```
+
+## Multiple time horizons in one data frame
+
+If one data frame contains more than one value of `over_years`
+`plot_risk()`
+splits internally by time horizon before plotting.
+
+With `add_to_dat = FALSE`, this yields plot objects directly. With
+`add_to_dat = TRUE`, this simply means the plot objects in the `plot`
+list-column correctly correspond to the given row (i.e., the row for the
+10-year time horizon contains the plot for the 10-year time horizon, and
+the row for the 30-year time horizon contains the plot for the 30-year
+time horizon).
+
+```{r multiple-horizons}
+plots_by_horizon <- plot_risk_no_add_no_prog(risk_both)
+
+length(plots_by_horizon)
+```
+
+```{r multiple-horizons-plot-10}
+plots_by_horizon[[1]]
+```
+
+```{r multiple-horizons-plot-30}
+plots_by_horizon[[2]]
+```
+
+## Multiple people in one data frame
+
+If one data frame contains multiple people or instances, `preventr_id`
+is required so
+`plot_risk()`
+can split the data correctly.
+
+```{r multiple-people}
+plots_by_person <- plot_risk_no_add_no_prog(manual_multi)
+length(plots_by_person)
+```
+
+```{r multiple-people-plot-1}
+plots_by_person[[1]]
+```
+
+```{r multiple-people-plot-2}
+plots_by_person[[2]]
+```
+
+This works in concert with multiple time horizons in one data frame, as
+shown in the `manual_multi_with_pce` example. This data frame contains
+risk estimates for two people. The first person has a single row
+reflecting the 10-year time horizon from the base model of the PREVENT
+equations. The second person has three rows: One row is the 10-year time
+horizon from the base model of the PREVENT equations adding social
+deprivation index (SDI), one row is the 10-year time horizon from the
+original PCEs, and one row is the 30-year time horizon from the base
+model of the PREVENT equations adding SDI.
+
+```{r manual-multi-with-pce-table}
+knitr::kable(manual_multi_with_pce)
+```
+
+Because plotting is separated by individual and time horizon, one would
+expect 3 *unique* plots: One for the first person and two for the second
+person (one for the 10-year time horizon and one for the 30-year time
+horizon). However, to maintain tidy data, the 10-year time horizon plot for
+the second person is repeated across their corresponding two rows for
+their 10-year time horizon.
+
+```{r multiple-people-multiple-horizons-plot}
+plots_by_person_and_horizon <- plot_risk(
+  manual_multi_with_pce,
+  progress = FALSE
+)
+
+# Should be `TRUE` because the 10-year plot for the second person is 
+# repeated across their two rows for the 10-year time horizon.
+identical(
+  plots_by_person_and_horizon$plot[[2]],
+  plots_by_person_and_horizon$plot[[3]]
+)
+
+# Expect identicality between 2 and 3; expect differences otherwise
+plots_by_person_and_horizon$plot
+```
+
+## Working with a list of data frames
+
+A list of data frames is also valid input, as long as it adheres to the
+output schema of `est_risk()`.
+
+### Returning a list of data frames with plots attached
+
+When `risk_dat` is a list of data frames, `add_to_dat = TRUE`, and
+`collapse = FALSE`, the output remains a list.
+
+```{r list-input-uncollapsed-plot}
+list_with_plots <- plot_risk_no_add_no_prog(manual_list)
+length(list_with_plots)
+
+list_with_plots
+```
+
+### Collapsing a list input to one data frame
+
+When `risk_dat` is a list of data frames, `add_to_dat = TRUE`, and
+`collapse = TRUE`, the output is collapsed into one data frame.
+Remember, `add_to_dat` is `TRUE` by default, so the main thing to note
+here is that `collapse` matters for list input when `add_to_dat = TRUE`.
+Given the intent of this example, note the use of
+`plot_risk()`
+and not `plot_risk_no_add_no_prog()`, because the former defaults to
+`add_to_dat = TRUE` while the latter defaults to `add_to_dat = FALSE`.
+
+```{r list-input-collapsed}
+collapsed_list_with_plots <- plot_risk(
+  manual_list,
+  collapse = TRUE,
+  progress = FALSE
+)
+
+collapsed_list_with_plots[, c("model", "over_years")]
+```
+
+```{r list-input-collapsed-plot}
+collapsed_list_with_plots$plot[[1]]
+```
+
+### Returning only the plots from a list input
+
+When `add_to_dat = FALSE`, `collapse` is functionally irrelevant for the
+return format and the returned value is a list of plot objects. This
+example will again use
+`plot_risk()`
+instead of `plot_risk_no_add_no_prog()` given its intent.
+
+```{r list-input-plots-direct}
+direct_list_plots <- plot_risk(
+  manual_list,
+  add_to_dat = FALSE,
+  progress = FALSE
+)
+
+length(direct_list_plots)
+```
+
+```{r list-input-plots-direct-plot}
+direct_list_plots[[2]]
+```
+
+### Malformed list input is not accepted
+
+When `risk_dat` is a list of data frames, the structure of the list and
+the data frames within it must match the output schema of `est_risk()`.
+The following examples show some ways that malformed list input is not
+accepted. These examples will again use
+`plot_risk()`
+instead of `plot_risk_no_add_no_prog()` given their intent.
+
+```{r malformed-list-names, error = TRUE}
+# When `risk_dat` is a list of data frames, the names of the list
+# elements must be "risk_est_10yr" and "risk_est_30yr". This input
+# violates that requirement.
+malformed_list_names <- manual_list
+
+names(malformed_list_names) <- c("ten_year", "thirty_year")
+
+plot_risk(malformed_list_names)
+```
+
+```{r malformed-list-too-many-rows, error = TRUE}
+# When `risk_dat` is a list of data frames, there must be no more than 3
+# rows for the 10-year estimates and no more than 1 row for the 30-year
+# estimates. This input violates that requirement.
+malformed_list_more_than_one_person <- manual_list
+
+malformed_list_more_than_one_person$risk_est_10yr <- rbind(
+  malformed_list_more_than_one_person$risk_est_10yr,
+  manual_multi |> dplyr::select(-preventr_id),
+  manual_multi |> dplyr::select(-preventr_id)
+)
+
+plot_risk(malformed_list_more_than_one_person)
+```
+
+```{r malformed-list-preventr-id, error = TRUE}
+# When `risk_dat` is a list of data frames, the column `preventr_id` must
+# not be present. This input violates that requirement.
+malformed_list_preventr_id_preset <- manual_list
+malformed_list_preventr_id_preset$risk_est_10yr$preventr_id <- 1L
+malformed_list_preventr_id_preset$risk_est_30yr$preventr_id <- 1L
+
+plot_risk(malformed_list_preventr_id_preset)
+```
+
+## Strict logical arguments
+
+Several behavior arguments are intentionally strict logicals. For these
+arguments, values such as `1` and `0` are not treated as acceptable
+stand-ins for `TRUE` and `FALSE`. These arguments include:
+
+- `add_to_dat`
+- `collapse`
+- `progress`
+- `legend`
+- `lines`
+- `line_text`
+
+## Viewing data frames with plots as a list column
+
+When `ggplot2` 4.0.0 was first released, one of the big changes was
+rewriting things "under the hood" to move from S3 to S7 (see here for additional detail if interested: https://tidyverse.org/blog/2025/09/ggplot2-4-0-0/). This originally
+resulted in problems with various methods to view data frames depending
+on the IDE (see here for additional detail if interested:
+<https://github.com/tidyverse/ggplot2/issues/6732>). The good news is the underlying data were never negatively impacted, but as you can imagine, not being able to reliably view data frames with plots as a list column is not ideal. As such, `preventr` tries to warn if it detects this might be an issue with your setup, but this is kind of tricky to do given - among other things - the different view functions are inherently interactive. As such, `preventr` does not attempt to cover every single use case, especially considering this issue should now be fixed if you are using the latest versions of `ggplot2`, your IDE, and R. If you find an exception and confirm it is due to the aforementioned issue, feel free to let me know, but more importantly, let the good folks behind `ggplot2` know.
+
+## Notes on `progress`
+
+The `progress` argument controls whether a progress bar is displayed
+during execution. In ordinary interactive use, this is mostly relevant
+when `risk_dat` is a data frame and there are multiple plotting units to
+iterate over.
+
+This vignette does not focus on the progress bar visually, because it
+does not change the data requirements, return structure, or plot
+appearance.
+
+## Summary
+
+`plot_risk()`
+is easiest to use when you start from
+`est_risk()`,
+but it is flexible enough to support valid manual input and list-based
+workflows.
+
+The main points are:
+
+- if you opt not to start from `est_risk()`, your input still needs to match the output schema of `est_risk()`.
+- `model` and `over_years` are part of the minimum schema for manual
+  input.
+- `preventr_id` is required when one data frame contains multiple people.
+- when `risk_dat` is a data frame, the default is to add a `plot`
+  list-column.
+- `collapse` matters for list input when `add_to_dat = TRUE`.
+- when you want to foreground the graphics immediately, `add_to_dat = FALSE` is
+  often the clearest choice, but you can always extract the plot objects from the data frame when the data frame was made with a call where `add_to_dat = TRUE`.
+- category-based coloring gives control over thresholds,
+  legends, and reference lines.

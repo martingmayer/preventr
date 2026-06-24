@@ -39,7 +39,10 @@ This vignette shows how you can use a data frame with `preventr`. This has alway
 
 Let's start by defining some data to use.
 ```{r}
-make_vignette_dat <- function(n = 10, add_time_and_model = FALSE) {
+make_vignette_dat <- function(add_time_and_model = FALSE) {
+  
+  n <- 10
+  
   dat <- dplyr::tibble(
     # I am specifying `age`, `sex`, `egfr`, and `bmi` manually while letting
     # other parameters vary via `sample()` to facilitate later aspects of this

@@ -48,7 +48,10 @@
 ##~~ # PREVENT equations coeffs. ----
 ##~~ # From supplemental Excel file associated with
 ##~~ # https://doi.org/10.1161/CIRCULATIONAHA.123.067626
-##~~ 
+##~~ # But with simplification in preparation for import, and also with
+##~~ # correction of age * HDL interaction term label typo from
+##~~ # "Age per 10yr * HDL-C per 1 mml/L" to "Age per 10yr * HDL-C per 0.3 mmol/L".
+##~~ # Other changes to contents appear in code below.
 ##~~ prevent_equations_coeffs <- file.path(
 ##~~   dirname(here::here()),
 ##~~   "prevent_equations_data/prevent_equations_simplified_coeffs.xlsx"
@@ -113,4 +116,3 @@
 ##~~     internal = TRUE
 ##~~   )
 ##~~ )
-##~~ 

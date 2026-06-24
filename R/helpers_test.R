@@ -332,7 +332,15 @@ tibble_of_nas <- function(input_probs = NULL) {
 }
 
 # Helper fx to make data (for testing use of a data.frame with the package)
-make_dat <- function(n = 100, add_time_and_model = TRUE, add_other_behavior_vars = FALSE) {
+make_dat <- function(
+    n = 100, 
+    add_time_and_model = TRUE, 
+    add_other_behavior_vars = FALSE,
+    include_invalid_vals = FALSE
+) {
+  
+  get_sample_of_observations <- function(n = 2, num = dat$preventr_id) sample(num, n)
+  
   dat <- dplyr::tibble(
     # Note `preventr_id` column here; will use to re-associate the results with
     # the data.frame later for testing
@@ -378,6 +386,23 @@ make_dat <- function(n = 100, add_time_and_model = TRUE, add_other_behavior_vars
     )
   )
   
+  if(include_invalid_vals) {
+    dat$age[get_sample_of_observations()] <- 99999999
+    dat$sex[get_sample_of_observations()] <- "unknown"
+    dat$sbp[get_sample_of_observations()] <- -12345
+    dat$bp_tx[get_sample_of_observations()] <- NA
+    dat$total_c[get_sample_of_observations()] <- 99999999
+    dat$hdl_c[get_sample_of_observations()] <- -99999
+    dat$statin[get_sample_of_observations()] <- NA
+    dat$dm[get_sample_of_observations()] <- NA
+    dat$smoking[get_sample_of_observations()] <- NA
+    dat$egfr[get_sample_of_observations()] <- -50
+    dat$bmi[get_sample_of_observations()] <- 0
+    dat$hba1c[get_sample_of_observations()] <- -10
+    dat$uacr[get_sample_of_observations()] <- -100
+    dat$zip[get_sample_of_observations()] <- "zippidy doo da"
+  } 
+  
   if(add_time_and_model) {
     dat <- dat %>% 
       dplyr::mutate(
@@ -397,6 +422,25 @@ make_dat <- function(n = 100, add_time_and_model = TRUE, add_other_behavior_vars
         ),
         time = sample(c("10yr", "30yr", "both"), n, replace = TRUE)
       )
+    
+    if(include_invalid_vals) {
+      dat$model[get_sample_of_observations(1)] <- list(list(
+        main_model = "invalid_model", 
+        other_models = "pce_rev", 
+        race_eth = "w"
+      ))
+      dat$model[get_sample_of_observations(1)] <- list(list(
+        main_model = NULL, 
+        other_models = "pce_eeee", 
+        race_eth = "b"
+      ))
+      dat$model[get_sample_of_observations(1)] <- list(list(
+        main_model = NULL, 
+        other_models = "pce_both", 
+        race_eth = "invalid_entry"
+      ))
+      dat$time[get_sample_of_observations()] <- "not_a_time"
+    }
   }
   
   if(add_other_behavior_vars) {
@@ -406,6 +450,10 @@ make_dat <- function(n = 100, add_time_and_model = TRUE, add_other_behavior_vars
         optional_strict = sample(c(TRUE, FALSE), n, replace = TRUE),
         quiet = sample(c(TRUE, FALSE), n, replace = TRUE)
       )
+    
+    if(include_invalid_vals) {
+      dat$chol_unit[get_sample_of_observations()] <- "invalid_unit"
+    }
   }
   
   dat
@@ -647,5 +695,31 @@ make_prep_dat <- function(age = 65,
     hba1c = hba1c,
     uacr = uacr,
     zip = zip
+  )
+}
+
+plot_risk_no_add_prog <- function(
+    risk_dat,
+    add_to_dat = FALSE,
+    progress = FALSE,
+    ...
+) {
+  plot_risk(
+    risk_dat = risk_dat,
+    add_to_dat = add_to_dat,
+    progress = progress,
+    ...
+  )
+}
+
+plot_risk_no_prog <- function(
+    risk_dat,
+    progress = FALSE,
+    ...
+) {
+  plot_risk(
+    risk_dat = risk_dat,
+    progress = progress,
+    ...
   )
 }

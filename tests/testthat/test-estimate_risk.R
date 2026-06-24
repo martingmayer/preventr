@@ -2604,7 +2604,14 @@ test_that("args `use_dat` and `add_to_dat` behave as intended, `optional_strict`
   # (i.e., `quiet = TRUE` for rows 1, 3, 5, 7, 9)
   expect_no_message(est_risk(use_dat = dat, progress = FALSE))
   expect_message(
-    est_risk(use_dat = make_dat(4), quiet = FALSE, progress = FALSE),
+    est_risk(
+      use_dat = make_dat(4) %>% 
+        dplyr::mutate(
+          age = dplyr::case_when(age > 59 ~ 59, .default = age)
+        ), 
+      quiet = FALSE, 
+      progress = FALSE
+    ),
     "PREVENT estimates are from"
   )
   
@@ -2645,6 +2652,73 @@ test_that("args `use_dat` and `add_to_dat` behave as intended, `optional_strict`
       )
     }
   }
+})
+
+test_that("passing data frame to `age` works as intended", {
+  dat <- make_dat(10, add_time_and_model = FALSE, add_other_behavior_vars = FALSE)
+
+  res_use_dat <- est_risk(use_dat = dat, progress = FALSE)
+  res_age <- est_risk(age = dat, progress = FALSE)
+  res_first_arg <- est_risk(dat, progress = FALSE)
+  res_first_arg_use_dat_is_not_a_data_frame <- est_risk(
+    dat, 
+    use_dat = "potato", 
+    progress = FALSE
+  )
+
+  expect_identical(res_use_dat, res_age)
+  expect_identical(res_use_dat, res_first_arg)
+  expect_identical(res_use_dat, res_first_arg_use_dat_is_not_a_data_frame)
+
+  res_df_for_both <- est_risk(
+    age = data.frame(a = "nope"), 
+    use_dat = dat, 
+    progress = FALSE
+  )
+
+  expect_all_equal(
+    with(res_df_for_both, c(total_cvd, ascvd, heart_failure, chd, stroke)), 
+    NA_real_
+  )
+
+  expect_all_equal(
+    res_df_for_both[["input_problems"]], 
+    paste0(
+      "`age` entered as the invalid column name `data.frame(a = \"nope\")` ",
+      "in conjunction with `use_dat = TRUE`; as such, no values were passed for `age`, ",
+      "but must be between 30 and 79 for the PREVENT models"
+    )
+  )
+
+  res_df_for_first_arg_plus_age <- est_risk(
+    dat, 
+    age = "years_old", 
+    # Doing `quiet = TRUE` and `collapse = TRUE`
+    # b/c this return will end up being a list of data frames,
+    # thus meaning `quiet` will default to `FALSE`, and want
+    # return to be a single data frame
+    quiet = TRUE, 
+    collapse = TRUE
+  )
+
+  expect_all_equal(
+    with(res_df_for_first_arg_plus_age, c(total_cvd, ascvd, heart_failure, chd, stroke)), 
+    NA_real_
+  )
+
+  expect_all_true(
+    grepl(
+      "`age` entered as \"years_old\", but must be between 30 and 79 for the PREVENT models",
+      res_df_for_first_arg_plus_age[["input_problems"]], 
+    )
+  )
+
+  expect_all_true(
+    grepl(
+      "`sex` entered as structure",
+      res_df_for_first_arg_plus_age[["input_problems"]], 
+    )
+  )
 })
 
 test_that("further testing of use of data frame", {

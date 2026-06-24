@@ -4,6 +4,7 @@
 # preventr <img src="man/figures/logo.png" align="right" height="120" alt="" />
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 ## Why `preventr`?
@@ -79,8 +80,8 @@ You can install the development version of `preventr` from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("martingmayer/preventr")
+# install.packages("pak") # if you don't have pak installed already
+pak::pak("martingmayer/preventr")
 ```
 
 ## Using `preventr`
@@ -88,12 +89,12 @@ devtools::install_github("martingmayer/preventr")
 Despite the work it does, I designed `preventr` with the goal of having
 a simple, intuitive API. The “workhorses” are “behind the scenes”,
 culminating in one function (and synonym) being exposed to the user for
-estimation of risk:
-
-- `estimate_risk()` (or `est_risk()`)
+estimation of risk and one function being exposed to the user for
+plotting risk. These are: `estimate_risk()` (or `est_risk()`) and
+`plot_risk()`.
 
 ``` r
-# Very basic example; see function documentation for much more detail and
+# Very basic examples; see function documentation and vignettes for much more detail and
 # many more examples
 # 
 # If the package is loaded (e.g., `library(preventr)`) or the function is made 
@@ -103,7 +104,7 @@ estimation of risk:
 # helpful for clarity of code, for avoiding potential namespace conflicts, etc. 
 # However, a full discussion of pros and cons and when one approach might be
 # favored over another is beyond the scope of this package or this comment.
-preventr::estimate_risk(
+risk <- preventr::estimate_risk(
   age = 50,
   sex = "female",
   sbp = 160,
@@ -114,21 +115,30 @@ preventr::estimate_risk(
   dm = TRUE,
   smoking = FALSE,
   egfr = 90,
-  bmi = 35
+  bmi = 35,
+  collapse = TRUE
 )
 #> PREVENT estimates are from: Base model.
-#> $risk_est_10yr
-#> # A tibble: 1 × 8
+
+risk
+#> # A tibble: 2 × 8
 #>   total_cvd ascvd heart_failure   chd stroke model over_years input_problems
 #>       <dbl> <dbl>         <dbl> <dbl>  <dbl> <chr>      <int> <chr>         
 #> 1     0.147 0.092         0.081 0.044  0.054 base          10 <NA>          
-#> 
-#> $risk_est_30yr
-#> # A tibble: 1 × 8
-#>   total_cvd ascvd heart_failure   chd stroke model over_years input_problems
-#>       <dbl> <dbl>         <dbl> <dbl>  <dbl> <chr>      <int> <chr>         
-#> 1      0.53 0.354          0.39 0.198  0.221 base          30 <NA>
+#> 2     0.53  0.354         0.39  0.198  0.221 base          30 <NA>
+
+plots <- preventr::plot_risk(risk, progress = FALSE)
+
+plots$plot
+#> [[1]]
 ```
+
+<img src="man/figures/README-risk-1.png" alt="" width="100%" />
+
+    #> 
+    #> [[2]]
+
+<img src="man/figures/README-risk-2.png" alt="" width="100%" />
 
 ## There’s an app for that
 
@@ -141,6 +151,7 @@ available at:
 
 Easier-to-remember URLs:
 
+- <https://tiny.cc/preventrapp>
 - [https://tiny.cc/prevent-equations](https://martingmayer.shinyapps.io/prevent-equations)
 - [https://tiny.cc/preventequations](https://martingmayer.shinyapps.io/prevent-equations)
 
@@ -187,15 +198,30 @@ If you use `preventr` in your work, please cite the package as follows:
 
 ``` r
 citation("preventr")
+#> To cite package 'preventr' in publications use:
+#> 
+#>   Mayer M (2026). _preventr: An Implementation of the PREVENT and
+#>   Pooled Cohort Equations_. R package version 0.12.0,
+#>   <https://martingmayer.com/preventr>.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Manual{,
+#>     title = {preventr: An Implementation of the PREVENT and Pooled Cohort Equations},
+#>     author = {Martin Mayer},
+#>     year = {2026},
+#>     note = {R package version 0.12.0},
+#>     url = {https://martingmayer.com/preventr},
+#>   }
 ```
 
 ## Acknowledgments
 
-This package would, of course, not be possible without the efforts from
-the authors of the PREVENT equations. Additionally, the Social
-Deprivation Index (SDI) is a key element informing the PREVENT
-equations. Citations for both appear below, as does acknowledgment of
-the other packages and software I used in creating `preventr`.
+This package would not be possible without the efforts from the authors
+of the PREVENT equations. Additionally, the Social Deprivation Index
+(SDI) is a key element informing the PREVENT equations. Citations for
+both appear below, as does acknowledgment of the other packages and
+software I used in creating `preventr`.
 
 **The PREVENT equations**
 
@@ -215,7 +241,11 @@ Validation of the American Heart Association’s PREVENT Equations.
 Social deprivation index (SDI). Robert Graham Center - Policy Studies in
 Family Medicine & Primary Care. (2018, November 5). Retrieved December
 13, 2023, from
-<https://www.graham-center.org/maps-data-tools/social-deprivation-index.html>.
+<https://web.archive.org/web/20231213195628/https://www.graham-center.org/maps-data-tools/social-deprivation-index.html>.
+I now cite the Wayback Machine version from the Internet Archive because
+the original page URL (visible within the Wayback Machine URL) has been
+permanently redirected to
+<https://www.graham-center.org/evidence-based-research/featured-work/social-deprivation-index>.
 
 **Other literature, packages, and software**
 

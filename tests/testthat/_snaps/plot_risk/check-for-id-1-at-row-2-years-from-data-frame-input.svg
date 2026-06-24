@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' data-engine-version='2.0' width='720.00pt' height='576.00pt' viewBox='0 0 720.00 576.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='576.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
+<rect x='0.00' y='0.00' width='720.00' height='576.00' style='stroke-width: 1.16; stroke: none; fill: #FFFFFF;' />
+</g>
+<defs>
+  <clipPath id='cpNC45OHw3MTcuMDF8NDYuOTB8NTMzLjIx'>
+    <rect x='4.98' y='46.90' width='712.03' height='486.31' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNC45OHw3MTcuMDF8NDYuOTB8NTMzLjIx)'>
+<rect x='6.34' y='107.69' width='644.84' height='364.73' style='stroke-width: 1.16; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #EAEAEA;' />
+<rect x='6.34' y='107.69' width='187.65' height='364.73' style='stroke-width: 1.16; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #3C8DBC;' />
+</g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpNC45OHw3MTcuMDF8MzIuMzN8NDYuOTA='>
+    <rect x='4.98' y='32.33' width='712.03' height='14.58' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNC45OHw3MTcuMDF8MzIuMzN8NDYuOTA=)'>
+<text x='4.98' y='41.92' style='font-size: 9.60px; fill: #1A1A1A; font-family: sans;' textLength='132.87px' lengthAdjust='spacingAndGlyphs'>ASCVD (revised PCEs): 29.1%</text>
+</g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
+<text x='4.98' y='17.38' style='font-size: 14.40px; font-family: sans;' textLength='192.11px' lengthAdjust='spacingAndGlyphs'>Risk Estimates Over 10 Years</text>
+<text x='4.98' y='545.80' style='font-size: 9.60px; font-family: sans;' textLength='0.00px' lengthAdjust='spacingAndGlyphs'></text>
+<text x='4.98' y='556.17' style='font-size: 9.60px; font-family: sans;' textLength='0.00px' lengthAdjust='spacingAndGlyphs'></text>
+<text x='4.98' y='566.54' style='font-size: 9.60px; font-family: sans;' textLength='208.67px' lengthAdjust='spacingAndGlyphs'>Estimates are from the Pooled Cohort Equations.</text>
+</g>
+</svg>

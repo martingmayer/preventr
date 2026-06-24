@@ -2,36 +2,32 @@
 
 0 errors | 0 warnings | 0 notes
 
-This is an update to the preventr package (0.10.0 --> 0.11.0). The updates consist of
-added functionality, and there are no breaking changes. All changes noted below
-apply to the package's main function, `estimate_risk()`, and its synonym,
-`est_risk()`. Where applicable, I have also made changes to the corresponding
-Shiny app.
+This is an update to the preventr package (0.11.0 --> 0.12.0). The updates consist of
+added functionality. There are no breaking changes or other threats to backwards
+compatibility.
 
-Briefly, this update adds support for comparing the PREVENT risk estimates with 
-the estimates from the original Pooled Cohort Equations released by the
-American College of Cardiology and American Heart Association in 2013 or the 
-Revised Pooled Cohort Equations released by Yadlowsky and colleagues in 2018. I 
-have also added the argument `collapse` to the function to give the user the 
-option of collapsing results comprised of a list of data frames into a single 
-data frame. I have also added the arguments `use_dat` and `add_to_dat`. 
-Argument `use_dat` introduces the option to pass a data frame to the function
-instead of specifying each predictor variable (whether required or optional),
-and passing a data frame also allows the user to activate row-by-row alteration
-of the function's behavior. Argument `add_to_dat` gives the option to join the
-return data frame with the data frame passed to `use_dat`. The function also 
-gains the argument `progress` to give users the option of displaying a progress
-bar when `use_dat` is a data frame. All these changes are, of course, coupled 
-with considerable additional documentation, examples, and tests.
+This version introduces the function `plot_risk()` with corresponding documentation,
+a vignette, and suite of tests. This version also introduces the option to pass a data
+frame as the first argument of `estimate_risk()` / `est_risk()`, such that a call of
+`est_risk(df)` becomes `est_risk(use_dat = df)` in the background.
 
-In addition to these user-visible changes, I have also made internal changes,
+In addition to these user-visible changes, I have also made some internal changes,
 as reflected in NEWS.md.
 
-I have run multiple checks in addition to checking locally. Checks either pass
-with no errors, warnings, or notes, or they pass with false-positive notes
-(for example, signaling possible invalid URLs or misspellings and noting the
-jump in version), hence my summary above of 0 errors, 0 warnings, and 0 notes.
+I have run multiple checks in addition to checking locally, with rhub v2, and
+`devtools::check_win_*` functions (`devtools::check_mac_*` returned a 502 / bad
+gateway error before submitting the package for testing, but checks for Mac on 
+rhub v2 succeeded). Checks pass with no errors, warnings, or notes.
 
 Thank you again for your time and review. Once I receive confirmation of 
 acceptance from CRAN, I will promote this version from dev to main in my GitHub 
 repository with this version number.
+
+## revdepcheck results
+
+I checked 1 reverse dependency, comparing R CMD check results across CRAN and dev versions of this package.
+
+ * There were 0 new problems
+ * I checked all packages with a reverse dependency
+
+
