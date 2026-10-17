@@ -20,8 +20,8 @@ knitr::opts_chunk$set(
 
 ## Why `preventr`?
 
-The main goal of `preventr` is to implement the [Predicting Risk of cardiovascular disease EVENTs (PREVENT) equations](https://pubmed.ncbi.nlm.nih.gov/37947085), released in 2023 by the American Heart Association (AHA). It also permits comparison of the PREVENT equations with their *de facto* predecessor, the Pooled Cohort Equations (PCEs). The PCEs were originally released in 2013 as part of the American College of Cardiology (ACC)/AHA Guideline on the [Assessment of Cardiovascular Risk](https://pubmed.ncbi.nlm.nih.gov/24222018), and they were revised
-by [Yadlowsky and colleagues in 2018](https://pubmed.ncbi.nlm.nih.gov/29868850/), though these revisions were never endorsed by the ACC/AHA.
+The main goal of `preventr` is to implement the [Predicting Risk of cardiovascular disease EVENTs (PREVENT) equations](https://doi.org/10.1161/circulationaha.123.067626), released in 2023 by the American Heart Association (AHA). It also permits comparison of the PREVENT equations with their *de facto* predecessor, the Pooled Cohort Equations (PCEs). The PCEs were originally released in 2013 as part of the American College of Cardiology (ACC)/AHA Guideline on the [Assessment of Cardiovascular Risk](https://doi.org/10.1161/01.cir.0000437741.48606.98), and they were revised
+by [Yadlowsky and colleagues in 2018](https://doi.org/10.7326/m17-3011), though these revisions were never endorsed by the ACC/AHA.
 
 The PREVENT equations are a large collection of predictive/prognostic models for predicting the risk of cardiovascular disease events over the next 10 and 30 years. Specifically, estimation includes both 10- and 30-year risk of 5 events:
 
@@ -49,7 +49,7 @@ Finally, there are separate models for 10- and 30-year risks, bringing the grand
 
 `preventr` takes care of all of that for you. This includes selecting among the 5 model "types", but there is an option to specify this yourself if you want. The example below gives a quick overview, but the function documentation has much more detail, including many more examples.
 
-`preventr` also permits estimation of 10-year ASCVD risk from the PCEs, but of note, the PREVENT equations have better calibration than the PCEs, as demonstrated in the [original article describing the derivation and validation of the PREVENT equations](https://pubmed.ncbi.nlm.nih.gov/37947085). 
+`preventr` also permits estimation of 10-year ASCVD risk from the PCEs, but of note, the PREVENT equations have better calibration than the PCEs, as demonstrated in the [original article describing the derivation and validation of the PREVENT equations](https://doi.org/10.1161/circulationaha.123.067626). 
 
 ## Installation
 
@@ -113,8 +113,8 @@ In addition to the R package, I created a Shiny app that is driven by the `preve
 Easier-to-remember URLs: 
 
 - [https://tiny.cc/preventrapp](https://tiny.cc/preventrapp)
-- [https://tiny.cc/prevent-equations](https://martingmayer.shinyapps.io/prevent-equations)
-- [https://tiny.cc/preventequations](https://martingmayer.shinyapps.io/prevent-equations)
+- [https://tiny.cc/prevent-equations](https://tiny.cc/prevent-equations)
+- [https://tiny.cc/preventequations](https://tiny.cc/preventequations)
 
 Calling `preventr::app()` will also open the user's default browser and navigate to the Shiny app.
 
@@ -140,11 +140,11 @@ citation("preventr")
 
 ## Acknowledgments
 
-This package would not be possible without the efforts from the authors of the PREVENT equations. Additionally, the Social Deprivation Index (SDI) is a key element informing the PREVENT equations. Citations for both appear below, as does acknowledgment of the other packages and software I used in creating `preventr`. 
+This package would not be possible without the efforts from the authors of the PREVENT equations. Additionally, the Social Deprivation Index (SDI) is a key element informing the PREVENT equations. Thank you to the authors and maintainers of this work. Citations for both appear below, as does acknowledgment of the other packages and software I used in creating `preventr`. 
 
 **The PREVENT equations**
 
-Khan SS, Matsushita K, Sang Y, Ballew SH, Grams ME, Surapaneni A, Blaha MJ, Carson AP, Chang AR, Ciemins E, Go AS, Gutierrez OM, Hwang SJ, Jassal SK, Kovesdy CP, Lloyd-Jones DM, Shlipak MG, Palaniappan LP, Sperling L, Virani SS, Tuttle K, Neeland IJ, Chow SL, Rangaswami J, Pencina MJ, Ndumele CE, Coresh J; Chronic Kidney Disease Prognosis Consortium and the American Heart Association Cardiovascular-Kidney-Metabolic Science Advisory Group. Development and Validation of the American Heart Association's PREVENT Equations. [Circulation. 2024 Feb 6;149(6):430-449. Epub 2023 Nov 10.](https://pubmed.ncbi.nlm.nih.gov/37947085) 
+Khan SS, Matsushita K, Sang Y, Ballew SH, Grams ME, Surapaneni A, Blaha MJ, Carson AP, Chang AR, Ciemins E, Go AS, Gutierrez OM, Hwang SJ, Jassal SK, Kovesdy CP, Lloyd-Jones DM, Shlipak MG, Palaniappan LP, Sperling L, Virani SS, Tuttle K, Neeland IJ, Chow SL, Rangaswami J, Pencina MJ, Ndumele CE, Coresh J; Chronic Kidney Disease Prognosis Consortium and the American Heart Association Cardiovascular-Kidney-Metabolic Science Advisory Group. Development and Validation of the American Heart Association's PREVENT Equations. [Circulation. 2024 Feb 6;149(6):430-449. Epub 2023 Nov 10.](https://doi.org/10.1161/circulationaha.123.067626) 
 
 **Social Deprivation Index (SDI)**
 
@@ -154,9 +154,9 @@ Social deprivation index (SDI). Robert Graham Center - Policy Studies in Family 
 
 Estimation via the original and revised PCEs would not be possible without the efforts from the respective groups behind this work. Thank you to the authors of this work:
 
-- Goff DC Jr, Lloyd-Jones DM, Bennett G, Coady S, D'Agostino RB, Gibbons R, Greenland P, Lackland DT, Levy D, O'Donnell CJ, Robinson JG, Schwartz JS, Shero ST, Smith SC Jr, Sorlie P, Stone NJ, Wilson PW, Jordan HS, Nevo L, Wnek J, Anderson JL, Halperin JL, Albert NM, Bozkurt B, Brindis RG, Curtis LH, DeMets D, Hochman JS, Kovacs RJ, Ohman EM, Pressler SJ, Sellke FW, Shen WK, Smith SC Jr, Tomaselli GF; American College of Cardiology/American Heart Association Task Force on Practice Guidelines. 2013 ACC/AHA guideline on the assessment of cardiovascular risk: a report of the American College of Cardiology/American Heart Association Task Force on Practice Guidelines. [Circulation. 2014 Jun 24;129(25 Suppl 2):S49-73. doi: 10.1161/01.cir.0000437741.48606.98. Epub 2013 Nov 12.](https://pubmed.ncbi.nlm.nih.gov/24222018). Also co-published in [J Am Coll Cardiol. 2014 Jul 1;63(25 Pt B):2935-2959. doi: 10.1016/j.jacc.2013.11.005. Epub 2013 Nov 12.](https://pubmed.ncbi.nlm.nih.gov/24239921). 
+- Goff DC Jr, Lloyd-Jones DM, Bennett G, Coady S, D'Agostino RB, Gibbons R, Greenland P, Lackland DT, Levy D, O'Donnell CJ, Robinson JG, Schwartz JS, Shero ST, Smith SC Jr, Sorlie P, Stone NJ, Wilson PW, Jordan HS, Nevo L, Wnek J, Anderson JL, Halperin JL, Albert NM, Bozkurt B, Brindis RG, Curtis LH, DeMets D, Hochman JS, Kovacs RJ, Ohman EM, Pressler SJ, Sellke FW, Shen WK, Smith SC Jr, Tomaselli GF; American College of Cardiology/American Heart Association Task Force on Practice Guidelines. 2013 ACC/AHA guideline on the assessment of cardiovascular risk: a report of the American College of Cardiology/American Heart Association Task Force on Practice Guidelines. [Circulation. 2014 Jun 24;129(25 Suppl 2):S49-73. doi: 10.1161/01.cir.0000437741.48606.98. Epub 2013 Nov 12.](https://doi.org/10.1161/01.cir.0000437741.48606.98). Also co-published in [J Am Coll Cardiol. 2014 Jul 1;63(25 Pt B):2935-2959. doi: 10.1016/j.jacc.2013.11.005. Epub 2013 Nov 12.](https://doi.org/10.1016/j.jacc.2013.11.005). 
 
-- Yadlowsky S, Hayward RA, Sussman JB, McClelland RL, Min YI, Basu S. Clinical Implications of Revised Pooled Cohort Equations for Estimating Atherosclerotic Cardiovascular Disease Risk. [Ann Intern Med. 2018 Jul 3;169(1):20-29. doi: 10.7326/M17-3011. Epub 2018 Jun 5.](https://pubmed.ncbi.nlm.nih.gov/29868850).
+- Yadlowsky S, Hayward RA, Sussman JB, McClelland RL, Min YI, Basu S. Clinical Implications of Revised Pooled Cohort Equations for Estimating Atherosclerotic Cardiovascular Disease Risk. [Ann Intern Med. 2018 Jul 3;169(1):20-29. doi: 10.7326/M17-3011. Epub 2018 Jun 5.](https://doi.org/10.7326/m17-3011).
 
 `preventr` also uses the [`dplyr`](https://CRAN.R-project.org/package=dplyr) and [`zipcodeR`](https://CRAN.R-project.org/package=zipcodeR) packages, the latter of which is used entirely "behind the scenes" as a data set to help validate zip codes (and thus `zipcodeR` is not imported as part of using `preventr`). Thank you to the authors and maintainers of these packages. 
 

@@ -29,26 +29,27 @@ test_that("Base model works, female", {
 })
 
 test_that("HbA1c model works, female", {
+  # commented-out values are values before 2026 erratum
   expect_equal(
     estimate_risk_partial(hba1c = 9.2, quiet = TRUE),
     list(
       risk_est_10yr = dplyr::tibble(
-        total_cvd = 0.165, 
-        ascvd = 0.103, 
-        heart_failure = 0.107,
-        chd = 0.055, 
-        stroke = 0.053, 
+        total_cvd = 0.181, # 0.165  
+        ascvd = 0.112, # 0.103
+        heart_failure = 0.106, # 0.107
+        chd = 0.054, # 0.055 
+        stroke = 0.067, # 0.053
         model = "hba1c", 
         over_years = 10,
         input_problems = NA_character_
       ),
       
       risk_est_30yr = dplyr::tibble(
-        total_cvd = 0.541, 
-        ascvd = 0.356, 
-        heart_failure = 0.449,
-        chd = 0.219, 
-        stroke = 0.2, 
+        total_cvd = 0.557, # 0.541
+        ascvd = 0.378, # 0.356
+        heart_failure = 0.433, # 0.449
+        chd = 0.214, # 0.219
+        stroke = 0.241, # 0.2
         model = "hba1c", 
         over_years = 30,
         input_problems = NA_character_
@@ -116,26 +117,27 @@ test_that("SDI model works, female", {
 })
 
 test_that("Full model works, female", {
+  # commented-out values are values before 2026 erratum
   expect_equal(
     estimate_risk_partial(hba1c = 9.2, uacr = 92, zip = "14738", quiet = TRUE),
     list(
       risk_est_10yr = dplyr::tibble(
-        total_cvd = 0.174, 
-        ascvd = 0.105, 
-        heart_failure = 0.114,
-        chd = 0.056, 
-        stroke = 0.056, 
+        total_cvd = 0.181, # 0.174
+        ascvd = 0.112, # 0.105
+        heart_failure = 0.108, # 0.114
+        chd = 0.054, # 0.056
+        stroke = 0.067, # 0.056 
         model = "full", 
         over_years = 10,
         input_problems = NA_character_
       ),
       
       risk_est_30yr = dplyr::tibble(
-        total_cvd = 0.534, 
-        ascvd = 0.348, 
-        heart_failure = 0.443,
-        chd = 0.213, 
-        stroke = 0.204, 
+        total_cvd = 0.539, # 0.534
+        ascvd = 0.367, # 0.348
+        heart_failure = 0.42, # 0.443
+        chd = 0.21, # 0.213
+        stroke = 0.235, # 0.204, 
         model = "full", 
         over_years = 30,
         input_problems = NA_character_
@@ -174,26 +176,27 @@ test_that("Base model works, male", {
 })
 
 test_that("HbA1c model works, male", {
+  # commented-out values are values before 2026 erratum
   expect_equal(
     estimate_risk_partial(sex = "male", hba1c = 9.2, quiet = TRUE),
     list(
       risk_est_10yr = dplyr::tibble(
-        total_cvd = 0.187, 
-        ascvd = 0.112, 
-        heart_failure = 0.13,
-        chd = 0.063, 
-        stroke = 0.056, 
+        total_cvd = 0.185, # 0.187
+        ascvd = 0.117, # 0.112 
+        heart_failure = 0.124, # 0.13
+        chd = 0.061, # 0.063 
+        stroke = 0.063, # 0.056 
         model = "hba1c", 
         over_years = 10,
         input_problems = NA_character_
       ),
       
       risk_est_30yr = dplyr::tibble(
-        total_cvd = 0.524, 
-        ascvd = 0.34, 
-        heart_failure = 0.457,
-        chd = 0.211, 
-        stroke = 0.188, 
+        total_cvd = 0.525, # 0.524
+        ascvd = 0.36, # 0.34
+        heart_failure = 0.442, # 0.457
+        chd = 0.212, # 0.211
+        stroke = 0.214, # 0.188
         model = "hba1c", 
         over_years = 30,
         input_problems = NA_character_
@@ -261,26 +264,27 @@ test_that("SDI model works, male", {
 })
 
 test_that("Full model works, male", {
+  # commented-out values are values before 2026 erratum
   expect_equal(
     estimate_risk_partial(sex = "male", hba1c = 9.2, uacr = 92, zip = "14738", quiet = TRUE),
     list(
       risk_est_10yr = dplyr::tibble(
-        total_cvd = 0.191, 
-        ascvd = 0.112, 
-        heart_failure = 0.131,
-        chd = 0.068, 
-        stroke = 0.052, 
+        total_cvd = 0.185, # 0.191 
+        ascvd = 0.115, # 0.112 
+        heart_failure = 0.12, # 0.131
+        chd = 0.063, # 0.068
+        stroke = 0.058, # 0.052
         model = "full", 
         over_years = 10,
         input_problems = NA_character_
       ),
       
       risk_est_30yr = dplyr::tibble(
-        total_cvd = 0.513, 
-        ascvd = 0.326, 
-        heart_failure = 0.438,
-        chd = 0.216, 
-        stroke = 0.167, 
+        total_cvd = 0.509, # 0.513
+        ascvd = 0.345, # 0.326 
+        heart_failure = 0.42, # 0.438
+        chd = 0.214, # 0.216
+        stroke = 0.193, # 0.167
         model = "full", 
         over_years = 30,
         input_problems = NA_character_

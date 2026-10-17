@@ -22770,10 +22770,10 @@
              1.00000000        0.00000000        1.50000000        0.00000000 
           age_non_hdl_c         age_hdl_c   age_sbp_gte_110            age_dm 
              0.37900000       -0.02333333        1.50000000        1.00000000 
-            age_smoking    age_bmi_gte_30    age_egfr_lt_60          hba1c_dm 
-             0.00000000        1.00000000        0.00000000        3.20000000 
-            hba1c_no_dm     missing_hba1c          constant 
-             0.00000000        0.00000000        1.00000000 
+            age_smoking    age_bmi_gte_30    age_egfr_lt_60       hba1c_no_dm 
+             0.00000000        1.00000000        0.00000000        0.00000000 
+               hba1c_dm     missing_hba1c          constant 
+             3.20000000        0.00000000        1.00000000 
 
 ---
 
@@ -22834,8 +22834,8 @@
              0.00000000        1.00000000        0.00000000        0.00000000 
             sdi_7_to_10       missing_sdi           ln_uacr      missing_uacr 
              1.00000000        0.00000000        3.68887945        0.00000000 
-               hba1c_dm       hba1c_no_dm     missing_hba1c          constant 
-             3.20000000        0.00000000        0.00000000        1.00000000 
+            hba1c_no_dm          hba1c_dm     missing_hba1c          constant 
+             0.00000000        3.20000000        0.00000000        1.00000000 
 
 # Preparation of terms works - No BP tx
 
@@ -22870,10 +22870,10 @@
              0.00000000        0.00000000        0.00000000        0.00000000 
           age_non_hdl_c         age_hdl_c   age_sbp_gte_110            age_dm 
              0.37900000       -0.02333333        1.50000000        1.00000000 
-            age_smoking    age_bmi_gte_30    age_egfr_lt_60          hba1c_dm 
-             0.00000000        1.00000000        0.00000000        3.20000000 
-            hba1c_no_dm     missing_hba1c          constant 
-             0.00000000        0.00000000        1.00000000 
+            age_smoking    age_bmi_gte_30    age_egfr_lt_60       hba1c_no_dm 
+             0.00000000        1.00000000        0.00000000        0.00000000 
+               hba1c_dm     missing_hba1c          constant 
+             3.20000000        0.00000000        1.00000000 
 
 ---
 
@@ -22934,8 +22934,8 @@
              0.00000000        1.00000000        0.00000000        0.00000000 
             sdi_7_to_10       missing_sdi           ln_uacr      missing_uacr 
              1.00000000        0.00000000        3.68887945        0.00000000 
-               hba1c_dm       hba1c_no_dm     missing_hba1c          constant 
-             3.20000000        0.00000000        0.00000000        1.00000000 
+            hba1c_no_dm          hba1c_dm     missing_hba1c          constant 
+             0.00000000        3.20000000        0.00000000        1.00000000 
 
 # Preparation of terms works - No statin
 
@@ -22970,10 +22970,10 @@
              1.00000000        0.00000000        1.50000000        0.00000000 
           age_non_hdl_c         age_hdl_c   age_sbp_gte_110            age_dm 
              0.37900000       -0.02333333        1.50000000        1.00000000 
-            age_smoking    age_bmi_gte_30    age_egfr_lt_60          hba1c_dm 
-             0.00000000        1.00000000        0.00000000        3.20000000 
-            hba1c_no_dm     missing_hba1c          constant 
-             0.00000000        0.00000000        1.00000000 
+            age_smoking    age_bmi_gte_30    age_egfr_lt_60       hba1c_no_dm 
+             0.00000000        1.00000000        0.00000000        0.00000000 
+               hba1c_dm     missing_hba1c          constant 
+             3.20000000        0.00000000        1.00000000 
 
 ---
 
@@ -23034,8 +23034,8 @@
              0.00000000        1.00000000        0.00000000        0.00000000 
             sdi_7_to_10       missing_sdi           ln_uacr      missing_uacr 
              1.00000000        0.00000000        3.68887945        0.00000000 
-               hba1c_dm       hba1c_no_dm     missing_hba1c          constant 
-             3.20000000        0.00000000        0.00000000        1.00000000 
+            hba1c_no_dm          hba1c_dm     missing_hba1c          constant 
+             0.00000000        3.20000000        0.00000000        1.00000000 
 
 # Preparation of terms works - No DM
 
@@ -23070,10 +23070,10 @@
              1.00000000        0.00000000        1.50000000        0.00000000 
           age_non_hdl_c         age_hdl_c   age_sbp_gte_110            age_dm 
              0.37900000       -0.02333333        1.50000000        0.00000000 
-            age_smoking    age_bmi_gte_30    age_egfr_lt_60          hba1c_dm 
-             0.00000000        1.00000000        0.00000000        0.00000000 
-            hba1c_no_dm     missing_hba1c          constant 
-             3.20000000        0.00000000        1.00000000 
+            age_smoking    age_bmi_gte_30    age_egfr_lt_60       hba1c_no_dm 
+             0.00000000        1.00000000        0.00000000        3.20000000 
+               hba1c_dm     missing_hba1c          constant 
+             0.00000000        0.00000000        1.00000000 
 
 ---
 
@@ -23134,8 +23134,8 @@
              0.00000000        1.00000000        0.00000000        0.00000000 
             sdi_7_to_10       missing_sdi           ln_uacr      missing_uacr 
              1.00000000        0.00000000        3.68887945        0.00000000 
-               hba1c_dm       hba1c_no_dm     missing_hba1c          constant 
-             0.00000000        3.20000000        0.00000000        1.00000000 
+            hba1c_no_dm          hba1c_dm     missing_hba1c          constant 
+             3.20000000        0.00000000        0.00000000        1.00000000 
 
 # Preparation of terms works - Missing optional predictors
 
@@ -23152,9 +23152,9 @@
              1.00000000        0.00000000        1.50000000        0.00000000 
           age_non_hdl_c         age_hdl_c   age_sbp_gte_110            age_dm 
              0.37900000       -0.02333333        1.50000000        1.00000000 
-            age_smoking    age_bmi_gte_30    age_egfr_lt_60          hba1c_dm 
+            age_smoking    age_bmi_gte_30    age_egfr_lt_60       hba1c_no_dm 
              0.00000000        1.00000000        0.00000000        0.00000000 
-            hba1c_no_dm     missing_hba1c          constant 
+               hba1c_dm     missing_hba1c          constant 
              0.00000000        1.00000000        1.00000000 
 
 ---
@@ -23216,7 +23216,7 @@
              0.00000000        1.00000000        0.00000000        0.00000000 
             sdi_7_to_10       missing_sdi           ln_uacr      missing_uacr 
              0.00000000        1.00000000        0.00000000        1.00000000 
-               hba1c_dm       hba1c_no_dm     missing_hba1c          constant 
+            hba1c_no_dm          hba1c_dm     missing_hba1c          constant 
              0.00000000        0.00000000        1.00000000        1.00000000 
 
 # Preparation of terms works - Other SDI categories
@@ -23258,8 +23258,8 @@
              0.00000000        1.00000000        0.00000000        1.00000000 
             sdi_7_to_10       missing_sdi           ln_uacr      missing_uacr 
              0.00000000        0.00000000        3.68887945        0.00000000 
-               hba1c_dm       hba1c_no_dm     missing_hba1c          constant 
-             3.20000000        0.00000000        0.00000000        1.00000000 
+            hba1c_no_dm          hba1c_dm     missing_hba1c          constant 
+             0.00000000        3.20000000        0.00000000        1.00000000 
 
 ---
 
@@ -23300,8 +23300,8 @@
              0.00000000        1.00000000        0.00000000        0.00000000 
             sdi_7_to_10       missing_sdi           ln_uacr      missing_uacr 
              0.00000000        0.00000000        3.68887945        0.00000000 
-               hba1c_dm       hba1c_no_dm     missing_hba1c          constant 
-             3.20000000        0.00000000        0.00000000        1.00000000 
+            hba1c_no_dm          hba1c_dm     missing_hba1c          constant 
+             0.00000000        3.20000000        0.00000000        1.00000000 
 
 # Base model 10-year risks give expected results
 
@@ -23430,31 +23430,31 @@
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 13.6%  15.5%
+      1 14.3%  15.4%
       
       $ascvd
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 8.3%   9.4% 
+      1 8.8%   9.6% 
       
       $heart_failure
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 8.1%   10.1%
+      1 8%     9.8% 
       
       $chd
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 4.1%   5.1% 
+      1 4%     5.1% 
       
       $stroke
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 4.6%   4.7% 
+      1 5.2%   5%   
       
       $model
        female    male 
@@ -23672,31 +23672,31 @@
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 36.1%  39.4%
+      1 35.6%  40%  
       
       $ascvd
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 22.7%  26.3%
+      1 22%    25.9%
       
       $heart_failure
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 29.5%  33.9%
+      1 30.2%  35.1%
       
       $chd
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 13.7%  14.1%
+      1 13.9%  14.5%
       
       $stroke
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 12.8%  17.7%
+      1 11.7%  16.7%
       
       $model
       female   male 
@@ -23842,31 +23842,31 @@
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 50.1%  49.1%
+      1 51%    49.2%
       
       $ascvd
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 32.2%  31.7%
+      1 33.5%  32.9%
       
       $heart_failure
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 38.9%  41.1%
+      1 38%    40.3%
       
       $chd
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 18.2%  19.2%
+      1 18%    19.2%
       
       $stroke
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 18.8%  17.5%
+      1 20.9%  18.9%
       
       $model
        female    male 
@@ -24091,31 +24091,31 @@
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 49.5%  44.9%
+      1 49.3%  45.1%
       
       $ascvd
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 32.1%  30.1%
+      1 31.1%  29%  
       
       $heart_failure
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 41.2%  37.9%
+      1 42.5%  38.8%
       
       $chd
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 20.2%  16.4%
+      1 20.3%  16.5%
       
       $stroke
       # A tibble: 1 x 2
         female male 
         <chr>  <chr>
-      1 18.5%  20.6%
+      1 17%    19%  
       
       $model
       female   male 
@@ -24614,31 +24614,31 @@
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 26.6%       30.9%     53.5%       50.5%    
+      1 28.7%       30.7%     55.1%       50.6%    
       
       $ascvd
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 16.3%       19.4%     34.3%       33.1%    
+      1 17.6%       20.2%     36.4%       35%      
       
       $heart_failure
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 20.1%       24.6%     46.4%       45.1%    
+      1 19.9%       23.6%     44.8%       43.7%    
       
       $chd
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 9.7%        11.2%     22%         20.3%    
+      1 9.4%        10.9%     21.5%       20.4%    
       
       $stroke
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 8.2%        10.4%     18.4%       18.8%    
+      1 10.1%       11.6%     22%         21.3%    
       
       $model
       female_10yr   male_10yr female_30yr   male_30yr 
@@ -24750,31 +24750,31 @@
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 41.4%       47.8%     59.3%       55.2%    
+      1 42.4%       46.7%     59.7%       54.8%    
       
       $ascvd
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 26.1%       30.4%     39.4%       35.6%    
+      1 27.4%       31%       41.3%       37.5%    
       
       $heart_failure
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 38.4%       44.7%     55.5%       51.2%    
+      1 37%         42.4%     53.3%       49.5%    
       
       $chd
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 17.1%       19.1%     27.2%       22.9%    
+      1 16.7%       18.1%     26.9%       22.7%    
       
       $stroke
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 13.6%       17.3%     21.8%       20.8%    
+      1 15.7%       19%       24.9%       23.6%    
       
       $model
       female_10yr   male_10yr female_30yr   male_30yr 
@@ -24818,31 +24818,31 @@
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 42.5%       51.1%     59.9%       57.7%    
+      1 43.5%       50%       60.4%       57.3%    
       
       $ascvd
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 27.4%       33.2%     40.7%       37.9%    
+      1 28.8%       33.8%     42.6%       39.9%    
       
       $heart_failure
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 39.5%       48.9%     56.3%       54.6%    
+      1 38.2%       46.6%     54.1%       52.9%    
       
       $chd
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 18%         21.3%     28.3%       24.9%    
+      1 17.6%       20.2%     28%         24.7%    
       
       $stroke
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 14.4%       19.2%     22.7%       22.5%    
+      1 16.6%       21.1%     25.9%       25.5%    
       
       $model
       female_10yr   male_10yr female_30yr   male_30yr 
@@ -24887,31 +24887,31 @@
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 16.3%       20.3%     35.7%       35.7%    
+      1 16.6%       20%       35.9%       35.6%    
       
       $ascvd
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 10%         13.4%     22%         23.7%    
+      1 10.2%       13.5%     22.5%       24.2%    
       
       $heart_failure
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 11.1%       14.1%     27.5%       27.8%    
+      1 10.9%       13.7%     26.9%       27.3%    
       
       $chd
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 5.8%        8.2%      13.5%       15.1%    
+      1 5.7%        8%        13.4%       15.1%    
       
       $stroke
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 5.2%        6.2%      11.8%       11.6%    
+      1 5.5%        6.5%      12.5%       12.3%    
       
       $model
       female_10yr   male_10yr female_30yr   male_30yr 

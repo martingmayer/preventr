@@ -11,16 +11,16 @@
 
 The main goal of `preventr` is to implement the [Predicting Risk of
 cardiovascular disease EVENTs (PREVENT)
-equations](https://pubmed.ncbi.nlm.nih.gov/37947085), released in 2023
-by the American Heart Association (AHA). It also permits comparison of
-the PREVENT equations with their *de facto* predecessor, the Pooled
-Cohort Equations (PCEs). The PCEs were originally released in 2013 as
-part of the American College of Cardiology (ACC)/AHA Guideline on the
-[Assessment of Cardiovascular
-Risk](https://pubmed.ncbi.nlm.nih.gov/24222018), and they were revised
-by [Yadlowsky and colleagues in
-2018](https://pubmed.ncbi.nlm.nih.gov/29868850/), though these revisions
-were never endorsed by the ACC/AHA.
+equations](https://doi.org/10.1161/circulationaha.123.067626), released
+in 2023 by the American Heart Association (AHA). It also permits
+comparison of the PREVENT equations with their *de facto* predecessor,
+the Pooled Cohort Equations (PCEs). The PCEs were originally released in
+2013 as part of the American College of Cardiology (ACC)/AHA Guideline
+on the [Assessment of Cardiovascular
+Risk](https://doi.org/10.1161/01.cir.0000437741.48606.98), and they were
+revised by [Yadlowsky and colleagues in
+2018](https://doi.org/10.7326/m17-3011), though these revisions were
+never endorsed by the ACC/AHA.
 
 The PREVENT equations are a large collection of predictive/prognostic
 models for predicting the risk of cardiovascular disease events over the
@@ -65,7 +65,7 @@ examples.
 but of note, the PREVENT equations have better calibration than the
 PCEs, as demonstrated in the [original article describing the derivation
 and validation of the PREVENT
-equations](https://pubmed.ncbi.nlm.nih.gov/37947085).
+equations](https://doi.org/10.1161/circulationaha.123.067626).
 
 ## Installation
 
@@ -152,8 +152,8 @@ available at:
 Easier-to-remember URLs:
 
 - <https://tiny.cc/preventrapp>
-- [https://tiny.cc/prevent-equations](https://martingmayer.shinyapps.io/prevent-equations)
-- [https://tiny.cc/preventequations](https://martingmayer.shinyapps.io/prevent-equations)
+- <https://tiny.cc/prevent-equations>
+- <https://tiny.cc/preventequations>
 
 Calling `preventr::app()` will also open the user’s default browser and
 navigate to the Shiny app.
@@ -201,7 +201,7 @@ citation("preventr")
 #> To cite package 'preventr' in publications use:
 #> 
 #>   Mayer M (2026). _preventr: An Implementation of the PREVENT and
-#>   Pooled Cohort Equations_. R package version 0.12.0,
+#>   Pooled Cohort Equations_. R package version 0.12.1,
 #>   <https://martingmayer.com/preventr>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -210,7 +210,7 @@ citation("preventr")
 #>     title = {preventr: An Implementation of the PREVENT and Pooled Cohort Equations},
 #>     author = {Martin Mayer},
 #>     year = {2026},
-#>     note = {R package version 0.12.0},
+#>     note = {R package version 0.12.1},
 #>     url = {https://martingmayer.com/preventr},
 #>   }
 ```
@@ -219,9 +219,10 @@ citation("preventr")
 
 This package would not be possible without the efforts from the authors
 of the PREVENT equations. Additionally, the Social Deprivation Index
-(SDI) is a key element informing the PREVENT equations. Citations for
-both appear below, as does acknowledgment of the other packages and
-software I used in creating `preventr`.
+(SDI) is a key element informing the PREVENT equations. Thank you to the
+authors and maintainers of this work. Citations for both appear below,
+as does acknowledgment of the other packages and software I used in
+creating `preventr`.
 
 **The PREVENT equations**
 
@@ -234,7 +235,7 @@ Consortium and the American Heart Association
 Cardiovascular-Kidney-Metabolic Science Advisory Group. Development and
 Validation of the American Heart Association’s PREVENT Equations.
 [Circulation. 2024 Feb 6;149(6):430-449. Epub 2023 Nov
-10.](https://pubmed.ncbi.nlm.nih.gov/37947085)
+10.](https://doi.org/10.1161/circulationaha.123.067626)
 
 **Social Deprivation Index (SDI)**
 
@@ -265,16 +266,16 @@ you to the authors of this work:
   Cardiology/American Heart Association Task Force on Practice
   Guidelines. [Circulation. 2014 Jun 24;129(25 Suppl 2):S49-73. doi:
   10.1161/01.cir.0000437741.48606.98. Epub 2013 Nov
-  12.](https://pubmed.ncbi.nlm.nih.gov/24222018). Also co-published in
-  [J Am Coll Cardiol. 2014 Jul 1;63(25 Pt B):2935-2959. doi:
-  10.1016/j.jacc.2013.11.005. Epub 2013 Nov
-  12.](https://pubmed.ncbi.nlm.nih.gov/24239921).
+  12.](https://doi.org/10.1161/01.cir.0000437741.48606.98). Also
+  co-published in [J Am Coll Cardiol. 2014 Jul 1;63(25 Pt B):2935-2959.
+  doi: 10.1016/j.jacc.2013.11.005. Epub 2013 Nov
+  12.](https://doi.org/10.1016/j.jacc.2013.11.005).
 
 - Yadlowsky S, Hayward RA, Sussman JB, McClelland RL, Min YI, Basu S.
   Clinical Implications of Revised Pooled Cohort Equations for
   Estimating Atherosclerotic Cardiovascular Disease Risk. [Ann Intern
   Med. 2018 Jul 3;169(1):20-29. doi: 10.7326/M17-3011. Epub 2018 Jun
-  5.](https://pubmed.ncbi.nlm.nih.gov/29868850).
+  5.](https://doi.org/10.7326/m17-3011).
 
 `preventr` also uses the
 [`dplyr`](https://CRAN.R-project.org/package=dplyr) and

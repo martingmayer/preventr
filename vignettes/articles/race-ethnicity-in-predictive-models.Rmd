@@ -8,7 +8,42 @@ Including parameters for race and/or ethnicity may well be done with the purest 
 
 Unfortunately, I have heard various ill-founded arguments defending race and/or ethnicity in prognostic models. These have ranged from arguments suggesting removal implies race and/or ethnicity don't matter at all; arguments that removal is dismissive of something that may be core to a person's sense of self or identity; arguments that it doesn't matter *how* we predict, just that the predictions are good; and even arguments that invoke (either implicitly or explicitly) biologic essentialism. In all cases, the arguers seem to earnestly desire to serve people well, but their arguments nevertheless betray an incomplete understanding of clinical epidemiology and best practices in predictive modeling and/or (for the arguments invoking biologic essentialism) fundamentally flawed perspectives.
 
-To be clear, race and/or ethnicity *matter*. They matter a lot. It is just their direct incorporation as predictor variables within predictive models that is problematic. And for example, we know (and have known for some time, e.g., from the human genome project) that race is a social construct and there is more genetic variation *within* a given race than *between* two given races. But this truth *does not in any way negate* the coexisting truth that systemic racism and structural inequity are real problems. And these problems can and do lead to health inequity. For example, it is not controversial to say that, on average, certain races have higher risk factor prevalence (e.g., higher average BP, higher average cholesterol) than other races. And these inequities in turn raise the risk for various adverse health outcomes. But, crucially, the existence of systemic racism and structural inequity and their impact on upstream risk factors for adverse health outcomes does *not* justify saying a given *individual* is at higher lower risk solely because of their race and/or ethnicity. To use race and/or ethnicity as a pseudo-surrogate in that manner is crude at best. But worse, using race and/or ethnicity as a predictor also commits the ecological fallacy by assuming all people of a given race and/or ethnicity have an entirely homogeneous lived experience. And this is, of course, untenable. Better, then, to focus on the upstream risk factors themselves, which are the true culprits. Although some might worry that omission of race and/or ethnicity could lead to poorer estimation, this is still a fallacious line of reasoning. To whatever extent race and/or ethnicity have predictive value, the follow-up question should always be "But why?", because to argue it is the person's race *per se* is to argue from biologic essentialism. In other words, if one were to draw a directed acyclic graph (DAG) demonstrating the relationship between race and/or ethnicity and the outcome in question, the DAG would be very complex, but it would demonstrate the relationship is not so much a direct one, but rather, mediated by a host of other factors that are associated both with race and/or ethnicity and with the outcome of interest (e.g., the aforementioned impacts of systemic racism and structural inequity).
+To be clear, race and/or ethnicity *matter*; for example, as alluded to 
+already, continuing to measure race and ethnicity is foundationally important 
+as part of ongoing efforts to identify and correct areas of systemic racism 
+and structural and health inequity. However, incorporation of race and/or 
+ethnicity as predictor variables within predictive problems is problematic, 
+actually carrying the potential to worsen things rather than help them. 
+And for example, we know (and have known for some time, e.g., from the human 
+genome project) that race is a social construct and there is more genetic 
+variation *within* a given race than *between* two given races. But 
+this truth *does not in any way negate* the coexisting truth that systemic 
+racism and structural inequity are real problems. And these problems can and 
+do lead to health inequity. For example, it is not controversial to say that, 
+on average, certain races have higher risk factor prevalence (e.g., higher 
+average BP, higher average cholesterol) than other races. And these inequities 
+in turn raise the risk for various adverse health outcomes. But, crucially,
+the existence of systemic racism and structural inequity and their
+impact on upstream risk factors for adverse health outcomes does *not*
+justify saying a given *individual* is at higher lower risk solely
+because of their race and/or ethnicity. To use race and/or ethnicity as
+a pseudo-surrogate in that manner is crude at best. But worse, using
+race and/or ethnicity as a predictor also commits the ecological fallacy
+by assuming all people of a given race and/or ethnicity have an entirely
+homogeneous lived experience. And this is, of course, untenable. Better,
+then, to focus on the upstream risk factors themselves, which are the
+true culprits. Although some might worry that omission of race and/or
+ethnicity could lead to poorer estimation, this is still a fallacious
+line of reasoning. To whatever extent race and/or ethnicity have
+predictive value, the follow-up question should always be “But why?”,
+because to argue it is the person’s race *per se* is to argue from
+biologic essentialism. In other words, if one were to draw a directed
+acyclic graph (DAG) demonstrating the relationship between race and/or
+ethnicity and the outcome in question, the DAG would be very complex,
+but it would demonstrate the relationship is not so much a direct one,
+but rather, mediated by a host of other factors that are associated both
+with race and/or ethnicity and with the outcome of interest (e.g., the
+aforementioned impacts of systemic racism and structural inequity).
 
 As a further example, let us consider the factors identified by the Pooled Cohort Equations (PCEs) as being prognostically important for 10-year ASCVD risk: Imagine a female 62 years of age who has a systolic BP of 155, takes BP medication, has a total cholesterol of 200, HDL cholesterol of 45, smokes, and has type II diabetes. According to the PCEs, a person with these parameters who is Black has a 10-year ASCVD risk that is about 20 percentage points higher than a person with these parameters who is White. Although females who are Black may have worse risk factors on average than females who are White (and thus, more females who are Black suffer ASCVD outcomes than females who are White), one must remember this is a *population-level observation*, and ultimately, implementation of predictive models occurs at the *individual* level. And if a clinician sees two *individual* females whose modeled risk factors are the same, then for the model to predict a 20 percentage point difference in these two *individual* females because one is Black and the other is White should raise serious skepticism and concern. Although the difference with the revised PCEs is smaller, the difference in risk is still about 10 percentage points. I have occasionally heard people argue incorporation of race and/or ethnicity may be serving as surrogates for other, unmeasured risk factors. After all, the preceding paragraph discusses how systemic racism and structural inequity can lead to higher risk factor prevalence. But just saying race and/or ethnicity are surrogates for unmeasured risk factors is an unconvincing argument, and it also fosters epistemic sloth (see the "But why?" comment above). Although it is a hyperbolic example, it would be like observing that wearing a bathing suit is associated with drowning and then arguing that having a bathing suit on is a surrogate for an unmeasured risk factor for drowning. This is superficially true but epistemically lazy. The real culprit is being in or around bodies of water, people's varying proficiency with swimming and water safety habits, and so on, not the bathing suit itself. And surely, not all people wearing bathing suits are at equal risk for drowning. Again, nothing herein in any way diminishes or contradicts literature demonstrating health inequities and the paramount importance of continuing work to mitigate and eventually eliminate such disparity; it simply underscores the importance of recognizing and working toward remedying those *population-level observations* without committing a textbook definition of ecological fallacy by incorporating race and/or ethnicity into predictive models intended for *individual* risk prediction.
 

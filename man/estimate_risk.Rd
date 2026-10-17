@@ -154,8 +154,9 @@ required only if the user desires to specify which PREVENT model to use. It
 can otherwise be omitted, in which case the function will set \code{main_model}
 to \code{NULL} (which has the same impact as when \code{model} is \code{NULL}).
 \item \code{other_models} (character): The PCEs to use, one of
-\code{"pce_orig"} (for the original PCEs released by the \href{https://pubmed.ncbi.nlm.nih.gov/24222018}{ACC/AHA in 2013}), \code{"pce_rev"} (for
-the revised PCEs released by \href{https://pubmed.ncbi.nlm.nih.gov/29868850}{Yadlowsky and colleagues in 2018}, but not officially endorsed by
+\code{"pce_orig"} (for the original PCEs released by the ACC/AHA in
+2013, \code{"pce_rev"} (for the revised PCEs released by Yadlowsky
+and colleagues in 2018, but not officially endorsed by
 ACC/AHA), or \code{"pce_both"} (for both).
 \item \code{race_eth} (character): The race and ethnicity of the person, which is
 required by the PCEs. One of \code{"Black"} (for non-Hispanic Black), \code{"White"}
@@ -585,9 +586,9 @@ the PREVENT equations (\href{https://martingmayer.com/preventr}{site},
 Some may notice the upper limit is set to 180 mmHg here, whereas the PREVENT
 equations technically permit up to 200 mmHg. The Pooled Cohort Equations (PCEs)
 do this as well. I have restricted to 180 mmHg, as SBP beyond 180 mmHg constitutes
-hypertensive urgency (per \href{https://pubmed.ncbi.nlm.nih.gov/29133354}{AHA's own definitions}),
-and irrespective of the debate surrounding labels like hypertensive urgency
-and emergency, it would seem clinically unreasonable to engage with the
+severe hypertension per AHA's own definitions (being formerly known as
+hypertensive urgency). Irrespective of any debate that might exist surrounding
+such labels and their definitions, it would seem clinically unreasonable to engage with the
 PREVENT equations when someone has more pressing matters to address
 (better blood pressure control \emph{per se}).
 }
@@ -595,9 +596,10 @@ PREVENT equations when someone has more pressing matters to address
 \subsection{Why is the lower limit of the HbA1c 4.5\%?}{
 
 Some may notice the lower limit is set to 4.5\% here, whereas the PREVENT
-equations technically permit down to 3\%. I have restricted to 4.5\%, as HbA1c
-of 3\% is neither realistic nor safe for a person. For example, using \href{https://professional.diabetes.org/glucose_calc}{the HbA1c to estimated average glucose (eAG) converter from the American Diabetes Association}
-(https://professional.diabetes.org/glucose_calc), a HbA1c of 3\% corresponds
+equations technically permit down to 3\%. I have restricted to 4.5\%, as a HbA1c
+of 3\% is neither realistic nor safe for a person. For example, using the
+\href{https://professional.diabetes.org/glucose_calc}{HbA1c to estimated average glucose (eAG) converter from the American Diabetes Association}
+(\url{https://professional.diabetes.org/glucose_calc}), a HbA1c of 3\% corresponds
 to an eAG of 39 mg/dL (2.2 mmol/L).
 }
 
@@ -656,7 +658,7 @@ to \code{"nonmetric"}) or \code{calc_bmi(68, 178, "metric")}.
 \subsection{What is the Social Deprivation Index (SDI)?}{
 
 Read more on the \href{https://www.graham-center.org/evidence-based-research/featured-work/social-deprivation-index}{Robert Graham Center's page on the SDI}
-(https://www.graham-center.org/evidence-based-research/featured-work/social-deprivation-index)
+(\url{https://www.graham-center.org/evidence-based-research/featured-work/social-deprivation-index})
 }
 
 \subsection{Model selection when \code{model = NULL}}{
@@ -711,9 +713,8 @@ documentation. If you would like to read a bit more about this issue, see
 \subsection{Why is the risk estimation higher with the PCEs?}{
 
 The PCEs are known to overestimate risk. Indeed, this was a key motivation
-for \href{https://pubmed.ncbi.nlm.nih.gov/29868850}{Yadlowsky and colleagues} to
-develop the revised PCEs, and was also a key motivation for development of
-the \href{https://pubmed.ncbi.nlm.nih.gov/37947085}{PREVENT equations}.
+for Yadlowsky and colleagues to develop the revised PCEs, and was also a key
+motivation for development of the PREVENT equations.
 }
 
 \subsection{Why don't you export the PCEs or the convenience functions for BMI and eGFR?}{
@@ -1126,4 +1127,55 @@ cat(gsub("; ", "\n", res$input_problems))
 #   gsub(pattern = "; ", replacement = "\n", x = .) \%>\% 
 #   cat()
 
+}
+\references{
+\emph{PREVENT Equations} \cr
+Khan SS, Matsushita K, Sang Y, Ballew SH, Grams ME, Surapaneni A, Blaha MJ, Carson AP,
+Chang AR, Ciemins E, Go AS, Gutierrez OM, Hwang SJ, Jassal SK, Kovesdy CP, Lloyd-Jones DM,
+Shlipak MG, Palaniappan LP, Sperling L, Virani SS, Tuttle K, Neeland IJ, Chow SL, Rangaswami J,
+Pencina MJ, Ndumele CE, Coresh J; Chronic Kidney Disease Prognosis Consortium and the American
+Heart Association Cardiovascular-Kidney-Metabolic Science Advisory Group. Development and
+Validation of the American Heart Association's PREVENT Equations. Circulation.
+2024 Feb 6;149(6):430-449. Epub 2023 Nov 10. PMID: 37947085; PMCID: PMC10910659.
+\doi{10.1161/CIRCULATIONAHA.123.067626} \cr
+Erratum in: Circulation. 2024 Mar 12;149(11):e956. \doi{10.1161/CIR.0000000000001230} \cr
+Erratum in: Circulation. 2026 Oct 14. \doi{10.1161/CIR.0000000000001491}
+
+\emph{Original (2013) Pooled Cohort Equations} \cr
+Goff DC Jr, Lloyd-Jones DM, Bennett G, Coady S, D'Agostino RB, Gibbons R, Greenland P, Lackland
+DT, Levy D, O'Donnell CJ, Robinson JG, Schwartz JS, Shero ST, Smith SC Jr, Sorlie P, Stone NJ,
+Wilson PW, Jordan HS, Nevo L, Wnek J, Anderson JL, Halperin JL, Albert NM, Bozkurt B, Brindis RG,
+Curtis LH, DeMets D, Hochman JS, Kovacs RJ, Ohman EM, Pressler SJ, Sellke FW, Shen WK, Smith SC Jr,
+Tomaselli GF; American College of Cardiology/American Heart Association Task Force on Practice
+Guidelines. 2013 ACC/AHA guideline on the assessment of cardiovascular risk: a report of the
+American College of Cardiology/American Heart Association Task Force on Practice Guidelines.
+Circulation. 2014 Jun 24;129(25 Suppl 2):S49-73. Epub 2013 Nov 12. PMID: 24222018. Erratum in:
+Circulation. 2014 Jun 24;129(25 Suppl 2):S74-5. \doi{10.1161/01.cir.0000437741.48606.98}
+
+\emph{Revised (2018) Pooled Cohort Equations} \cr
+Yadlowsky S, Hayward RA, Sussman JB, McClelland RL, Min YI, Basu S. Clinical Implications of
+Revised Pooled Cohort Equations for Estimating Atherosclerotic Cardiovascular Disease Risk. Ann
+Intern Med. 2018 Jul 3;169(1):20-29. Epub 2018 Jun 5. PMID: 29868850. \doi{10.7326/M17-3011}
+
+\emph{Definitions of severe hypertension (formerly hypertensive urgency)} \cr
+Writing Committee Members; Jones DW, Ferdinand KC, Taler SJ, Johnson HM, Shimbo D, Abdalla M,
+Altieri MM, Bansal N, Bello NA, Bress AP, Carter J, Cohen JB, Collins KJ, Commodore-Mensah Y,
+Davis LL, Egan B, Khan SS, Lloyd-Jones DM, Melnyk BM, Mistry EA, Ogunniyi MO, Schott SL, Smith SC Jr,
+Talbot AW, Vongpatanasin W, Watson KE, Whelton PK, Williamson JD. 2025
+AHA/ACC/AANP/AAPA/ABC/ACCP/ACPM/AGS/AMA/ASPC/NMA/PCNA/SGIM Guideline for the Prevention, Detection,
+Evaluation and Management of High Blood Pressure in Adults: A Report of the American College of
+Cardiology/American Heart Association Joint Committee on Clinical Practice Guidelines. Circulation.
+2025 Sep 16;152(11):e114-e218. Epub 2025 Aug 14. PMID: 40811497. \doi{10.1161/CIR.0000000000001356} \cr
+Erratum in: Circulation. 2025 Nov 11;152(19):e403. \doi{10.1161/CIR.0000000000001396} \cr
+Erratum in: Circulation. 2026 Apr 14;153(15):e1121. \doi{10.1161/CIR.0000000000001436} \cr
+Erratum in: Circulation. 2026 May 26;153(21):e1359. \doi{10.1161/CIR.0000000000001448} \cr
+
+Whelton PK, Carey RM, Aronow WS, Casey DE Jr, Collins KJ, Dennison Himmelfarb C, DePalma SM,
+Gidding S, Jamerson KA, Jones DW, MacLaughlin EJ, Muntner P, Ovbiagele B, Smith SC Jr, Spencer CC,
+Stafford RS, Taler SJ, Thomas RJ, Williams KA Sr, Williamson JD, Wright JT Jr.
+2017 ACC/AHA/AAPA/ABC/ACPM/AGS/APhA/ASH/ASPC/NMA/PCNA Guideline for the Prevention, Detection,
+Evaluation, and Management of High Blood Pressure in Adults: A Report of the American College of
+Cardiology/American Heart Association Task Force on Clinical Practice Guidelines. Hypertension.
+2018 Jun;71(6):e13-e115. Epub 2017 Nov 13. PMID: 29133356. \doi{10.1161/HYP.0000000000000065} \cr
+Erratum in: Hypertension. 2018 Jun;71(6):e140-e144. \doi{10.1161/HYP.0000000000000076}
 }

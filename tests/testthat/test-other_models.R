@@ -866,23 +866,25 @@ test_that("pce model componentry behaves correctly", {
       quiet = TRUE
     ),
     list(
+      # commented-out values represent the value for the PREVENT
+      # equation portion prior to the 2026 erratum for HbA1c coeffs.
       risk_est_10yr = dplyr::tibble(
-        total_cvd = c(0.161, NA, NA),
-        ascvd = c(0.1, 0.064, 0.063),  
+        total_cvd = c(0.176, NA, NA), # 0.161 
+        ascvd = c(0.109, 0.064, 0.063), # 0.1 
         heart_failure = c(0.079, NA, NA),
-        chd = c(0.053, NA, NA),
-        stroke = c(0.052, NA, NA), 
+        chd = c(0.052, NA, NA), # 0.053
+        stroke = c(0.065, NA, NA), # 0.052
         model = c("hba1c", "pce_orig", "pce_rev"),
         over_years = 10,
         input_problems = NA_character_
       ),
       
       risk_est_30yr = dplyr::tibble(
-        total_cvd = 0.536, 
-        ascvd = 0.352, 
-        heart_failure = 0.375,
-        chd = 0.214, 
-        stroke = 0.199, 
+        total_cvd = 0.552, # 0.536 
+        ascvd = 0.373, # 0.352
+        heart_failure = 0.361, # 0.375
+        chd = 0.21, # 0.214
+        stroke = 0.237, # 0.199 
         model = "hba1c", 
         over_years = 30,
         input_problems = NA_character_
@@ -967,23 +969,25 @@ test_that("pce model componentry behaves correctly", {
       quiet = TRUE
     ),
     list(
+      # commented-out values represent the value for the PREVENT
+      # equation portion prior to the 2026 erratum for HbA1c coeffs.
       risk_est_10yr = dplyr::tibble(
-        total_cvd = c(0.235, NA, NA),
-        ascvd = c(0.141, 0.064, 0.063),  
-        heart_failure = c(0.128, NA, NA),
-        chd = c(0.078, NA, NA),
-        stroke = c(0.074, NA, NA), 
+        total_cvd = c(0.242, NA, NA), # 0.235
+        ascvd = c(0.149, 0.064, 0.063), # 0.141 
+        heart_failure = c(0.122, NA, NA), # 0.128
+        chd = c(0.076, NA, NA), # 0.078
+        stroke = c(0.087, NA, NA), # 0.074
         model = c("full", "pce_orig", "pce_rev"),
         over_years = 10,
         input_problems = NA_character_
       ),
       
       risk_est_30yr = dplyr::tibble(
-        total_cvd = 0.596, 
-        ascvd = 0.401, 
-        heart_failure = 0.444,
-        chd = 0.256, 
-        stroke = 0.235, 
+        total_cvd = 0.601, # 0.596 
+        ascvd = 0.419, # 0.401
+        heart_failure = 0.423, # 0.444
+        chd = 0.253, # 0.256 
+        stroke = 0.268, # 0.235 
         model = "full", 
         over_years = 30,
         input_problems = NA_character_

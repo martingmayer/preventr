@@ -9,31 +9,31 @@
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 21.4%       20.3%     56%         51.4%    
+      1 20.7%       21%       55.5%       51.7%    
       
       $ascvd
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 12.6%       12.2%     37.7%       34.3%    
+      1 11.9%       11.8%     35.9%       32.5%    
       
       $heart_failure
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 13.1%       12.6%     42.7%       39.4%    
+      1 13.7%       13.6%     44.9%       41%      
       
       $chd
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 6%          5.6%      21.3%       18.1%    
+      1 6.1%        5.9%      21.5%       18.3%    
       
       $stroke
       # A tibble: 1 x 4
         female_10yr male_10yr female_30yr male_30yr
         <chr>       <chr>     <chr>       <chr>    
-      1 7.5%        8%        24.4%       24.1%    
+      1 6.4%        7.1%      21.3%       21.2%    
       
       $model
       female_10yr   male_10yr female_30yr   male_30yr 

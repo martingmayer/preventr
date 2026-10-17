@@ -1,3 +1,19 @@
+# preventr 0.12.1
+
+* User-visible changes:
+
+  * This is a patch to implement the correction issued by the authors of the PREVENT equations on 2026-10-14 for models that use the HbA1c coefficients (i.e., the 10- and 30-year HbA1c models and the 10- and 30-year full models). 
+
+    * This correction was formally published as an erratum ([https://doi.org/10.1161/CIR.0000000000001491](https://doi.org/10.1161/CIR.0000000000001491)), and it was also accompanied by a notification on their website page for their calculator ([https://professional.heart.org/en/guidelines-and-statements/prevent-calculator](https://professional.heart.org/en/guidelines-and-statements/prevent-calculator)) with an accompanying PDF of FAQs ([https://professional.heart.org/-/media/PHD-Files/Guidelines-and-Statements/PREVENT/PREVENT-Update-FAQ-101426.pdf](https://professional.heart.org/-/media/PHD-Files/Guidelines-and-Statements/PREVENT/PREVENT-Update-FAQ-101426.pdf)). 
+
+      * I have also created archived versions of the website notification ([https://web.archive.org/web/20261015220358/https://professional.heart.org/en/guidelines-and-statements/prevent-calculator](https://web.archive.org/web/20261016222610/https://professional.heart.org/en/guidelines-and-statements/prevent-calculator)) and PDF of FAQs ([https://web.archive.org/web/20261016222755/https://professional.heart.org/-/media/PHD-Files/Guidelines-and-Statements/PREVENT/PREVENT-Update-FAQ-101426.pdf](https://web.archive.org/web/20261016222755/https://professional.heart.org/-/media/PHD-Files/Guidelines-and-Statements/PREVENT/PREVENT-Update-FAQ-101426.pdf))    
+
+  * Minor updates to documentation stemming from new notes returned during checks of the package before submission. This was due to citations occassionally pointing to PubMed instead of using DOIs, with the new notes indicating these should be converted to DOIs. As a result of these changes, the `estimate_risk()` / `est_risk()` function documentation now has a dedicated "References" section that points to key references.
+
+* Internal changes:
+  
+  * Updates to test cases in accordance with the above
+
 # preventr 0.12.0
 
 * User-visible changes:
@@ -14,16 +30,16 @@
       more information)
 
     * Minor tweaks and additions to existing documentation
-
+    
 * Internal changes:
 
   * Rename "prevent_equations.R" to "estimate_risk.R"
   
   * Add test suite for `plot_risk()`
 
-  * Correct typo for the `sysdata.rda` file for one of the coefficients;
-    this is strictly typographical and has no impact on the calculations or functionality
-    of the package (thanks to @kcjw87 for reporting this, #2)
+  * Correct a typo in a label in the `sysdata.rda` file for one of the coefficients;
+    this is strictly a typographical change in the string/character value for one of the row headers, and it has no impact on the calculations or functionality
+    of the package. This stemmed from errant labeling in the original publication of the PREVENT equations (i.e., the publication itself contained the same typo). Thanks to @kcjw87 for reporting this. Details, for those interested, are available at: [https://github.com/martingmayer/preventr/issues/2](https://github.com/martingmayer/preventr/issues/2) (#2).
   
 # preventr 0.11.0
 
