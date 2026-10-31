@@ -582,3 +582,15 @@ test_that("Calls vs. calculated values yield same results when using `use_dat`",
     res_calculated %>% dplyr::select(-c(egfr, bmi))
   )
 })
+
+test_that("get_zip() works", {
+
+  for(sdi_decile in as.character(1:10)) {
+    expect_identical(
+      replicate(5, get_zip(sdi_decile)) %>% 
+        vapply(function(x) get_sdi(x), numeric(1)) %>% 
+        unique(),
+      as.numeric(sdi_decile)
+    )
+  }
+})

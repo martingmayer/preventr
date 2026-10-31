@@ -2,17 +2,23 @@
 
 0 errors | 0 warnings | 0 notes
 
-This is a patch update to the preventr package (0.12.0 --> 0.12.1). This is to 
-incorporate the correction published by the authors of the PREVENT equations on 
-2026-10-14. There are no bugs or corrections to the package itself. Details, if 
-interested, are in NEWS.md. I also updated test cases accordingly. 
+This is a patch update to the preventr package (0.12.1 --> 0.12.2). 
 
-Given this update is in response to the PREVENT equation authors detecting an error in their equations and (laudably) publishing that, I would appreciate expedited 
-review and release of my package if at all possible.
+This update corrects some label/description typos in the `sysdata.rda` file 
+and to increase clarity of a few other coefficient descriptions. The package's 
+functionality and calculations remain identical to that published in 0.12.1, so 
+that part of this update is more housekeeping than anything else, albeit an important 
+one to avoid any possible confusion if anyone ever looks inside the `sysdata.rda` 
+file or uses it outside the package somehow. Further details, if interested, are 
+in NEWS.md.
 
-On a more trivial note, I also updated my documentation slightly in line with 
-new notes that came back during my checks (mainly stemming from citing PubMed 
-links instead of DOIs). 
+This update also introduces a new ability for the `zip` argument in the 
+`estimate_risk()` function (and its synonym `est_risk()`) to accept SDI decile 
+values directly. I've also updated the function documentation and added tests 
+for this. This is a feature addition, not a breaking change or anything that 
+threatens backwards compatibility, because the `zip` arugment remains fully 
+capable of accepting zip codes as well. There are other internal changes related
+to this added functionality, with details in NEWS.md if interested.
 
 I have run multiple checks in addition to checking locally, with rhub v2, and
 `devtools::check_win_*` functions. Checks always pass with no errors or warnings.

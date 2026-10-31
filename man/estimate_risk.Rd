@@ -133,8 +133,17 @@ about the lower bound of the range.}
 albumin-to-creatinine ratio (UACR) in mg/g, from 0.1-25000.}
 
 \item{zip}{Character (optional predictor variable): ZIP code of the person's
-residence, used to estimate the Social Deprivation Index (SDI); see the
-"Details" section for more information.}
+residence, used to estimate the Social Deprivation Index (SDI). The importance
+of type character is to prevent aberrant behavior when handling ZIP codes, especially
+with ZIP codes that start with 0, because entering a numeric value of, say, 00601
+will get translated to 601, which is not a valid ZIP code.
+
+Alternatively, a user may pass the SDI decile value directly to the \code{zip} argument.
+In this case, it should still be of type character (for consistency), and it should
+be "1", "2", "3", "4", "5", "6", "7", "8", "9", or "10". However, in the case of direct
+input of SDI, a user may also pass an integer value from 1 to 10 if desired.
+
+See the "Details" section for more information.}
 
 \item{model}{Character or list (optional behavior variable):
 \itemize{
@@ -473,13 +482,13 @@ impact here)
 \subsection{The special case of the \code{zip} argument}{
 
 The above rule for optional predictor variables applies to the \code{zip}
-argument as well, but with the additional reminder that there are valid zip
+argument as well, but with the additional reminder that there are valid ZIP
 codes that do not have an SDI score. This is importantly different from an
-invalid input for zip. See the "Details" section for more information about
+invalid input for \code{zip}. See the "Details" section for more information about
 how this is handled, but users should \emph{not} expect anything to populate in
-the \code{input_problems} column if the zip is valid, regardless of whether that
-zip has an SDI score. As will be clear from the "Details" section, users will
-be able to determine when a zip code does not have an SDI score based on
+the \code{input_problems} column if the ZIP code is valid, regardless of whether that
+ZIP code has an SDI score. As will be clear from the "Details" section, users will
+be able to determine when a ZIP code does not have an SDI score based on
 the model that was used.
 }
 
@@ -665,7 +674,7 @@ Read more on the \href{https://www.graham-center.org/evidence-based-research/fea
 
 If \code{model = NULL}, the model will be determined by the following algorithm:
 \itemize{
-\item If no optional predictor variables (HbA1c, UACR, zip code) are
+\item If no optional predictor variables (HbA1c, UACR, ZIP code) are
 entered, or only invalid optional variables are entered and
 \code{optional_strict = FALSE}: The base model
 \item If one of the optional predictor variables is entered, or two or
@@ -683,14 +692,14 @@ such within the full model)
 }
 }
 
-\subsection{What if SDI is not available for a zip code?}{
+\subsection{What if SDI is not available for a ZIP code?}{
 
-Some zip codes do not have SDI data available, and the PREVENT equations
-include a term for SDI being missing. As such, if a user enters a valid zip
+Some ZIP codes do not have SDI data available, and the PREVENT equations
+include a term for SDI being missing. As such, if a user enters a valid ZIP
 code but no SDI data are available, the user will be notified (unless \code{quiet = TRUE}), and the tool will then implement the missing term as part of
 predicting risk whenever the full model is used, but SDI will otherwise be
 removed from prediction. Specifically, the following models will predict
-risk in the situation where the user enters a valid zip code, but no SDI
+risk in the situation where the user enters a valid ZIP code, but no SDI
 data are available:
 \itemize{
 \item If the user does not enter a valid HbA1c or UACR: The base model.
@@ -817,7 +826,7 @@ estimate_risk(
 # The remaining examples will all be limited to 10-year results unless
 # otherwise specified  
  
-# Example with SDI with valid zip code with SDI data available
+# Example with SDI with valid ZIP code with SDI data available
 estimate_risk(
   age = 66, 
   sex = "female",     
@@ -835,7 +844,7 @@ estimate_risk(
                    # just to show the option of entering this way
 )
 
-# Example with SDI with valid zip code without SDI data available
+# Example with SDI with valid ZIP code without SDI data available
 # (base model will be used)
 estimate_risk(
   age = 66, 
@@ -853,9 +862,9 @@ estimate_risk(
   time = 10
 )
 
-# Example with full model (even though zip does not have available SDI, full 
-# model used given availability of HbA1c and UACR; because zip is valid,
-# column `input_problems` will be NA)
+# Example with full model (even though ZIP code does not have available 
+# SDI, full model used given availability of HbA1c and UACR; because ZIP code 
+# is valid, column `input_problems` will be NA)
 estimate_risk(
   age = 66, 
   sex = "female",     
@@ -874,7 +883,7 @@ estimate_risk(
   time = "10yr"
 )
 
-# Example with full model (zip has SDI data available, UACR is valid, but
+# Example with full model (ZIP code has SDI data available, UACR is valid, but
 # HbA1c is not; column `input_problems` will specify problem with `hba1c`,
 # but full model will still run given availability of the other two optional
 # predictor variables)

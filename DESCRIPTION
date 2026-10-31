@@ -1,7 +1,7 @@
 Package: preventr
 Title: An Implementation of the PREVENT and Pooled Cohort Equations
-Version: 0.12.1
-Date: 2026-10-17
+Version: 0.12.2
+Date: 2026-10-31
 Authors@R: 
     person("Martin", "Mayer", , "mmayer@ebsco.com",
            role = c("aut", "cre", "cph"),

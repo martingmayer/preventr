@@ -1,3 +1,21 @@
+# preventr 0.12.2
+
+* User-visible changes:
+
+  * The `zip` argument in the `estimate_risk()` function (and its synonym `est_risk()`) gains the ability to accept SDI decile values directly. The `zip` arugment retains all previous functionality (so this is merely a feature addition that maintains backwards compatibility).
+
+  * I have updated the documentation for the `zip` argument in accordance with its new ability.
+
+* Internal changes:
+
+  * Additional tests to test the `zip` argument's new ability (both in single calls and in calls using a data frame)
+
+  * Add helper function `get_zip()` (pairs with existing helper `get_sdi()`) plus tests for this new helper function
+
+  * Minor tweaks to `get_sdi()`, `is_valid_zip()`, and `is_zip_with_sdi_data()` as part of the `zip` argument's new ability
+
+  * Correct label typos in the `sysdata.rda` file for the 10-year full model. This is strictly a typographical change and has no impact on the calculations or functionality of the package. The changes pertain to the string/character value for three of the coefficient descriptions stemming from the update to the HbA1c coefficients released in 0.12.1. Thanks to @heksbeks for notifying me of this (and this is similar to the typo issue @kcjw87 noticed previously and which was corrected as part of 0.12.0). Because I was reviewing the coefficient descriptions, I also made some additional tweaks to select descriptions across all models just for good measure/clarity (e.g., the age coefficient), but again, nothing about these changes have any impact on the functionality or calculations of the package (said more directly, calculations with 0.12.1 are identical to those with 0.12.2).
+
 # preventr 0.12.1
 
 * User-visible changes:
@@ -38,8 +56,7 @@
   * Add test suite for `plot_risk()`
 
   * Correct a typo in a label in the `sysdata.rda` file for one of the coefficients;
-    this is strictly a typographical change in the string/character value for one of the row headers, and it has no impact on the calculations or functionality
-    of the package. This stemmed from errant labeling in the original publication of the PREVENT equations (i.e., the publication itself contained the same typo). Thanks to @kcjw87 for reporting this. Details, for those interested, are available at: [https://github.com/martingmayer/preventr/issues/2](https://github.com/martingmayer/preventr/issues/2) (#2).
+    this is strictly a typographical change in the string/character value for one of the coefficient descriptions, and it has no impact on the calculations or functionality of the package. This stemmed from errant labeling in the original publication of the PREVENT equations (i.e., the publication itself contained the same typo). Thanks to @kcjw87 for reporting this. Details, for those interested, are available at: [https://github.com/martingmayer/preventr/issues/2](https://github.com/martingmayer/preventr/issues/2) (#2).
   
 # preventr 0.11.0
 

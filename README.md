@@ -201,7 +201,7 @@ citation("preventr")
 #> To cite package 'preventr' in publications use:
 #> 
 #>   Mayer M (2026). _preventr: An Implementation of the PREVENT and
-#>   Pooled Cohort Equations_. R package version 0.12.1,
+#>   Pooled Cohort Equations_. R package version 0.12.2,
 #>   <https://martingmayer.com/preventr>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -210,7 +210,7 @@ citation("preventr")
 #>     title = {preventr: An Implementation of the PREVENT and Pooled Cohort Equations},
 #>     author = {Martin Mayer},
 #>     year = {2026},
-#>     note = {R package version 0.12.1},
+#>     note = {R package version 0.12.2},
 #>     url = {https://martingmayer.com/preventr},
 #>   }
 ```
@@ -281,7 +281,7 @@ you to the authors of this work:
 [`dplyr`](https://CRAN.R-project.org/package=dplyr) and
 [`zipcodeR`](https://CRAN.R-project.org/package=zipcodeR) packages, the
 latter of which is used entirely “behind the scenes” as a data set to
-help validate zip codes (and thus `zipcodeR` is not imported as part of
+help validate ZIP codes (and thus `zipcodeR` is not imported as part of
 using `preventr`). Thank you to the authors and maintainers of these
 packages.
 

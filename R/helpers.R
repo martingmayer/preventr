@@ -737,20 +737,38 @@ calculate_egfr <- calc_egfr <- calc_ckd_epi <- calculate_ckd_epi
   # > Zip ----
   get_sdi <- function(desired_zip, dat = sdi_decile_dat) {
     
+    # If what's passed is already an SDI, just return that
+    if(as.character(desired_zip) %in% as.character(1:10)) {
+      return(as.integer(desired_zip))
+    }
+
+    # Otherwise, get the SDI from the zip
     res <- dat %>% 
       dplyr::filter(zip == as.character(desired_zip)) %>% 
       dplyr::pull(sdi_decile)
     
-    if(length(res) == 0) NA else res
+    if(length(res) == 0) NA else as.integer(res)
   }
   
+  get_zip <- function(desired_sdi, dat = sdi_decile_dat) {
+    
+    # If SDI input not in acceptable values, return NA
+    if(!desired_sdi %in% as.character(1:10)) return(NA_character_)
+
+    # Otherwise, return a randomly-selected zip that matches the SDI
+    dat %>% 
+      dplyr::filter(sdi_decile == desired_sdi) %>%
+      dplyr::slice_sample(n = 1) %>%
+      dplyr::pull(zip)
+  }
+
   # Defining it this way so it can be used across package
   sdi_not_available_message <- "SDI is not available for this zip code."
   
   is_zip_with_sdi_data <- function(zip, bypass_valid_check = FALSE, quiet = TRUE) {
-    zip <- as.character(zip)
-    valid_zip <- if(bypass_valid_check) TRUE else is_valid_zip(zip, quiet = TRUE)
-    pass <- valid_zip && !is.na(get_sdi(zip))
+    zip_as_chr <- as.character(zip)
+    valid_zip <- if(bypass_valid_check) TRUE else is_valid_zip(zip_as_chr, quiet = TRUE)
+    pass <- valid_zip && (zip_as_chr %in% as.character(1:10) || !is.na(get_sdi(zip_as_chr)))
     if(quiet) return(pass)
     if(pass) TRUE else sdi_not_available_message
   }
@@ -763,8 +781,16 @@ calculate_egfr <- calc_egfr <- calc_ckd_epi <- calculate_ckd_epi
     pass <- 
       is_okay_type(zip_as_chr) && 
       !is_na_or_empty(zip_as_chr) && 
-      length(unlist(strsplit(zip_as_chr, "*"))) == 5 && 
-      zip_as_chr %in% valid_zips$valid_zips
+      (
+        (
+          length(unlist(strsplit(zip_as_chr, "*"))) == 5 && 
+          zip_as_chr %in% valid_zips$valid_zips
+        ) ||
+        (
+          length(unlist(strsplit(zip_as_chr, "*"))) %in% c(1, 2) && 
+          zip_as_chr %in% as.character(1:10)
+        )        
+      )
     if(quiet) return(pass)
     msg_not_df <- paste0("`zip` ", quotify(zip), " not found among valid zip codes")
     msg_df <- paste0("`zip` entered as ", quotify(zip))

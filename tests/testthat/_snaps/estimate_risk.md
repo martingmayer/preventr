@@ -23473,17 +23473,17 @@
       
       
 
-# Zip model 10-year risks give expected results & SDI lookup works
+# SDI model 10-year risks give expected results & SDI lookup works
 
     Code
-      get_sdi("03883")
+      get_sdi(zips[[1]])
     Output
       [1] 3
 
 ---
 
     Code
-      sdi_10yr_partial(zip = "03883")
+      sdi_10yr_partial(zip = zips[[1]])
     Message
       PREVENT estimates are from: Base model adding SDI.
       PREVENT estimates are from: Base model adding SDI.
@@ -23538,14 +23538,14 @@
 ---
 
     Code
-      get_sdi("49544")
+      get_sdi(zips[[2]])
     Output
       [1] 5
 
 ---
 
     Code
-      sdi_10yr_partial(zip = "49544")
+      sdi_10yr_partial(zip = zips[[2]])
     Message
       PREVENT estimates are from: Base model adding SDI.
       PREVENT estimates are from: Base model adding SDI.
@@ -23600,14 +23600,14 @@
 ---
 
     Code
-      get_sdi("49507")
+      get_sdi(zips[[3]])
     Output
       [1] 10
 
 ---
 
     Code
-      sdi_10yr_partial(zip = "49507")
+      sdi_10yr_partial(zip = zips[[3]])
     Message
       PREVENT estimates are from: Base model adding SDI.
       PREVENT estimates are from: Base model adding SDI.
@@ -23888,14 +23888,14 @@
 # Zip model 30-year risks give expected results & SDI lookup works
 
     Code
-      get_sdi("03883")
+      get_sdi(zips[[1]])
     Output
       [1] 3
 
 ---
 
     Code
-      sdi_30yr_partial(zip = "03883")
+      sdi_30yr_partial(zip = zips[[1]])
     Message
       PREVENT estimates are from: Base model adding SDI.
       PREVENT estimates are from: Base model adding SDI.
@@ -23950,14 +23950,14 @@
 ---
 
     Code
-      get_sdi("49544")
+      get_sdi(zips[[2]])
     Output
       [1] 5
 
 ---
 
     Code
-      sdi_30yr_partial(zip = "49544")
+      sdi_30yr_partial(zip = zips[[2]])
     Message
       PREVENT estimates are from: Base model adding SDI.
       PREVENT estimates are from: Base model adding SDI.
@@ -24012,14 +24012,14 @@
 ---
 
     Code
-      get_sdi("49507")
+      get_sdi(zips[[3]])
     Output
       [1] 10
 
 ---
 
     Code
-      sdi_30yr_partial(zip = "49507")
+      sdi_30yr_partial(zip = zips[[3]])
     Message
       PREVENT estimates are from: Base model adding SDI.
       PREVENT estimates are from: Base model adding SDI.
@@ -24506,7 +24506,7 @@
       
       
 
-# Invalid zip is same as no zip, only optional is zip
+# Invalid ZIP is same as no ZIP, only optional is ZIP
 
     Code
       list(invalid_zip = invalid_zip[["input_problems"]], no_zip = no_zip[[

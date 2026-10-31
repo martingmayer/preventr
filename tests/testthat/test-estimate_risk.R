@@ -88,61 +88,80 @@ test_that("UACR model works, female", {
 })
 
 test_that("SDI model works, female", {
+
+  expected_res <- list(
+    risk_est_10yr = dplyr::tibble(
+      total_cvd = 0.127, 
+      ascvd = 0.08, 
+      heart_failure = 0.07,
+      chd = 0.038, 
+      stroke = 0.047, 
+      model = "sdi", 
+      over_years = 10,
+      input_problems = NA_character_
+    ),
+    
+    risk_est_30yr = dplyr::tibble(
+      total_cvd = 0.485, 
+      ascvd = 0.322, 
+      heart_failure = 0.358,
+      chd = 0.179, 
+      stroke = 0.202, 
+      model = "sdi", 
+      over_years = 30,
+      input_problems = NA_character_
+    )
+  )
+
   expect_equal(
     estimate_risk_partial(zip = "14738", quiet = TRUE),
-    list(
-      risk_est_10yr = dplyr::tibble(
-        total_cvd = 0.127, 
-        ascvd = 0.08, 
-        heart_failure = 0.07,
-        chd = 0.038, 
-        stroke = 0.047, 
-        model = "sdi", 
-        over_years = 10,
-        input_problems = NA_character_
-      ),
-      
-      risk_est_30yr = dplyr::tibble(
-        total_cvd = 0.485, 
-        ascvd = 0.322, 
-        heart_failure = 0.358,
-        chd = 0.179, 
-        stroke = 0.202, 
-        model = "sdi", 
-        over_years = 30,
-        input_problems = NA_character_
-      )
-    )
+    expected_res
+  )
+
+  sdi_for_zip <- get_sdi("14738")
+
+  expect_equal(
+    estimate_risk_partial(zip = sdi_for_zip, quiet = TRUE),
+    expected_res
   )
 })
 
 test_that("Full model works, female", {
   # commented-out values are values before 2026 erratum
+  expected_res <- list(
+    risk_est_10yr = dplyr::tibble(
+      total_cvd = 0.181, # 0.174
+      ascvd = 0.112, # 0.105
+      heart_failure = 0.108, # 0.114
+      chd = 0.054, # 0.056
+      stroke = 0.067, # 0.056 
+      model = "full", 
+      over_years = 10,
+      input_problems = NA_character_
+    ),
+    
+    risk_est_30yr = dplyr::tibble(
+      total_cvd = 0.539, # 0.534
+      ascvd = 0.367, # 0.348
+      heart_failure = 0.42, # 0.443
+      chd = 0.21, # 0.213
+      stroke = 0.235, # 0.204, 
+      model = "full", 
+      over_years = 30,
+      input_problems = NA_character_
+    )
+  )
+
   expect_equal(
     estimate_risk_partial(hba1c = 9.2, uacr = 92, zip = "14738", quiet = TRUE),
-    list(
-      risk_est_10yr = dplyr::tibble(
-        total_cvd = 0.181, # 0.174
-        ascvd = 0.112, # 0.105
-        heart_failure = 0.108, # 0.114
-        chd = 0.054, # 0.056
-        stroke = 0.067, # 0.056 
-        model = "full", 
-        over_years = 10,
-        input_problems = NA_character_
-      ),
-      
-      risk_est_30yr = dplyr::tibble(
-        total_cvd = 0.539, # 0.534
-        ascvd = 0.367, # 0.348
-        heart_failure = 0.42, # 0.443
-        chd = 0.21, # 0.213
-        stroke = 0.235, # 0.204, 
-        model = "full", 
-        over_years = 30,
-        input_problems = NA_character_
-      )
-    )
+    expected_res
+  )
+
+  sdi_for_zip <- get_sdi("14738")
+
+  expect_equal(
+    estimate_risk_partial(hba1c = 9.2, uacr = 92, zip = sdi_for_zip, quiet = TRUE),
+    expected_res
   )
 })
 
@@ -235,61 +254,80 @@ test_that("UACR model works, male", {
 })
 
 test_that("SDI model works, male", {
+
+  expected_res <- list(
+    risk_est_10yr = dplyr::tibble(
+      total_cvd = 0.143, 
+      ascvd = 0.088, 
+      heart_failure = 0.089,
+      chd = 0.049, 
+      stroke = 0.043, 
+      model = "sdi", 
+      over_years = 10,
+      input_problems = NA_character_
+    ),
+    
+    risk_est_30yr = dplyr::tibble(
+      total_cvd = 0.48, 
+      ascvd = 0.317, 
+      heart_failure = 0.384,
+      chd = 0.199, 
+      stroke = 0.171, 
+      model = "sdi", 
+      over_years = 30,
+      input_problems = NA_character_
+    )
+  )
+  
   expect_equal(
     estimate_risk_partial(sex = "male", zip = "14738", quiet = TRUE),
-    list(
-      risk_est_10yr = dplyr::tibble(
-        total_cvd = 0.143, 
-        ascvd = 0.088, 
-        heart_failure = 0.089,
-        chd = 0.049, 
-        stroke = 0.043, 
-        model = "sdi", 
-        over_years = 10,
-        input_problems = NA_character_
-      ),
-      
-      risk_est_30yr = dplyr::tibble(
-        total_cvd = 0.48, 
-        ascvd = 0.317, 
-        heart_failure = 0.384,
-        chd = 0.199, 
-        stroke = 0.171, 
-        model = "sdi", 
-        over_years = 30,
-        input_problems = NA_character_
-      )
-    )
+    expected_res
+  )
+
+  sdi_for_zip <- get_sdi("14738")
+
+  expect_equal(
+    estimate_risk_partial(sex = "male", zip = sdi_for_zip, quiet = TRUE),
+    expected_res
   )
 })
 
 test_that("Full model works, male", {
   # commented-out values are values before 2026 erratum
+  expected_res <- list(
+    risk_est_10yr = dplyr::tibble(
+      total_cvd = 0.185, # 0.191 
+      ascvd = 0.115, # 0.112 
+      heart_failure = 0.12, # 0.131
+      chd = 0.063, # 0.068
+      stroke = 0.058, # 0.052
+      model = "full", 
+      over_years = 10,
+      input_problems = NA_character_
+    ),
+    
+    risk_est_30yr = dplyr::tibble(
+      total_cvd = 0.509, # 0.513
+      ascvd = 0.345, # 0.326 
+      heart_failure = 0.42, # 0.438
+      chd = 0.214, # 0.216
+      stroke = 0.193, # 0.167
+      model = "full", 
+      over_years = 30,
+      input_problems = NA_character_
+    )
+  )
+
   expect_equal(
     estimate_risk_partial(sex = "male", hba1c = 9.2, uacr = 92, zip = "14738", quiet = TRUE),
-    list(
-      risk_est_10yr = dplyr::tibble(
-        total_cvd = 0.185, # 0.191 
-        ascvd = 0.115, # 0.112 
-        heart_failure = 0.12, # 0.131
-        chd = 0.063, # 0.068
-        stroke = 0.058, # 0.052
-        model = "full", 
-        over_years = 10,
-        input_problems = NA_character_
-      ),
-      
-      risk_est_30yr = dplyr::tibble(
-        total_cvd = 0.509, # 0.513
-        ascvd = 0.345, # 0.326 
-        heart_failure = 0.42, # 0.438
-        chd = 0.214, # 0.216
-        stroke = 0.193, # 0.167
-        model = "full", 
-        over_years = 30,
-        input_problems = NA_character_
-      )
-    )
+    expected_res
+  )
+
+  sdi_for_zip <- get_sdi("14738")
+
+  expect_equal(
+    estimate_risk_partial(sex = "male", hba1c = 9.2, uacr = 92, zip = sdi_for_zip, quiet = TRUE),
+    expected_res
   )
 })
 
@@ -644,13 +682,13 @@ test_that("Preparation of terms works - Missing optional predictors", {
 })
 
 test_that("Preparation of terms works - Other SDI categories", {
-  # Test zip where SDI from 4-6
+  # Test ZIP where SDI from 4-6
   dat <- make_prep_dat(zip = "44221")
   
   expect_snapshot(prep_terms(dat, "sdi"))
   expect_snapshot(prep_terms(dat, "full"))
   
-  # Test zip where SDI from 1-3
+  # Test ZIP where SDI from 1-3
   dat[["zip"]] <- "01005"
   
   expect_snapshot(prep_terms(dat, "sdi"))
@@ -716,7 +754,7 @@ test_that("HbA1c model 10-year risks give expected results", {
   )
 })
 
-test_that("Zip model 10-year risks give expected results & SDI lookup works", {
+test_that("SDI model 10-year risks give expected results & SDI lookup works", {
   sdi_10yr_partial <- function(zip) {
     check_equations(
       age = 50,
@@ -735,15 +773,26 @@ test_that("Zip model 10-year risks give expected results & SDI lookup works", {
     )
   }
   
+  zips <- c("03883", "49544", "49507")
+
   # SDI of 3
-  expect_snapshot(get_sdi("03883"))
-  expect_snapshot(sdi_10yr_partial(zip = "03883")) 
+  expect_snapshot(get_sdi(zips[[1]]))
+  expect_snapshot(sdi_10yr_partial(zip = zips[[1]])) 
   # SDI of 5
-  expect_snapshot(get_sdi("49544"))
-  expect_snapshot(sdi_10yr_partial(zip = "49544"))
+  expect_snapshot(get_sdi(zips[[2]]))
+  expect_snapshot(sdi_10yr_partial(zip = zips[[2]]))
   # SDI of 10
-  expect_snapshot(get_sdi("49507")) 
-  expect_snapshot(sdi_10yr_partial(zip = "49507"))
+  expect_snapshot(get_sdi(zips[[3]])) 
+  expect_snapshot(sdi_10yr_partial(zip = zips[[3]]))
+
+  sdis_for_zips <- vapply(zips, get_sdi, numeric(1))
+
+  for(round in seq_along(zips)) {
+    expect_identical(
+      sdi_10yr_partial(zip = zips[[round]]),
+      sdi_10yr_partial(zip = as.character(sdis_for_zips[[round]]))
+    )
+  }
 })
 
 test_that("Full model 10-year risks give expected results", {
@@ -759,6 +808,34 @@ test_that("Full model 10-year risks give expected results", {
       time = "10yr"
     )
   )
+
+  zips <- c("03883", "49544", "49507")
+  sdis_for_zips <- vapply(zips, get_sdi, numeric(1))
+
+   for(round in seq_along(zips)) {
+    expect_identical(
+      check_equations_partial(
+        age = 75,
+        statin = TRUE,
+        dm = 0,
+        smoking = 1,
+        hba1c = 7.5,
+        uacr = 40,
+        zip = zips[[round]],
+        time = "10yr"
+      ),
+      check_equations_partial(
+        age = 75,
+        statin = TRUE,
+        dm = 0,
+        smoking = 1,
+        hba1c = 7.5,
+        uacr = 40,
+        zip = as.character(sdis_for_zips[[round]]),
+        time = "10yr"
+      )
+    )
+  }
 })
 
 test_that("Time as character vs. numeric works: Base model, 10-year", {
@@ -1020,15 +1097,26 @@ test_that("Zip model 30-year risks give expected results & SDI lookup works", {
     )
   }
   
+  zips <- c("03883", "49544", "49507")
+
   # SDI of 3
-  expect_snapshot(get_sdi("03883"))
-  expect_snapshot(sdi_30yr_partial(zip = "03883")) 
+  expect_snapshot(get_sdi(zips[[1]]))
+  expect_snapshot(sdi_30yr_partial(zip = zips[[1]])) 
   # SDI of 5
-  expect_snapshot(get_sdi("49544"))
-  expect_snapshot(sdi_30yr_partial(zip = "49544"))
+  expect_snapshot(get_sdi(zips[[2]]))
+  expect_snapshot(sdi_30yr_partial(zip = zips[[2]]))
   # SDI of 10
-  expect_snapshot(get_sdi("49507")) 
-  expect_snapshot(sdi_30yr_partial(zip = "49507"))
+  expect_snapshot(get_sdi(zips[[3]])) 
+  expect_snapshot(sdi_30yr_partial(zip = zips[[3]]))
+
+  sdis_for_zips <- vapply(zips, get_sdi, numeric(1))
+
+  for(round in seq_along(zips)) {
+    expect_identical(
+      sdi_30yr_partial(zip = zips[[round]]),
+      sdi_30yr_partial(zip = as.character(sdis_for_zips[[round]]))
+    )
+  }
 })
 
 test_that("Full model 30-year risks give expected results", {
@@ -1044,6 +1132,34 @@ test_that("Full model 30-year risks give expected results", {
       time = "30yr"
     )
   )
+
+  zips <- c("03883", "49544", "49507")
+  sdis_for_zips <- vapply(zips, get_sdi, numeric(1))
+
+   for(round in seq_along(zips)) {
+    expect_identical(
+      check_equations_partial(
+        age = 45,
+        statin = TRUE,
+        dm = 0,
+        smoking = 1,
+        hba1c = 7.5,
+        uacr = 40,
+        zip = zips[[round]],
+        time = "30yr"
+      ),
+      check_equations_partial(
+        age = 45,
+        statin = TRUE,
+        dm = 0,
+        smoking = 1,
+        hba1c = 7.5,
+        uacr = 40,
+        zip = as.character(sdis_for_zips[[round]]),
+        time = "30yr"
+      )
+    )
+  }
 })
 
 test_that("Time as character vs. numeric works: Base model, 30-year", {
@@ -1619,7 +1735,7 @@ test_that("Invalid HbA1c is same as no HbA1c, only optional is HbA1c", {
   expect_identical(unique(invalid_hba1c[["model"]]), "base")
 })
 
-test_that("Invalid zip is same as no zip, only optional is zip", {
+test_that("Invalid ZIP is same as no ZIP, only optional is ZIP", {
   
   invalid_zip <- check_equations_partial(zip = "99999", quiet = TRUE)
   no_zip <- check_equations_partial(zip = NULL, quiet = TRUE)
@@ -2781,6 +2897,23 @@ test_that("further testing of use of data frame", {
   expect_identical(res, res_age_rename_sym)
   expect_identical(res, res_age_rename_chr)
   
+  # Showing ZIP as ZIP vs. direct input of SDI yields identical results
+  # in a data frame as well
+  expect_identical(
+    # Drop `zip` col for check, b/c values in `zip` col will differ
+    # (ZIP codes in former, SDI values in latter)
+    res %>% dplyr::select(-zip),
+    est_risk(
+      use_dat = 
+        # Use same data that produced `res`, aside
+        # from changing ZIP codes to direct SDI input
+        dat %>% 
+          dplyr::mutate(zip = vapply(zip, get_sdi, numeric(1))),
+      progress = FALSE
+    ) %>% 
+      dplyr::select(-zip)
+  )
+
   # Now adding time and model data
   dat_time_model <- dat %>% 
     dplyr::mutate(
@@ -2810,7 +2943,7 @@ test_that("further testing of use of data frame", {
   expect_equal(unique(res_time_and_model_in_call[["model"]]), "base") 
   
   res_time_and_model_in_call <- est_risk(
-    use_dat = dat_time_model |> dplyr::mutate(model = "base"), 
+    use_dat = dat_time_model %>% dplyr::mutate(model = "base"), 
     model = NULL,
     progress = FALSE
   ) 
@@ -2851,6 +2984,25 @@ test_that("further testing of use of data frame", {
   
   expect_identical(res_with_dat, res_with_dat_manual_join) 
   
+  # Additional testing that ZIP as ZIP vs. direct input of SDI yields identical results
+  # in a data frame as well
+  expect_identical(
+    # Drop `zip` col for check, b/c values in `zip` col will differ
+    # (ZIP codes in former, SDI values in latter)
+    res_with_dat %>% dplyr::select(-zip),
+    est_risk(
+      use_dat = 
+        # Use same data that produced `res_with_dat`, aside
+        # from changing ZIP codes to direct SDI input
+        dat_time_model %>% 
+          # Note use of terminal `as.character()` in this version
+          # (first test confirmed identicality w/ SDI as numeric value)
+          dplyr::mutate(zip = vapply(zip, get_sdi, numeric(1)) %>% as.character()),
+      progress = FALSE
+    ) %>%
+      dplyr::select(-zip)
+  )
+
   # Type stability
   dat_tbl <- dat %>% dplyr::mutate(quiet = TRUE)  
   dat_df <- as.data.frame(dat_tbl)
@@ -2898,13 +3050,13 @@ test_that("further testing of use of data frame", {
     seq_len(nrow(dat_with_pce_requests)),
     
     function(x) {
-      n_row <- res_with_pce_requests |> dplyr::filter(preventr_id == x) |> nrow()
+      n_row <- res_with_pce_requests %>% dplyr::filter(preventr_id == x) %>% nrow()
       
       identical(
         rep(dat_with_pce_requests[["model"]][x], n_row),
         
-        res_with_pce_requests |> 
-          dplyr::filter(preventr_id == x) |>
+        res_with_pce_requests %>% 
+          dplyr::filter(preventr_id == x) %>%
           dplyr::pull(model_input)
       )
     },
@@ -3020,6 +3172,66 @@ test_that("further testing of use of data frame", {
   # example (spoiler, it will be)
   expect_identical(res_basic_lapply, res_without_calls)
   
+  # Additional testing that ZIP as ZIP vs. direct input of SDI yields identical results
+  # in a data frame as well
+  expect_identical(
+    # Drop `zip` col for check, b/c values in `zip` col will differ
+    # (ZIP codes in former, SDI values in latter)
+    res_with_calls %>% dplyr::select(-zip),
+    est_risk(
+      use_dat = 
+        # Use same data that produced `res_with_calls`, aside
+        # from changing ZIP codes to direct SDI input
+        dat_with_cr_cm_kg %>% 
+          dplyr::mutate(zip = vapply(zip, get_sdi, numeric(1))), 
+      # Mirror other fx call args from what produced `res_with_calls`
+      egfr = "egfr_call", 
+      bmi = bmi_call,     
+      progress = FALSE
+    ) %>%
+      dplyr::select(-zip)
+  )
+
+  # One more test of ZIP codes, but mix-and-match style and variable format of SDI
+  dat_with_cr_cm_kg_all_zips <- 
+    dat_with_cr_cm_kg %>%
+      dplyr::mutate(
+        zip = valid_zips$valid_zips %>% sample(nrow(dat_with_cr_cm_kg), replace = FALSE)
+      )
+  dat_with_cr_cm_kg_and_mix_and_match_zip_sdi <- dat_with_cr_cm_kg_all_zips
+  indices_to_sub <- seq_len(nrow(dat_with_cr_cm_kg_and_mix_and_match_zip_sdi)) %>% sample(4, FALSE)
+  zips_to_sub_with_sdi <- dat_with_cr_cm_kg_and_mix_and_match_zip_sdi$zip[indices_to_sub]
+  sdis_of_zips <- vapply(zips_to_sub_with_sdi, get_sdi, numeric(1))
+  dat_with_cr_cm_kg_and_mix_and_match_zip_sdi$zip[indices_to_sub] <- sdis_of_zips
+  dat_with_cr_cm_kg_all_sdi_num <- 
+    dat_with_cr_cm_kg_all_zips %>% 
+          dplyr::mutate(zip = vapply(zip, get_sdi, numeric(1)))
+  dat_with_cr_cm_kg_all_sdi_chr <- 
+    dat_with_cr_cm_kg_all_zips %>% 
+          dplyr::mutate(zip = vapply(zip, get_sdi, numeric(1)) %>% as.character())
+
+  # Expect identical other than `zip` col
+  # (also tests equality of passing data frame via `use_dat` arg or first arg of call)
+  # Note the `zip` col here will be chr/str for both, because ZIP codes will be chr/str by default,
+  # and the mix-and-match version will also be str/chr due to coexistence of ZIP codes and SDIs
+  expect_identical(
+    est_risk(use_dat = dat_with_cr_cm_kg_all_zips, progress = FALSE) %>% dplyr::select(-zip),
+    est_risk(dat_with_cr_cm_kg_and_mix_and_match_zip_sdi, progress = FALSE) %>% dplyr::select(-zip)
+  )
+
+  # Expect identical other than `zip` col again
+  # Note the `zip` col here is different format
+  expect_identical(
+    est_risk(use_dat = dat_with_cr_cm_kg_all_sdi_chr, progress = FALSE) %>% dplyr::select(-zip),
+    est_risk(dat_with_cr_cm_kg_all_sdi_num, progress = FALSE) %>% dplyr::select(-zip)
+  )
+
+  # Now also confirm identicality of latter with former
+  expect_identical(
+    est_risk(dat_with_cr_cm_kg_and_mix_and_match_zip_sdi, progress = FALSE) %>% dplyr::select(-zip),
+    est_risk(dat_with_cr_cm_kg_all_sdi_num, progress = FALSE) %>% dplyr::select(-zip)
+  )
+
   # In what follows, I define a function that allows me to (1) alter the
   # behavior of both the `lapply()` call (by specifying what the first variable
   # in the call to `with()`) and (2) alter the arguments passed to the
